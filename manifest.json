@@ -1,0 +1,24 @@
+{
+  "name": "Xboxito",
+  "description": "Muestra los juegos de la tienda web de Xbox con los impuestos de Argentina incluidos",
+  "version": "1.0",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.xbox.com/es-AR/*",
+        "*://*.xbox.com/es-ar/*"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "js": [
+        "script.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

@@ -1,0 +1,15 @@
+.bodyExtension {
+  width: 200px;
+}
+
+.priceWithTaxes {
+  display: inline-block;
+  background: black;
+  color: white;
+  padding: 2px 7px;
+  border-radius: 3px;
+}
+
+.priceWithTaxes::before {
+ content: '\01F1E6 \01F1F7';
+}
