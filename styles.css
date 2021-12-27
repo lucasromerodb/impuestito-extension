@@ -1,15 +1,32 @@
-.bodyExtension {
-  width: 200px;
-}
+/*
+ICONS
+
+Mate: \01F9C9 (https://emojiterra.com/es/mate/)
+Argentina: \01F1E6 \01F1F7 (https://emojiterra.com/es/bandera-argentina/)
+
+
+*/
 
 .priceWithTaxes {
   display: inline-block;
+  padding: 3px 7px;
+
   background: black;
-  color: white;
-  padding: 2px 7px;
+
+  /* background: linear-gradient(190deg, #0e760d, #04cc47); */
   border-radius: 3px;
+
+  color: white;
 }
 
 .priceWithTaxes::before {
  content: '\01F1E6 \01F1F7';
+}
+
+.bodyExtension {
+  width: 200px;
+}
+
+.c-price {
+  font-size: 15px !important;
 }

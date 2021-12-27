@@ -1,4 +1,3 @@
-
 const tax = {
   ganancias: 0.35,
   pais: 0.30,
@@ -14,30 +13,33 @@ function priceFormatter(price) {
 }
 
 function handleMutations(mutations) {
-  console.log({ mutations })
-  if (mutations && mutations[0].addedNodes) {
-    mutations[0].addedNodes.forEach((item) => {
-      if (item.className.includes('gameDiv')) {
+  if (mutations) {
 
-        const originalPriceText = item.querySelector('span[itemprop=price]').textContent;
-        const originalPriceFormatted = +originalPriceText.replace(/[$\s+]?[.]?/gi, '').replace(',', '.');
-        const priceWithTaxes = (originalPriceFormatted + originalPriceFormatted * (tax.ganancias + tax.pais)).toFixed(2)
+    const items = document.querySelectorAll('.gameDiv');
 
-        const priceWithTaxesElement = document.createElement('p');
-        priceWithTaxesElement.innerText = ' ' + priceFormatter(priceWithTaxes);
-        priceWithTaxesElement.classList.add('priceWithTaxes');
+    if (items.length > 0) {
+      for (const item of items) {
 
-        const priceAreaElement = item.querySelector('div[class=c-price]');
-        priceAreaElement.appendChild(priceWithTaxesElement);
+        if (item.querySelector('.xboxito') === null) {
 
+          const originalPriceText = item.querySelector('span[itemprop=price]').textContent;
+          const originalPriceFormatted = +originalPriceText.replace(/[$\s+]?[.]?/gi, '').replace(',', '.');
+          const priceWithTaxes = (originalPriceFormatted + originalPriceFormatted * (tax.ganancias + tax.pais)).toFixed(2)
+
+          const priceWithTaxesElement = document.createElement('p');
+          priceWithTaxesElement.innerText = ' ' + priceFormatter(priceWithTaxes);
+          priceWithTaxesElement.classList.add('priceWithTaxes', 'xboxito');
+
+          item.appendChild(priceWithTaxesElement);
+        }
       }
-    })
+    }
   }
 }
 
 const wrapper = document.querySelector('.gameDivsWrapper');
 const observer = new MutationObserver(handleMutations);
-const observerOptions = { childList: true, subtree: true };
+const observerOptions = { childList: true };
 
 observer.observe(wrapper, observerOptions);
 

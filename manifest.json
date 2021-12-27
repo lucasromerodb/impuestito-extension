@@ -15,10 +15,7 @@
       "js": [
         "games.js"
       ],
-      "run_at": "document_end"
+      "run_at": "document_idle"
     }
-  ],
-  "action": {
-    "default_popup": "popup.html"
-  }
+  ]
 }
