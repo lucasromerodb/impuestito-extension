@@ -16,13 +16,13 @@
 Muestra los juegos de la tienda web de Xbox con los impuestos de Argentina incluidos.
 
 - Por el momento solo muestra los precios con impuestos en el [listado de todos los juegos](https://www.xbox.com/es-ar/games/all-games)
-- Por el momento solo está disponible para Google Chrome
 
 ### 😎 Próximas mejoras
 - Mostrar precio con impuestos en la página de cada juego
 - Mostrar precio con impuestos en el carrito
 - Mostrar precio con impuestos en los relacionados de la página individual de un juego
 - Posibilidad de personalizar los impuestos
+- Versión para Firefox
 - Sitio web de la extensión
 
 [![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_2.svg)](https://cafecito.app/xboxito)
