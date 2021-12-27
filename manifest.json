@@ -3,6 +3,12 @@
   "description": "Muestra los juegos de la tienda web de Xbox con los impuestos de Argentina incluidos",
   "version": "1.0",
   "manifest_version": 3,
+  "icons": {
+    "16": "/assets/16.png",
+    "32": "/assets/32.png",
+    "48": "/assets/48.png",
+    "128": "/assets/128.png"
+  },
   "content_scripts": [
     {
       "matches": [

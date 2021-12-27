@@ -1,4 +1,4 @@
-![Xboxito](assets/github-cover.jpeg "Xboxito")
+![Xboxito](/assets/github-cover.jpeg "Xboxito")
 
 # Xboxito 💚
 
