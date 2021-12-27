@@ -12,6 +12,7 @@ function priceFormatter(price) {
   return formatter.format(price);
 }
 
+// Append calculated price badge to each game card and popup
 function handleMutations(mutations) {
   if (mutations) {
 
@@ -22,15 +23,18 @@ function handleMutations(mutations) {
 
         if (item.querySelector('.xboxito') === null) {
 
+          // Calc price
           const originalPriceText = item.querySelector('span[itemprop=price]').textContent;
           const originalPriceFormatted = +originalPriceText.replace(/[$\s+]?[.]?/gi, '').replace(',', '.');
           const priceWithTaxes = (originalPriceFormatted + originalPriceFormatted * (tax.ganancias + tax.pais)).toFixed(2)
 
+          // Badge creation
           const priceWithTaxesElement = document.createElement('p');
           priceWithTaxesElement.innerText = ' ' + priceFormatter(priceWithTaxes);
           priceWithTaxesElement.classList.add('priceWithTaxes', 'xboxito');
 
           item.appendChild(priceWithTaxesElement);
+          item.querySelector('.popprice').appendChild(priceWithTaxesElement.cloneNode(true));
         }
       }
     }
