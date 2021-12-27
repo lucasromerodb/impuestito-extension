@@ -2,7 +2,7 @@
 
 # Xboxito 💚
 
-> ## La extensión que calcula automáticamente los impuestos de Xbox Argentina (2021)
+## La extensión que calcula automáticamente los impuestos de los juegos en el sitio de Xbox Argentina
 
 ### ⬇️ Descargalo
 
@@ -35,6 +35,6 @@ Si tenés alguna idea interesante para Xboxito o encontraste algún problema con
 - 🐦 También podés [escribime en Twitter](https://twitter.com/GamePassDayOne)
 
 
-> Nota: Xboxito Spencer surge de la misma idea de [Steamcito](https://github.com/emilianog94/Steamcito-Precios-Steam-Argentina-Impuestos-Incluidos) pero para la tienda web de Xbox Argentina
+> Nota: Xboxito surge de la misma idea de [Steamcito](https://github.com/emilianog94/Steamcito-Precios-Steam-Argentina-Impuestos-Incluidos) pero para la tienda web de Xbox Argentina
 
 
