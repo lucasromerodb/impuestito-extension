@@ -6,7 +6,7 @@
 
 ### ⬇️ Descargalo
 
-1. [Instalá Xboxito](https://chrome.google.com/webstore) en tu navegador.
+1. [Instalá Xboxito](https://chrome.google.com/webstore/detail/xboxito/kodbfkngjgckpmipedoomkdhhihioaio) en tu navegador.
 2. ¡Listo! Ya podes ver los [juegos de Xbox](https://www.xbox.com/es-ar/games/all-games) a precio final con los impuestos calculados.
 3. Compartilo con tus amigos :)
 
