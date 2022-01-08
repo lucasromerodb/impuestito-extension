@@ -1,26 +1,33 @@
 /*
-ICONS
-
-Mate: \01F9C9 (https://emojiterra.com/es/mate/)
-Argentina: \01F1E6 \01F1F7 (https://emojiterra.com/es/bandera-argentina/)
-
-
+* ICONS
+*
+* Mate: \01F9C9 (https://emojiterra.com/es/mate/)
+* Empanada: https://emojipedia.org/dumpling/
+* Argentina: \01F1E6 \01F1F7 (https://emojiterra.com/es/bandera-argentina/)
 */
 
-.priceBadge {
+.priceWithTaxesBadge {
   display: inline-block;
-  padding: 3px 7px !important;
 
-  background: black;
+  padding: 4px 8px !important;
   border-radius: 3px;
+  background: #38220A;
 
   color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-size: 18px !important;
 }
 
-.priceBadge::before {
- content: '\01F1E6 \01F1F7';
+.priceWithTaxesBadge::before {
+  position: relative;
+  top: 2px;
+
+  display: inline-block;
+  content: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAADEklEQVR4AWIgFZgq8TsriXFlAZkKDOQAM3V+p+4o5Q3ZLpJbnQwk5l9YlPX/0bK4/xPiNO8L8HHEVceZrsv2UloKVKqOzxwZBy2hYlUJbgAj5QCjaRKE4VN8a9u2zbFt27Zt27Zt27ZtRYuwtqcn6TF+fKx6UnxFQ/Qox6fSVWA0nBuijOhgJkcfJpKkoTOAA8KNWWGp0gsmk+UhSf3ZT+T3YCfYaTelTyNjkQKQoPYUSv3lYKHYFsYTxLf9pzM10F8TX4/4MwDTk+OO23H//sU6V2CKDUfixLBxWwg/+Gp8B3eVLxBnRgc+6t+gxJWDgMeiBWHQ6T3oM14K28T6cu+omg7jpd+doYLYsMSNA/SFXkG8BRNM5+jBXL4JzOYbw2SaEoENeVDAoMMbGLB7CcIfT/tu5D2usKWETjcqaAvmhQhDasi0Zcb1mkpXhfliG1Q/PXw9mapAgAhE/p/uH5HdCHw3mGaEjOWh3JMT8h3ZYK7AHBYr3Haq3wbgKwyLV7gLZJReXD92WYvlWomlDAVMJMqAtfR7mM01hOVqX5hMkd8VNhYjRKJTp7mQT0JTYL0fMoEiq/HhBh+Nb1DrJwRLVd54RPaKbtibCsNKdR8DwrwkQCeFT6mLZc4oOinw16bAoD1TxdEJkuj0GC6Fburu5TOHdDvj1BBQGgJ1KGChxB41wXZP4JDbVwzzF7s5sXUNr9pLvpx3V/qIDWNMaPH0z+YZ7Z6qPwNJ9fujo6Kbort16ZjsdLYO6q4SrM5fggUzbsZ0hsaOsJEQdpKq5NezPtsW47///vvan6wLq9sxHCsK8ZasGIiGdzsslBMG7NfGxJTtcj9yP7yjEnBQ3AvtjpTATv5a32Gh1HE7LJiVwIxZLo/sJ18XjUReY8fOMEHUHMnNNfOlxaAms2doXy9UIPtz+8ne1VRXWbxaZCziRLFkDbp9xrBU5fsrFPeP6R9UR4+EGjKuTCTJwFgkLwy5rkEG0Vol/Vmu5qdkW4leoBpRBhKBTryn5rRcd9n9tQGyB6p85BYqiHAWAMUFSTEEAGmUsX3NwQ0wAAAAAElFTkSuQmCC");
+
+  margin-right: 6px;
 }
 
-.c-price {
+/* .c-price {
   font-size: 15px !important;
-}
+} */
