@@ -1,40 +1,48 @@
 ![Xboxito](/assets/github-cover.jpeg "Xboxito")
 
-# Xboxito 💚
+# Xboxito
 
-## La extensión que calcula automáticamente los impuestos de los juegos en el sitio de Xbox Argentina
+## Muestra el precio de los juegos de la web de PlayStation, Xbox y Nintendo con los impuestos de Argentina incluidos
 
 ### ⬇️ Descargalo
 
-1. [Instalá Xboxito](https://chrome.google.com/webstore/detail/xboxito/kodbfkngjgckpmipedoomkdhhihioaio) en tu navegador.
-2. ¡Listo! Ya podes ver los [juegos de Xbox](https://www.xbox.com/es-ar/games/all-games) a precio final con los impuestos calculados.
-3. Compartilo con tus amigos :)
+1. [Instalá la extensión](https://chrome.google.com/webstore/detail/xboxito/kodbfkngjgckpmipedoomkdhhihioaio) en tu navegador.
+2. ¡Listo! Ya podes saber el precio real de los juegos de Xbox, PlayStation y Nintendo con los impuestos calculados.
+
+Acá podes ver el listado de juegos
+- [Juegos de Xbox Arg.](https://www.xbox.com/es-ar/games/all-games)
+- [Juegos de PlayStation Arg.](https://store.playstation.com/es-ar/category/35027334-375e-423b-b500-0d4d85eff784)
+- [Juegos de Nintendo Arg.](https://store.nintendo.com.ar/)
+
+> Nota: Compartilo con tus amigos :)
 
 
-### 🙋 ¿Qué hace Xboxito?
+### 🙋 ¿Qué hace la extensión?
 
 Muestra los juegos de la tienda web de Xbox con los impuestos de Argentina incluidos.
 
 - Por el momento solo muestra los precios con impuestos en el [listado de todos los juegos](https://www.xbox.com/es-ar/games/all-games)
 
 ### 😎 Próximas mejoras
-- Mostrar precio con impuestos en la página de cada juego
-- Mostrar precio con impuestos en el carrito
-- Mostrar precio con impuestos en los relacionados de la página individual de un juego
-- Posibilidad de personalizar los impuestos
-- Versión para Firefox
+- ✅ Compatible para las tiendas web de Argentina para Xbox, PlayStation y Nintendo
+- Compatible con las tiendas web de USA para PlayStation y Nintendo
+- Compatible con la página individual de cada juego
+- Compatible con los juegos relacionados (pag. individual.)
+- Personalizar los impuestos
+- Compatible con el carrito de compras de Xbox (web)
 - Sitio web de la extensión
+- Versión para Firefox
 
 [![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_2.svg)](https://cafecito.app/xboxito)
 
 ### ¿Tenés alguna idea o problema?
 
-Si tenés alguna idea interesante para Xboxito o encontraste algún problema con la extensión:
+Si tenés alguna idea interesante o encontraste algún problema con la extensión:
 
 - 🐞 Podés hacerlo [creando un issue acá](https://github.com/lucasromerodb/xboxito/issues/new/choose)
 - 🐦 También podés [escribime en Twitter](https://twitter.com/GamePassDayOne)
 
 
-> Nota: Xboxito surge de la misma idea de [Steamcito](https://github.com/emilianog94/Steamcito-Precios-Steam-Argentina-Impuestos-Incluidos) pero para la tienda web de Xbox Argentina
+> Nota: Esta extensión surge de la misma idea de [Steamcito](https://github.com/emilianog94/Steamcito-Precios-Steam-Argentina-Impuestos-Incluidos) pero para la tienda web de Xbox Argentina
 
 

@@ -1,27 +1,42 @@
 {
-  "name": "Xboxito",
-  "description": "Muestra los juegos de la tienda web de Xbox con los impuestos de Argentina incluidos",
+  "name": "Impuestito",
+  "description": "Muestra el precio de los juegos de la web de PlayStation, Xbox y Nintendo con los impuestos de Argentina incluidos",
   "version": "1.0",
   "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.playstation.com/es-ar/*",
+        "*://*.playstation.com/en-us/*",
+        "*://*.xbox.com/es-AR/*",
+        "*://*.xbox.com/es-ar/*",
+        "*://*.nintendo.com/*",
+        "*://*.nintendo.com.ar/*"
+      ],
+      "css": [
+        "css/badge.css"
+      ],
+      "js": [
+        "js/index.js",
+        "js/helpers.js",
+        "js/playstation/playstation.js",
+        "js/xbox/xbox.js",
+        "js/nintendo/nintendo.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
   "icons": {
     "16": "/assets/16.png",
     "32": "/assets/32.png",
     "48": "/assets/48.png",
     "128": "/assets/128.png"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*.xbox.com/es-AR/*",
-        "*://*.xbox.com/es-ar/*"
-      ],
-      "css": [
-        "styles.css"
-      ],
-      "js": [
-        "games.js"
-      ],
-      "run_at": "document_idle"
-    }
-  ]
+  }
 }
