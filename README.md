@@ -1,27 +1,28 @@
-![Xboxito](/assets/github-cover.jpeg "Xboxito")
+![Impuestito](/assets/impuestito-cover.jpg "Impuestito Cover")
 
-# Xboxito
+> Conocido anteriormente como `Xboxito` ahora la extensión también tiene soporte para PlayStation y Nintendo.
 
-## Muestra el precio de los juegos de la web de PlayStation, Xbox y Nintendo con los impuestos de Argentina incluidos
+# Impuestito - Conocé el precio real de los juegos
+
+Calcula y muestra el precio de los juegos de la web de Xbox, PlayStation y Nintendo con los impuestos de Argentina incluidos y en pesos.
 
 ### ⬇️ Descargalo
 
 1. [Instalá la extensión](https://chrome.google.com/webstore/detail/xboxito/kodbfkngjgckpmipedoomkdhhihioaio) en tu navegador.
-2. ¡Listo! Ya podes saber el precio real de los juegos de Xbox, PlayStation y Nintendo con los impuestos calculados.
+2. ¡Listo! Ya podes saber el precio real de los juegos de Xbox, PlayStation y Nintendo con los impuestos calculados y en pesos.
 
-Acá podes ver el listado de juegos
+Acá podés ver el listado de juegos:
 - [Juegos de Xbox Arg.](https://www.xbox.com/es-ar/games/all-games)
 - [Juegos de PlayStation Arg.](https://store.playstation.com/es-ar/category/35027334-375e-423b-b500-0d4d85eff784)
 - [Juegos de Nintendo Arg.](https://store.nintendo.com.ar/)
 
 > Nota: Compartilo con tus amigos :)
 
+### 🙋 ¿Qué hace Impuestito?
 
-### 🙋 ¿Qué hace la extensión?
+Con esta extensión vas a poder ver el precio total de lo que te cuestan los juegos en las tiendas de Xbox, PlayStation y Nintendo.
 
-Muestra los juegos de la tienda web de Xbox con los impuestos de Argentina incluidos.
-
-- Por el momento solo muestra los precios con impuestos en el [listado de todos los juegos](https://www.xbox.com/es-ar/games/all-games)
+- Por el momento calcula los valores únicamente en las tiendas web de Argentina
 
 ### 😎 Próximas mejoras
 - ✅ Compatible para las tiendas web de Argentina para Xbox, PlayStation y Nintendo
@@ -42,7 +43,10 @@ Si tenés alguna idea interesante o encontraste algún problema con la extensió
 - 🐞 Podés hacerlo [creando un issue acá](https://github.com/lucasromerodb/xboxito/issues/new/choose)
 - 🐦 También podés [escribime en Twitter](https://twitter.com/GamePassDayOne)
 
+### ¿Buscas algo similar para Steam?
 
-> Nota: Esta extensión surge de la misma idea de [Steamcito](https://github.com/emilianog94/Steamcito-Precios-Steam-Argentina-Impuestos-Incluidos) pero para la tienda web de Xbox Argentina
+Hace tiempo existe [Steamcito](https://github.com/emilianog94/Steamcito-Precios-Steam-Argentina-Impuestos-Incluidos), extensión que calcula los precios con impuestos y además te permite personalizarlos.
+
+> Nota: Impuestito se basa en la misma idea de Steamcito pero para las tiendas web de Xbox, PlayStation y Nintendo.
 
 

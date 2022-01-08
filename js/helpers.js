@@ -34,7 +34,7 @@ function getPriceWithTaxes(containerDOMElement, priceDOMElement, taxes, currency
  */
 function drawBadge(price, targetDOMElement) {
   const badge = document.createElement('p');
-  badge.innerText = price === 0 ? ' Gratis' : priceFormatter(price);
+  badge.innerText = price === 0 ? ' Gratis' : `AR${priceFormatter(price)}`;
   badge.setAttribute('title', 'Este es el precio real que vas a pagar (incluye impuestos)');
   badge.classList.add('priceWithTaxesBadge');
 
