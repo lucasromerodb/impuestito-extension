@@ -11,20 +11,22 @@ function getPriceWithTaxes(containerDOMElement, priceDOMElement, taxes, currency
   const priceIsFree = priceText.includes('Free') || priceText.includes('Gratuito');
   const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
 
-  if (!priceIsFree) {
-    const price = sanitizePricePunctuation(sanitizePriceSigns(priceText));
-
-    if (price !== 0) {
-      if (currency === 'US') {
-        const priceARS = price * sanitizePricePunctuation(dollar.data.venta);
-        return priceWithTaxes(priceARS);
-      }
-
-      return priceWithTaxes(price);
-    }
+  if (priceIsFree) {
+    return 0;
   }
 
-  return 0;
+  const price = sanitizePricePunctuation(sanitizePriceSigns(priceText));
+
+  if (price === 0) {
+    return 0;
+  }
+
+  if (currency === 'US') {
+    const priceARS = price * sanitizePricePunctuation(dollar.data.venta);
+    return priceWithTaxes(priceARS);
+  }
+
+  return priceWithTaxes(price);
 }
 
 
@@ -38,14 +40,13 @@ function drawBadge(price, targetDOMElement) {
   badge.setAttribute('title', 'Este es el precio real que vas a pagar (incluye impuestos)');
   badge.classList.add('priceWithTaxesBadge');
 
-
   targetDOMElement.appendChild(badge);
 }
 
 /**
  * @param  {number} price
- * @param {string} format
- * @param {string} currency
+ * @param  {string} format
+ * @param  {string} currency
  * @returns {string}
  */
 function priceFormatter(price, format = 'es-AR', currency = 'ARS') {
