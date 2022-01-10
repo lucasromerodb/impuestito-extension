@@ -7,9 +7,6 @@
     "service_worker": "background.js",
     "type": "module"
   },
-  "permissions": [
-    "storage"
-  ],
   "content_scripts": [
     {
       "matches": [
