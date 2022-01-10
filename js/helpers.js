@@ -44,6 +44,8 @@ function drawBadge(price, targetDOMElement) {
 
 /**
  * @param  {number} price
+ * @param {string} format
+ * @param {string} currency
  * @returns {string}
  */
 function priceFormatter(price, format = 'es-AR', currency = 'ARS') {

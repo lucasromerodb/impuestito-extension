@@ -5,12 +5,13 @@ const tax = {
 
 let dollar = {};
 
-// Watch html mutations
+// Watch HTML mutations
 const observer = new MutationObserver(handleMutationsInit);
 const observerOptions = { subtree: true, attributes: true };
 
 observer.observe(document, observerOptions);
 
+// Assign the correct method to handle the mutations based on website and region
 function handleMutationsInit() {
   const hostname = window.location.hostname;
   const pathname = window.location.pathname;
