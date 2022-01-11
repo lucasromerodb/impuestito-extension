@@ -14,6 +14,7 @@
         "*://*.playstation.com/en-us/*",
         "*://*.xbox.com/es-AR/*",
         "*://*.xbox.com/es-ar/*",
+        "*://*.xbdeals.net/ar-store*",
         "*://*.nintendo.com/*",
         "*://*.nintendo.com.ar/*"
       ],
@@ -25,6 +26,7 @@
         "js/helpers.js",
         "js/playstation/playstation.js",
         "js/xbox/xbox.js",
+        "js/xbox/xbdeals.js",
         "js/nintendo/nintendo.js"
       ],
       "run_at": "document_idle"

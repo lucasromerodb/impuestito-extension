@@ -8,7 +8,7 @@
  */
 function getPriceWithTaxes(containerDOMElement, priceDOMElement, taxes, currency = 'ARS') {
   const priceText = containerDOMElement.querySelector(priceDOMElement).textContent;
-  const priceIsFree = priceText.includes('Free') || priceText.includes('Gratuito');
+  const priceIsFree = priceText.includes('Free') || priceText.includes('FREE') || priceText.includes('Gratuito');
   const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
 
   if (priceIsFree) {
