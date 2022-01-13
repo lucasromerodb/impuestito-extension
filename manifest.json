@@ -1,7 +1,7 @@
 {
   "name": "Impuestito",
-  "description": "Muestra el precio de los juegos de la web de PlayStation, Xbox y Nintendo con los impuestos de Argentina incluidos",
-  "version": "1.2",
+  "description": "Conocé el precio final de los juegos! Calcula y muestra el precio final de los juegos con impuestos de Argentina incluidos para las tiendas web de PlayStation, Xbox y Nintendo",
+  "version": "1.3",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js",
@@ -15,7 +15,8 @@
         "*://*.xbox.com/es-AR/*",
         "*://*.xbox.com/es-ar/*",
         "*://*.nintendo.com/*",
-        "*://*.nintendo.com.ar/*"
+        "*://*.nintendo.com.ar/*",
+        "*://*.epicgames.com/store/*"
       ],
       "css": [
         "css/badge.css"
@@ -25,7 +26,8 @@
         "js/helpers.js",
         "js/playstation/playstation.js",
         "js/xbox/xbox.js",
-        "js/nintendo/nintendo.js"
+        "js/nintendo/nintendo.js",
+        "js/epic/epic.js"
       ],
       "run_at": "document_idle"
     }
