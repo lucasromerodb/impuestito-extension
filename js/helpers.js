@@ -1,4 +1,3 @@
-
 /**
  * @param  {object} containerDOMElement
  * @param  {string} priceDOMElement
@@ -108,5 +107,4 @@ function sanitizePricePunctuation(price) {
    */
 
   return +price.replace(/(\d?)[\.|\,]?(.+)[\,|\.](\d{1,2})/gi, '$1$2.$3');
-
 }

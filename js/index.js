@@ -1,9 +1,16 @@
+// Get USD exchange rate
+if (window.location.hostname.includes('playstation') || window.location.hostname.includes('epicgames')) {
+  chrome.runtime.sendMessage('GET_DOLLAR_OFFICIAL', (response) => {
+    dollar = response;
+  })
+}
+
 const tax = {
   ganancias: 0.35,
   pais: 0.30,
 }
 
-let dollar = {};
+let dollar;
 
 // Watch HTML mutations
 const observer = new MutationObserver(handleMutationsInit);
@@ -16,21 +23,18 @@ function handleMutationsInit() {
   const hostname = window.location.hostname;
   const pathname = window.location.pathname;
 
+  // PlayStation
   if (hostname.includes('playstation')) {
 
-    chrome.runtime.sendMessage('GET_DOLLAR_OFFICIAL', (response) => {
-      dollar = response;
-    })
-
     if (pathname.includes('category')) {
-      handlePlaystationCategory();
+      dollar && handlePlaystationCategory();
     }
   }
 
+  // Xbox
   if (hostname.includes("xbdeals.net") && pathname.includes("ar-store")) {
     handleXbDeals();
   }
-
   if (hostname.includes('xbox')) {
 
     if (pathname.includes('games/all-games')) {
@@ -38,10 +42,32 @@ function handleMutationsInit() {
     }
   }
 
+  // Nintendo
   if (hostname.includes('nintendo')) {
 
     if (hostname.includes('.com.ar')) {
       handleNintendoAllGamesArg();
+    }
+  }
+
+  // Epic
+  if (hostname.includes('epicgames')) {
+    if (pathname.includes('store') && !pathname.includes('browse') && !pathname.includes('/p/')) {
+      if (dollar) {
+        handleEpicSwiperSlider();
+        handleEpicVerticalList();
+        handleEpicHero();
+        handleEpicGroupBreaker();
+      }
+    }
+
+    if (pathname.includes('browse')) {
+      dollar && handleEpicBrowse();
+    }
+
+    if (pathname.includes('/p/')) {
+      dollar && handleEpicGamePage();
+      dollar && handleEpicGamePageRelated();
     }
   }
 }

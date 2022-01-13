@@ -25,10 +25,13 @@
  * Gold
  * https://www.xbox.com/es-AR/live/gold?xr=shellnav#dealswithgold
  * https://www.xbox.com/es-AR/live/gold/upgrade
+ *
+ * XB Deals
+ * https://xbdeals.net/ar-store
  */
 
 /**
- * Calculate final price with taxesAppend calculated price badge to each game card and popup
+ * Append calculated price badge to each game card and popup
  * then append a badge to each game card and popup preview
  *
  * Tested on:

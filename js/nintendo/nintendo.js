@@ -1,5 +1,5 @@
 /**
- * Calculate final price with taxesAppend calculated price badge to each game card and popup
+ * Append calculated price badge to each game card
  * then append a badge to each game card
  *
  * Tested on:
