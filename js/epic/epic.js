@@ -122,4 +122,56 @@ function handleEpicBrowse() {
   }
 }
 
+/*
+ * Append calculated price badge game page sidebar
+ * then append a badge below original price
+ *
+ * Tested on:
+ * https://www.epicgames.com/store/en-US/p/god-of-war
+ * https://www.epicgames.com/store/en-US/p/away-the-survival-series
+ * https://www.epicgames.com/store/en-US/p/neko-ghost-jump
+ * https://www.epicgames.com/store/en-US/p/league-of-legends
+*/
+function handleEpicGamePage() {
+  const gameCards = document.querySelectorAll('div[data-component="PDPSidebarLayout"] div[data-component="CatalogOfferSidebarPrice"]');
+
+  if (gameCards.length > 0) {
+    for (const card of gameCards) {
+
+      if (card.querySelector('.priceWithTaxesBadge')) {
+        return;
+      } else {
+        const priceLayout = card.querySelector('div[data-component="PriceLayout"] > span');
+
+        if (priceLayout) {
+          const price = getPriceWithTaxes(priceLayout.children[priceLayout.children.length - 1], 'span[data-component="Text"]', tax, 'US');
+          drawBadge(price, card);
+          card.classList.add('impuestito');
+        }
+      }
+    }
+  }
+};
+
+function handleEpicGamePageRelated() {
+  const gameCards = document.querySelectorAll('div[data-component="PDPRelatedOfferCardLayout"]');
+
+  if (gameCards.length > 0) {
+    for (const card of gameCards) {
+
+      if (card.querySelector('.priceWithTaxesBadge')) {
+        return;
+      } else {
+        const priceLayout = card.querySelector('div[data-component="PriceLayout"] > span');
+
+        if (priceLayout) {
+          const price = getPriceWithTaxes(priceLayout.children[priceLayout.children.length - 1], 'span[data-component="Text"]', tax, 'US');
+          drawBadge(price, priceLayout);
+          card.classList.add('impuestito');
+        }
+      }
+    }
+  }
+};
+
 

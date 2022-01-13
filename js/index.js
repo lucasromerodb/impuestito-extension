@@ -49,7 +49,7 @@ function handleMutationsInit() {
 
   // Epic
   if (hostname.includes('epicgames')) {
-    if (pathname.includes('store') && !pathname.includes('browse')) {
+    if (pathname.includes('store') && !pathname.includes('browse') && !pathname.includes('/p/')) {
       if (dollar) {
         handleEpicSwiperSlider();
         handleEpicVerticalList();
@@ -60,6 +60,11 @@ function handleMutationsInit() {
 
     if (pathname.includes('browse')) {
       dollar && handleEpicBrowse();
+    }
+
+    if (pathname.includes('/p/')) {
+      dollar && handleEpicGamePage();
+      dollar && handleEpicGamePageRelated();
     }
   }
 }
