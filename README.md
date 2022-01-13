@@ -4,7 +4,14 @@
 
 # Impuestito - Conocé el precio real de los juegos
 
-Calcula y muestra el precio de los juegos de la web de Xbox, PlayStation, Nintendo y Epic Games con los impuestos de Argentina incluidos y en pesos.
+```
+Novedades 🥳
+
+> Se agregó soporte para Epic Games Store
+```
+
+
+Impuestito calcula y muestra el precio de los juegos de la web de Xbox, PlayStation, Nintendo y Epic Games con los impuestos de Argentina incluidos y en pesos.
 
 ## [🎁 Descargar Impuestito](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es)
 ## [🐦 Seguir en Twitter](https://twitter.com/GamePassDayOne/status/1480886877490143232)
@@ -56,8 +63,8 @@ Si tenés alguna idea interesante o encontraste algún problema con la extensió
 
 ### ¿Buscas algo similar para Steam?
 
-Hace tiempo existe [Steamcito](https://github.com/emilianog94/Steamcito-Precios-Steam-Argentina-Impuestos-Incluidos), extensión que calcula los precios con impuestos y además te permite personalizarlos.
+Hace tiempo existe 👑 [Steamcito](https://github.com/emilianog94/Steamcito-Precios-Steam-Argentina-Impuestos-Incluidos), la extensión que calcula los precios con impuestos y que además te permite personalizarlos.
 
-> Nota: Impuestito se basa en la misma idea de Steamcito pero para las tiendas web de Xbox, PlayStation y Nintendo.
+> Nota: Impuestito se basa en la misma idea que Steamcito pero para otras tiendas.
 
 
