@@ -4,23 +4,21 @@
 
 # Impuestito - Conocé el precio real de los juegos
 
-```
-Novedades 🥳
-
-> Se agregó soporte para Epic Games Store
-```
-
-
 Impuestito calcula y muestra el precio de los juegos de la web de Xbox, PlayStation, Nintendo y Epic Games con los impuestos de Argentina incluidos y en pesos.
 
-## [🎁 Descargar Impuestito](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es)
-## [🐦 Seguir en Twitter](https://twitter.com/GamePassDayOne/status/1480886877490143232)
+### [🎁 Descargar Impuestito](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es)
+### [🐦 Seguir en Twitter](https://twitter.com/GamePassDayOne/status/1480886877490143232)
 
-Sitios web soportados
-- [PlayStation (AR)](https://store.playstation.com/es-ar/category/35027334-375e-423b-b500-0d4d85eff784)
-- [Nintendo (AR, US)](https://store.nintendo.com.ar/)
+🎉 Novedades
+
+- Se agregó soporte para Epic Games Store
+
+🎮 Sitios web soportados
+
+- [PlayStation (AR, US)](https://store.playstation.com/es-ar/category/35027334-375e-423b-b500-0d4d85eff784)
+- [Nintendo (AR)](https://store.nintendo.com.ar/)
 - [Xbox (AR)](https://www.xbox.com/es-ar/games/all-games)
-- [Epic Games Store (US) 🆕](https://www.epicgames.com/store/en-US/)
+- [Epic Games Store (US)](https://www.epicgames.com/store/en-US/)
 
 ### 🙋 ¿Qué hace Impuestito?
 
@@ -31,7 +29,7 @@ Impuestito toma el precio original de cada juego en distintas tiendas online y h
 1. [Instalá la extensión](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es) en tu navegador.
 2. ¡Listo! Ya podes saber el precio real de los juegos de Xbox, PlayStation, Nintendo y Epic Games con los impuestos calculados y en pesos (AR$).
 
-Navegadores soportados
+🌎 Navegadores soportados
 - Google Chrome
 - Opera
 - OperaGX
