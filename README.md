@@ -19,6 +19,10 @@ Impuestito calcula y muestra el precio de los juegos de la web de Xbox, PlayStat
 - [Nintendo (AR)](https://store.nintendo.com.ar/)
 - [Xbox (AR)](https://www.xbox.com/es-ar/games/all-games)
 - [Epic Games Store (US)](https://www.epicgames.com/store/en-US/)
+- Ubisoft Store (Próximamente)
+- EA Origin (Próximamente)
+- Battle Net (Próximamente)
+- GOG (Próximamente)
 
 ## 🙋 ¿Qué hace Impuestito?
 
