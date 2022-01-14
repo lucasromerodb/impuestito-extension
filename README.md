@@ -11,6 +11,7 @@ Impuestito calcula y muestra el precio de los juegos de la web de Xbox, PlayStat
 
 ## 🎉 Novedades
 
+- Se agregó soporte para XB Deals
 - Se agregó soporte para Epic Games Store
 
 ## 🎮 Sitios web soportados
@@ -19,10 +20,12 @@ Impuestito calcula y muestra el precio de los juegos de la web de Xbox, PlayStat
 - [Nintendo (AR)](https://store.nintendo.com.ar/)
 - [Xbox (AR)](https://www.xbox.com/es-ar/games/all-games)
 - [Epic Games Store (US)](https://www.epicgames.com/store/en-US/)
-- Ubisoft Store (Próximamente)
-- EA Origin (Próximamente)
-- Battle Net (Próximamente)
-- GOG (Próximamente)
+- [XB Deals (AR)](https://xbdeals.net/ar-store)
+- PS Deals `próximamente`
+- Ubisoft Store `próximamente`
+- EA Origin `próximamente`
+- Battle Net `próximamente`
+- GOG `próximamente`
 
 ## 🙋 ¿Qué hace Impuestito?
 
