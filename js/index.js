@@ -32,6 +32,9 @@ function handleMutationsInit() {
   }
 
   // Xbox
+  if (hostname.includes("xbdeals.net") && pathname.includes("ar-store")) {
+    handleXbDeals();
+  }
   if (hostname.includes('xbox')) {
 
     if (pathname.includes('games/all-games')) {
