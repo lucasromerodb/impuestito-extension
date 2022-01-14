@@ -32,13 +32,24 @@ function handleMutationsInit() {
   }
 
   // Xbox
-  if (hostname.includes("xbdeals.net") && pathname.includes("ar-store")) {
-    handleXbDeals();
-  }
   if (hostname.includes('xbox')) {
 
     if (pathname.includes('games/all-games')) {
       handleXboxAllGames();
+    }
+  }
+
+  // XB Deals
+  if (hostname.includes("xbdeals.net")) {
+
+    if (pathname.includes('/ar-store')) {
+
+      if (pathname.includes("/game/")) {
+        handleXbDealsGamePage();
+      } else {
+        handleXbDealsFeatured();
+        handleXbDealsDiscounts();
+      }
     }
   }
 
