@@ -16,14 +16,14 @@ function handlePlaystationCategory() {
         const priceElement = game.lastElementChild.querySelector('.psw-m-r-3');
         if (priceElement) {
           const originalPrice = priceElement.textContent;
-          const newPrice = getNewPrice(priceElement, tax, 'US');
+          const newPrice = getNewPrice(originalPrice, tax, 'US');
           newPrice && replacePrice(priceElement, priceElement, originalPrice, newPrice);
         }
 
         const priceElementDiscount = game.lastElementChild.querySelector('.psw-c-t-2');
         if (priceElementDiscount) {
           const originalPriceDiscount = priceElementDiscount.textContent;
-          const newPriceDiscount = getNewPrice(priceElementDiscount, tax, 'US');
+          const newPriceDiscount = getNewPrice(originalPriceDiscount, tax, 'US');
           newPriceDiscount && replacePrice(priceElementDiscount, priceElement, originalPriceDiscount, newPriceDiscount, false);
         }
 

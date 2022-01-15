@@ -1,20 +1,19 @@
 /**
- * @param  {string} priceElement
+ * @param  {string} originalPrice
  * @param  {object} taxes
  * @param  {string} currency
  * @returns {number}
  */
-function getNewPrice(priceElement, taxes, currency = 'ARS') {
-  const priceText = priceElement.textContent;
+function getNewPrice(originalPrice, taxes, currency = 'ARS') {
   const exceptions = ['Free', 'FREE', 'Gratuito'];
-  const priceIsFree = exceptions.some(exception => exception.toLowerCase() === priceText.toLowerCase());
+  const priceIsFree = exceptions.some(exception => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
 
   if (priceIsFree) {
     return 0;
   }
 
-  const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(priceText));
+  const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(originalPrice));
   if (priceNumber === 0) {
     return 0;
   }
