@@ -5,11 +5,11 @@
  * @returns {number}
  */
 function getNewPrice(originalPrice, taxes, currency = 'ARS') {
-  const exceptions = ['Free', 'FREE', 'Gratuito'];
-  const priceIsFree = exceptions.some(exception => exception.toLowerCase() === originalPrice.toLowerCase());
+  const exceptions = ['Free', 'FREE', 'Gratuito', 'No disponible',];
+  const priceTextNaN = exceptions.some(exception => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
 
-  if (priceIsFree) {
+  if (priceTextNaN) {
     return 0;
   }
 
@@ -76,11 +76,11 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
     e.preventDefault();
 
     if (priceElement.classList.contains('originalPrice')) {
-      priceElement.setAttribute.title = 'Precio (AR$) con impuestos incluidos';
+      priceElement.setAttribute('title', 'Precio (AR$) con impuestos incluidos');
       priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
       priceElement.classList.remove('originalPrice');
     } else {
-      priceElement.setAttribute.title = 'Precio original';
+      priceElement.setAttribute('title', 'Precio original');
       priceElement.textContent = `${originalEmoji}${originalPrice}`;
       priceElement.classList.add('originalPrice');
     }

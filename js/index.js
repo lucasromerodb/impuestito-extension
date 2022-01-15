@@ -24,10 +24,24 @@ function handleMutationsInit() {
   const pathname = window.location.pathname;
 
   // PlayStation
-  if (hostname.includes('playstation')) {
+  if (hostname.includes('playstation') && dollar) {
 
-    if (pathname.includes('category')) {
-      dollar && handlePlaystationCategory();
+    if (pathname.includes('/category') || pathname.includes('/search')) {
+      handlePlaystationGrid();
+    }
+
+    if (pathname.includes('/pages')) {
+      handlePlaystationSlider();
+    }
+
+    if (pathname.includes('/ps-plus')) {
+      handlePlaystationPlus();
+    }
+
+    if (pathname.includes('/product') || pathname.includes('/concept')) {
+      handlePlaystationProduct();
+      handlePlaystationProductEditions();
+      handlePlaystationProductComplements();
     }
   }
 
@@ -62,23 +76,23 @@ function handleMutationsInit() {
   }
 
   // Epic
-  if (hostname.includes('epicgames')) {
+  if (hostname.includes('epicgames') && dollar) {
     if (pathname.includes('store') && !pathname.includes('browse') && !pathname.includes('/p/')) {
-      if (dollar) {
-        handleEpicSwiperSlider();
-        handleEpicVerticalList();
-        handleEpicHero();
-        handleEpicGroupBreaker();
-      }
+
+      handleEpicSwiperSlider();
+      handleEpicVerticalList();
+      handleEpicHero();
+      handleEpicGroupBreaker();
+
     }
 
     if (pathname.includes('browse')) {
-      dollar && handleEpicBrowse();
+      handleEpicBrowse();
     }
 
     if (pathname.includes('/p/')) {
-      dollar && handleEpicGamePage();
-      dollar && handleEpicGamePageRelated();
+      handleEpicGamePage();
+      handleEpicGamePageRelated();
     }
   }
 }
