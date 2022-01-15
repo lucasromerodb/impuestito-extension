@@ -1,4 +1,35 @@
 /**
+ * @param  {string} priceElement
+ * @param  {object} taxes
+ * @param  {string} currency
+ * @returns {number}
+ */
+function getNewPrice(priceElement, taxes, currency = 'ARS') {
+  const priceText = priceElement.textContent;
+  const exceptions = ['Free', 'FREE', 'Gratuito'];
+  const priceIsFree = exceptions.some(exception => exception.toLowerCase() === priceText.toLowerCase());
+  const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
+
+  if (priceIsFree) {
+    return 0;
+  }
+
+  const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(priceText));
+  if (priceNumber === 0) {
+    return 0;
+  }
+
+  if (currency === 'US') {
+    const newPrice = priceNumber * sanitizePricePunctuation(dollar.data.venta);
+    return priceWithTaxes(newPrice);
+  }
+
+  return priceWithTaxes(priceNumber);
+}
+
+/**
+ * TODO: DEPRECATE THIS FUNCTION
+ *
  * @param  {object} containerDOMElement
  * @param  {string} priceDOMElement
  * @param  {object} taxes
@@ -26,6 +57,35 @@ function getPriceWithTaxes(containerDOMElement, priceDOMElement, taxes, currency
   }
 
   return priceWithTaxes(price);
+}
+
+/**
+ * @param  {object} priceElement
+ * @param  {object} eventElement
+ * @param  {string} originalPrice
+ * @param  {number} newPrice
+ * @param  {boolean} showEmoji
+ */
+function replacePrice(priceElement, eventElement = priceElement, originalPrice, newPrice, showEmoji = true) {
+  const originalEmoji = showEmoji ? '⚠️ ' : '';
+  const newEmoji = showEmoji ? '🥲 ' : '';
+
+  priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
+  priceElement.classList.add('priceWithTaxes');
+
+  eventElement.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    if (priceElement.classList.contains('originalPrice')) {
+      priceElement.setAttribute.title = 'Precio (AR$) con impuestos incluidos';
+      priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
+      priceElement.classList.remove('originalPrice');
+    } else {
+      priceElement.setAttribute.title = 'Precio original';
+      priceElement.textContent = `${originalEmoji}${originalPrice}`;
+      priceElement.classList.add('originalPrice');
+    }
+  });
 }
 
 

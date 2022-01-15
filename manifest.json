@@ -20,7 +20,7 @@
         "*://*.epicgames.com/store/*"
       ],
       "css": [
-        "css/badge.css"
+        "css/styles.css"
       ],
       "js": [
         "js/index.js",
