@@ -1,131 +1,211 @@
-/*
- * Append calculated price badge to each game card and popup
- * then append a badge to each game card
+/**
+ * Epic Games Web Store
+ */
+function handleEpicMutations() {
+
+  if (someURL(['epicgames'], hostname)) {
+
+    if (!dollar) return;
+
+    if (someURL(['store'], pathname)) {
+      if (!pathname.includes('browse') && !pathname.includes('/p/')) {
+        handleEpicHero();
+        handleEpicSwiperSlider();
+        handleEpicVerticalList();
+        handleEpicGroupBreaker();
+      }
+    }
+
+    if (someURL(['browse'], pathname)) {
+      handleEpicBrowse();
+    }
+
+    if (someURL(['/p/'], pathname)) {
+      handleEpicGamePage();
+      handleEpicGamePageRelated();
+    }
+  }
+}
+
+/**
+ * HOW IT WORKS?
  *
+ * Find a game item list
+ * Then get the original price and their discount if exists
+ * Then replace both with the new price
+ * Then add a click event to switch between original and new prices
+ */
+
+/**
+ * TODO:
+ * This file deserves a refactor to
+ * optimize code quality methods
+ * There are a lot of code smells
+ * Avoid repeating code
+ */
+
+/*
  * Tested on:
  * https://www.epicgames.com/store/en-US/
 */
 function handleEpicHero() {
 
-  const gameCards = document.querySelectorAll('div[data-component="CarouselContentDesktop"] div[data-component="CarouselPrice"]');
+  const games = document.querySelectorAll('[data-component="CarouselContentDesktop"] [data-component="CarouselPrice"]');
 
-  if (gameCards.length > 0) {
-    for (const card of gameCards) {
+  if (games && games.length > 0) {
+    for (let i = 0; i < games.length; i++) {
+      const game = games[i];
 
-      if (card.querySelector('.priceWithTaxesBadge')) {
-        return;
-      } else {
-        const priceLabel = card.querySelector('span[data-component="Price"]')
+      if (game.className.includes('impuestito')) return;
 
-        if (priceLabel) {
-          const price = getPriceWithTaxes(card, 'span[data-component="Price"]', tax, 'US');
-          drawBadge(price, card);
-          card.classList.add('impuestito');
-        }
-      }
-    }
-  }
-}
+      // Price
+      gameScrapper({
+        priceElement: game.querySelector('span[data-component="Price"]'),
+        eventElement: game.querySelector('span[data-component="Price"]'),
+        currency: 'US',
+        showEmoji: true,
+      });
 
-function handleEpicSwiperSlider() {
-
-  const gameCards = document.querySelectorAll('div[data-component="DiscoverContainerDesktop"] .swiper-wrapper .swiper-slide');
-
-  if (gameCards.length > 0) {
-    for (const card of gameCards) {
-
-      if (card.querySelector('.priceWithTaxesBadge')) {
-        return;
-      } else {
-        const priceLayout = card.querySelector('div[data-component="PriceLayout"] > span');
-
-        if (priceLayout) {
-          const price = getPriceWithTaxes(priceLayout.children[priceLayout.children.length - 1], 'span[data-component="Text"]', tax, 'US');
-          drawBadge(price, card);
-          card.classList.add('impuestito');
-        }
-      }
-    }
-  }
-}
-
-function handleEpicVerticalList() {
-  const gameCards = document.querySelectorAll('div[data-component="DiscoverContainerDesktop"] div[data-component="TopListCardItemLayout"]');
-
-  if (gameCards.length > 0) {
-    for (const card of gameCards) {
-
-      if (card.querySelector('.priceWithTaxesBadge')) {
-        return;
-      } else {
-        const priceLayout = card.querySelector('div[data-component="PriceLayout"] > span');
-
-        if (priceLayout) {
-          const price = getPriceWithTaxes(priceLayout.children[priceLayout.children.length - 1], 'span[data-component="Text"]', tax, 'US');
-          const rightCol = card.querySelector('div[data-testid="price"][data-component="TopListCardItemContentWithBadging"]');
-          drawBadge(price, rightCol);
-          card.classList.add('impuestito');
-        }
-      }
-    }
-  }
-}
-
-function handleEpicGroupBreaker() {
-
-  const gameCards = document.querySelectorAll('div[data-component="GroupedBreakerLayout"] div[data-component="BreakerOfferLinkVariant"]');
-
-  if (gameCards.length > 0) {
-    for (const card of gameCards) {
-
-      if (card.querySelector('.priceWithTaxesBadge')) {
-        return;
-      } else {
-        const priceLayout = card.querySelector('div[data-component="PriceLayout"] > span');
-
-        if (priceLayout) {
-          const price = getPriceWithTaxes(priceLayout.children[priceLayout.children.length - 1], 'span[data-component="Text"]', tax, 'US');
-          drawBadge(price, card);
-          card.classList.add('impuestito');
-        }
-      }
+      game.classList.add('impuestito', 'epic--hero');
     }
   }
 }
 
 /*
- * Append calculated price badge to each game card and popup
- * then append a badge to each game card
- *
+ * Tested on:
+ * https://www.epicgames.com/store/en-US/
+*/
+function handleEpicSwiperSlider() {
+
+  const games = document.querySelectorAll('.swiper-container .swiper-slide [data-component="PriceLayout"]');
+
+  if (games && games.length > 0) {
+    for (let i = 0; i < games.length; i++) {
+      const game = games[i];
+
+      if (game.className.includes('impuestito')) return;
+
+      // Price
+      gameScrapper({
+        priceElement: game.lastElementChild.lastElementChild.lastElementChild,
+        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+        currency: 'US',
+        showEmoji: true,
+      });
+
+      // Discount Price
+      gameScrapper({
+        priceElement: game.querySelector('[data-component="PDPDiscountedFromPrice"]'),
+        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+        currency: 'US',
+        showEmoji: false,
+      });
+
+      game.classList.add('impuestito', 'epic--hero');
+    }
+  }
+}
+
+/*
+ * Tested on:
+ * https://www.epicgames.com/store/en-US/
+*/
+function handleEpicVerticalList() {
+  const games = document.querySelectorAll('[data-component="DiscoverContainerDesktop"] [data-component="TopListCardItemLayout"] [data-component="PriceLayout"]');
+
+  if (games && games.length > 0) {
+    for (let i = 0; i < games.length; i++) {
+      const game = games[i];
+
+      if (game.className.includes('impuestito')) return;
+
+      // Price
+      gameScrapper({
+        priceElement: game.lastElementChild.lastElementChild.lastElementChild,
+        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+        currency: 'US',
+        showEmoji: true,
+      });
+
+      // Discount Price
+      gameScrapper({
+        priceElement: game.querySelector('[data-component="PDPDiscountedFromPrice"]'),
+        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+        currency: 'US',
+        showEmoji: false,
+      });
+
+      game.classList.add('impuestito', 'epic--vertical-list');
+    }
+  }
+}
+
+/*
+ * Tested on:
+ * https://www.epicgames.com/store/en-US/
+*/
+function handleEpicGroupBreaker() {
+
+  const games = document.querySelectorAll('[data-component="GroupedBreakerLayout"] [data-component="BreakerOfferLinkVariant"] [data-component="PriceLayout"]');
+
+  if (games && games.length > 0) {
+    for (let i = 0; i < games.length; i++) {
+      const game = games[i];
+
+      if (game.className.includes('impuestito')) return;
+
+      // Price
+      gameScrapper({
+        priceElement: game.lastElementChild.lastElementChild.lastElementChild,
+        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+        currency: 'US',
+        showEmoji: true,
+      });
+
+      // TODO: TEST
+      // PENDING CASE: Regular Price discount
+      // Could be a breaking bug
+
+      game.classList.add('impuestito', 'epic--group-breaker');
+    }
+  }
+}
+
+/*
  * Tested on:
  * https://www.epicgames.com/store/en-US/browse
 */
 function handleEpicBrowse() {
 
-  const gameCards = document.querySelectorAll('section[data-component="BrowseGrid"] ul > li');
+  const games = document.querySelectorAll('section[data-component="BrowseGrid"] ul > li [data-component="PriceLayout"]');
 
-  if (gameCards.length > 0) {
-    for (const card of gameCards) {
+  if (games.length > 0) {
+    for (let i = 0; i < games.length; i++) {
+      const game = games[i];
 
-      if (card.querySelector('.priceWithTaxesBadge')) {
-        return;
-      } else {
-        const priceLayout = card.querySelector('div[data-component="PriceLayout"] > span');
+      if (game.className.includes('impuestito')) return;
 
-        if (priceLayout) {
-          const price = getPriceWithTaxes(priceLayout.children[priceLayout.children.length - 1], 'span[data-component="Text"]', tax, 'US');
-          drawBadge(price, card);
-          card.classList.add('impuestito');
-        }
-      }
+      gameScrapper({
+        priceElement: game.lastElementChild.lastElementChild.lastElementChild,
+        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+        currency: 'US',
+        showEmoji: true,
+      });
+
+      // Discount Price
+      gameScrapper({
+        priceElement: game.querySelector('[data-component="PDPDiscountedFromPrice"]'),
+        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+        currency: 'US',
+        showEmoji: false,
+      });
+
+      game.classList.add('impuestito', 'epic--browse');
     }
   }
 }
 
 /*
- * Append calculated price badge game page sidebar
- * then append a badge below original price
- *
  * Tested on:
  * https://www.epicgames.com/store/en-US/p/god-of-war
  * https://www.epicgames.com/store/en-US/p/away-the-survival-series
@@ -133,43 +213,66 @@ function handleEpicBrowse() {
  * https://www.epicgames.com/store/en-US/p/league-of-legends
 */
 function handleEpicGamePage() {
-  const gameCards = document.querySelectorAll('div[data-component="PDPSidebarLayout"] div[data-component="CatalogOfferSidebarPrice"]');
+  const games = document.querySelectorAll('[data-component="PDPSidebarLayout"] [data-component="CatalogOfferSidebarPrice"] [data-component="PriceLayout"]');
 
-  if (gameCards.length > 0) {
-    for (const card of gameCards) {
+  if (games && games.length > 0) {
+    for (let i = 0; i < games.length; i++) {
+      const game = games[i];
 
-      if (card.querySelector('.priceWithTaxesBadge')) {
-        return;
-      } else {
-        const priceLayout = card.querySelector('div[data-component="PriceLayout"] > span');
+      if (game.className.includes('impuestito')) return;
 
-        if (priceLayout) {
-          const price = getPriceWithTaxes(priceLayout.children[priceLayout.children.length - 1], 'span[data-component="Text"]', tax, 'US');
-          drawBadge(price, card);
-          card.classList.add('impuestito');
-        }
-      }
+      // Price
+      gameScrapper({
+        priceElement: game.lastElementChild.lastElementChild.lastElementChild,
+        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+        currency: 'US',
+        showEmoji: true,
+      });
+
+      // Regular Price
+      gameScrapper({
+        priceElement: game.querySelector('[data-component="PDPDiscountedFromPrice"]'),
+        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+        currency: 'US',
+        showEmoji: false,
+      });
+
+      game.classList.add('impuestito', 'epic--game-page');
     }
   }
 };
 
+
+/**
+ * Tested on:
+ * https://www.epicgames.com/store/en-US/p/control
+ */
 function handleEpicGamePageRelated() {
-  const gameCards = document.querySelectorAll('div[data-component="PDPRelatedOfferCardLayout"]');
+  const games = document.querySelectorAll('[data-component="PDPRelatedOfferCardLayout"] [data-component="PriceLayout"]');
 
-  if (gameCards.length > 0) {
-    for (const card of gameCards) {
+  if (games && games.length > 0) {
+    for (let i = 0; i < games.length; i++) {
+      const game = games[i];
 
-      if (card.querySelector('.priceWithTaxesBadge')) {
-        return;
-      } else {
-        const priceLayout = card.querySelector('div[data-component="PriceLayout"] > span');
+      if (game.className.includes('impuestito')) return;
 
-        if (priceLayout) {
-          const price = getPriceWithTaxes(priceLayout.children[priceLayout.children.length - 1], 'span[data-component="Text"]', tax, 'US');
-          drawBadge(price, priceLayout);
-          card.classList.add('impuestito');
-        }
-      }
+      // Price
+      gameScrapper({
+        priceElement: game.lastElementChild.lastElementChild.lastElementChild,
+        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+        currency: 'US',
+        showEmoji: true,
+      });
+
+      // Regular Price
+      gameScrapper({
+        priceElement: game.querySelector('[data-component="PDPDiscountedFromPrice"]'),
+        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+        currency: 'US',
+        showEmoji: false,
+      });
+
+      game.classList.add('impuestito', 'epic--game-page-related');
     }
   }
 };

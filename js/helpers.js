@@ -87,6 +87,19 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
   });
 }
 
+/**
+ * @param  {object} {priceElement
+ * @param  {object} eventElement
+ * @param  {string} currency
+ * @param  {boolean} showEmoji}
+ */
+function gameScrapper({ priceElement, eventElement, currency, showEmoji }) {
+  if (priceElement) {
+    const originalPrice = priceElement.textContent;
+    const newPrice = getNewPrice(originalPrice, tax, currency);
+    newPrice && replacePrice(priceElement, eventElement, originalPrice, newPrice, showEmoji);
+  }
+}
 
 /**
  * @param  {number} price
@@ -166,4 +179,11 @@ function sanitizePricePunctuation(price) {
    */
 
   return +price.replace(/(\d?)[\.|\,]?(.+)[\,|\.](\d{1,2})/gi, '$1$2.$3');
+}
+
+/**
+ * @param  {array} arr
+ */
+function someURL(arr, url = pathname) {
+  return arr.some(w => url.includes(w));
 }

@@ -26,6 +26,7 @@ Impuestito calcula y muestra el precio de los juegos de la web de Xbox, PlayStat
 - EA Origin `próximamente`
 - Battle Net `próximamente`
 - GOG `próximamente`
+- Dekudeals `próximamente`
 
 ## 🙋 ¿Qué hace Impuestito?
 

@@ -1,8 +1,13 @@
-// Get USD exchange rate
-if (window.location.hostname.includes('playstation') || window.location.hostname.includes('epicgames')) {
-  chrome.runtime.sendMessage('GET_DOLLAR_OFFICIAL', (response) => {
-    dollar = response;
-  })
+const devMode = false;
+
+const dollarMock = {
+  data: {
+    "compra": "103,46",
+    "venta": "109,46",
+    "fecha": "17/01/2022 - 17:49",
+    "variacion": "0,23%",
+    "class-variacion": "up"
+  }
 }
 
 const tax = {
@@ -12,6 +17,21 @@ const tax = {
 
 let dollar;
 
+const hostname = window.location.hostname;
+const pathname = window.location.pathname;
+
+// Get USD exchange rate
+if (window.location.hostname.includes('playstation') || window.location.hostname.includes('epicgames')) {
+  if (devMode) {
+    console.warn('--- RUNNING IN DEV MODE ---');
+    dollar = dollarMock;
+  } else {
+    chrome.runtime.sendMessage('GET_DOLLAR_OFFICIAL', (response) => {
+      dollar = response;
+    })
+  }
+}
+
 // Watch HTML mutations
 const observer = new MutationObserver(handleMutationsInit);
 const observerOptions = { subtree: true, attributes: true };
@@ -20,30 +40,10 @@ observer.observe(document, observerOptions);
 
 // Assign the correct method to handle the mutations based on website and region
 function handleMutationsInit() {
-  const hostname = window.location.hostname;
-  const pathname = window.location.pathname;
 
-  // PlayStation
-  if (hostname.includes('playstation') && dollar) {
+  handlePlaystationMutations();
+  handleEpicMutations();
 
-    if (pathname.includes('/category') || pathname.includes('/search')) {
-      handlePlaystationGrid();
-    }
-
-    if (pathname.includes('/pages')) {
-      handlePlaystationSlider();
-    }
-
-    if (pathname.includes('/ps-plus')) {
-      handlePlaystationPlus();
-    }
-
-    if (pathname.includes('/product') || pathname.includes('/concept')) {
-      handlePlaystationProduct();
-      handlePlaystationProductEditions();
-      handlePlaystationProductComplements();
-    }
-  }
 
   // Xbox
   if (hostname.includes('xbox')) {
@@ -75,24 +75,5 @@ function handleMutationsInit() {
     }
   }
 
-  // Epic
-  if (hostname.includes('epicgames') && dollar) {
-    if (pathname.includes('store') && !pathname.includes('browse') && !pathname.includes('/p/')) {
 
-      handleEpicSwiperSlider();
-      handleEpicVerticalList();
-      handleEpicHero();
-      handleEpicGroupBreaker();
-
-    }
-
-    if (pathname.includes('browse')) {
-      handleEpicBrowse();
-    }
-
-    if (pathname.includes('/p/')) {
-      handleEpicGamePage();
-      handleEpicGamePageRelated();
-    }
-  }
 }
