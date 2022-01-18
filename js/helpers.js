@@ -1,4 +1,25 @@
 /**
+ * @param  {string} gamesSelector
+ * @param  {string} className
+ * @param  {Function} callback
+ */
+function handleMutations(gamesSelector, className, callback) {
+  const games = document.querySelectorAll(gamesSelector);
+
+  if (games && games.length > 0) {
+    for (let i = 0; i < games.length; i++) {
+      const game = games[i];
+
+      if (game.className.includes('impuestito')) return;
+
+      callback(game, i);
+
+      game.classList.add('impuestito', className);
+    }
+  }
+}
+
+/**
  * @param  {string} originalPrice
  * @param  {object} taxes
  * @param  {string} currency
@@ -93,7 +114,7 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
  * @param  {string} currency
  * @param  {boolean} showEmoji}
  */
-function gameScrapper({ priceElement, eventElement, currency, showEmoji }) {
+function scrapper({ priceElement, eventElement, currency, showEmoji }) {
   if (priceElement) {
     const originalPrice = priceElement.textContent;
     const newPrice = getNewPrice(originalPrice, tax, currency);

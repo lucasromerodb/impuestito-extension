@@ -28,6 +28,27 @@ function handleEpicMutations() {
 }
 
 /**
+ * @param  {object} game
+ */
+function epicScrapper(game) {
+  // Price
+  scrapper({
+    priceElement: game.lastElementChild.lastElementChild.lastElementChild,
+    eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+    currency: 'US',
+    showEmoji: true,
+  });
+
+  // Discount Price
+  scrapper({
+    priceElement: game.querySelector('[data-component="PDPDiscountedFromPrice"]'),
+    eventElement: game.lastElementChild.lastElementChild.lastElementChild,
+    currency: 'US',
+    showEmoji: false,
+  });
+}
+
+/**
  * HOW IT WORKS?
  *
  * Find a game item list
@@ -36,13 +57,6 @@ function handleEpicMutations() {
  * Then add a click event to switch between original and new prices
  */
 
-/**
- * TODO:
- * This file deserves a refactor to
- * optimize code quality methods
- * There are a lot of code smells
- * Avoid repeating code
- */
 
 /*
  * Tested on:
@@ -50,25 +64,20 @@ function handleEpicMutations() {
 */
 function handleEpicHero() {
 
-  const games = document.querySelectorAll('[data-component="CarouselContentDesktop"] [data-component="CarouselPrice"]');
-
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
+  handleMutations(
+    '[data-component="CarouselContentDesktop"] [data-component="CarouselPrice"]',
+    'epic--hero',
+    (game) => {
 
       // Price
-      gameScrapper({
-        priceElement: game.querySelector('span[data-component="Price"]'),
-        eventElement: game.querySelector('span[data-component="Price"]'),
+      scrapper({
+        priceElement: game.querySelector('[data-component="Price"]'),
+        eventElement: game.querySelector('[data-component="Price"]'),
         currency: 'US',
         showEmoji: true,
       });
-
-      game.classList.add('impuestito', 'epic--hero');
     }
-  }
+  );
 }
 
 /*
@@ -77,33 +86,11 @@ function handleEpicHero() {
 */
 function handleEpicSwiperSlider() {
 
-  const games = document.querySelectorAll('.swiper-container .swiper-slide [data-component="PriceLayout"]');
-
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
-
-      // Price
-      gameScrapper({
-        priceElement: game.lastElementChild.lastElementChild.lastElementChild,
-        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
-        currency: 'US',
-        showEmoji: true,
-      });
-
-      // Discount Price
-      gameScrapper({
-        priceElement: game.querySelector('[data-component="PDPDiscountedFromPrice"]'),
-        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
-        currency: 'US',
-        showEmoji: false,
-      });
-
-      game.classList.add('impuestito', 'epic--hero');
-    }
-  }
+  handleMutations(
+    '.swiper-container .swiper-slide [data-component="PriceLayout"]',
+    'epic--swiper-slider',
+    (game) => { epicScrapper(game) }
+  )
 }
 
 /*
@@ -111,33 +98,12 @@ function handleEpicSwiperSlider() {
  * https://www.epicgames.com/store/en-US/
 */
 function handleEpicVerticalList() {
-  const games = document.querySelectorAll('[data-component="DiscoverContainerDesktop"] [data-component="TopListCardItemLayout"] [data-component="PriceLayout"]');
 
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
-
-      // Price
-      gameScrapper({
-        priceElement: game.lastElementChild.lastElementChild.lastElementChild,
-        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
-        currency: 'US',
-        showEmoji: true,
-      });
-
-      // Discount Price
-      gameScrapper({
-        priceElement: game.querySelector('[data-component="PDPDiscountedFromPrice"]'),
-        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
-        currency: 'US',
-        showEmoji: false,
-      });
-
-      game.classList.add('impuestito', 'epic--vertical-list');
-    }
-  }
+  handleMutations(
+    '[data-component="DiscoverContainerDesktop"] [data-component="TopListCardItemLayout"] [data-component="PriceLayout"]',
+    'epic--vertical-list',
+    (game) => { epicScrapper(game) }
+  );
 }
 
 /*
@@ -146,16 +112,13 @@ function handleEpicVerticalList() {
 */
 function handleEpicGroupBreaker() {
 
-  const games = document.querySelectorAll('[data-component="GroupedBreakerLayout"] [data-component="BreakerOfferLinkVariant"] [data-component="PriceLayout"]');
-
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
+  handleMutations(
+    '[data-component="GroupedBreakerLayout"] [data-component="BreakerOfferLinkVariant"] [data-component="PriceLayout"]',
+    'epic--group-breaker',
+    (game) => {
 
       // Price
-      gameScrapper({
+      scrapper({
         priceElement: game.lastElementChild.lastElementChild.lastElementChild,
         eventElement: game.lastElementChild.lastElementChild.lastElementChild,
         currency: 'US',
@@ -165,10 +128,8 @@ function handleEpicGroupBreaker() {
       // TODO: TEST
       // PENDING CASE: Regular Price discount
       // Could be a breaking bug
-
-      game.classList.add('impuestito', 'epic--group-breaker');
     }
-  }
+  )
 }
 
 /*
@@ -177,32 +138,11 @@ function handleEpicGroupBreaker() {
 */
 function handleEpicBrowse() {
 
-  const games = document.querySelectorAll('section[data-component="BrowseGrid"] ul > li [data-component="PriceLayout"]');
-
-  if (games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
-
-      gameScrapper({
-        priceElement: game.lastElementChild.lastElementChild.lastElementChild,
-        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
-        currency: 'US',
-        showEmoji: true,
-      });
-
-      // Discount Price
-      gameScrapper({
-        priceElement: game.querySelector('[data-component="PDPDiscountedFromPrice"]'),
-        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
-        currency: 'US',
-        showEmoji: false,
-      });
-
-      game.classList.add('impuestito', 'epic--browse');
-    }
-  }
+  handleMutations(
+    'section[data-component="BrowseGrid"] ul > li [data-component="PriceLayout"]',
+    'epic--browse',
+    (game) => { epicScrapper(game) }
+  );
 }
 
 /*
@@ -213,33 +153,12 @@ function handleEpicBrowse() {
  * https://www.epicgames.com/store/en-US/p/league-of-legends
 */
 function handleEpicGamePage() {
-  const games = document.querySelectorAll('[data-component="PDPSidebarLayout"] [data-component="CatalogOfferSidebarPrice"] [data-component="PriceLayout"]');
 
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
-
-      // Price
-      gameScrapper({
-        priceElement: game.lastElementChild.lastElementChild.lastElementChild,
-        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
-        currency: 'US',
-        showEmoji: true,
-      });
-
-      // Regular Price
-      gameScrapper({
-        priceElement: game.querySelector('[data-component="PDPDiscountedFromPrice"]'),
-        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
-        currency: 'US',
-        showEmoji: false,
-      });
-
-      game.classList.add('impuestito', 'epic--game-page');
-    }
-  }
+  handleMutations(
+    '[data-component="PDPSidebarLayout"] [data-component="CatalogOfferSidebarPrice"] [data-component="PriceLayout"]',
+    'epic--game-page',
+    (game) => { epicScrapper(game) }
+  );
 };
 
 
@@ -248,33 +167,12 @@ function handleEpicGamePage() {
  * https://www.epicgames.com/store/en-US/p/control
  */
 function handleEpicGamePageRelated() {
-  const games = document.querySelectorAll('[data-component="PDPRelatedOfferCardLayout"] [data-component="PriceLayout"]');
 
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
-
-      // Price
-      gameScrapper({
-        priceElement: game.lastElementChild.lastElementChild.lastElementChild,
-        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
-        currency: 'US',
-        showEmoji: true,
-      });
-
-      // Regular Price
-      gameScrapper({
-        priceElement: game.querySelector('[data-component="PDPDiscountedFromPrice"]'),
-        eventElement: game.lastElementChild.lastElementChild.lastElementChild,
-        currency: 'US',
-        showEmoji: false,
-      });
-
-      game.classList.add('impuestito', 'epic--game-page-related');
-    }
-  }
+  handleMutations(
+    '[data-component="PDPRelatedOfferCardLayout"] [data-component="PriceLayout"]',
+    'epic--game-page-related',
+    (game) => { epicScrapper(game) }
+  );
 };
 
 

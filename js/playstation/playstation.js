@@ -47,16 +47,13 @@ function handlePlaystationMutations() {
 */
 function handlePlaystationGrid() {
 
-  const games = document.querySelectorAll('.psw-product-tile__details');
-
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
+  handleMutations(
+    '.psw-product-tile__details',
+    'playstation--grid',
+    (game) => {
 
       // Price
-      gameScrapper({
+      scrapper({
         priceElement: game.lastElementChild.querySelector('.psw-m-r-3'),
         eventElement: game.lastElementChild.querySelector('.psw-m-r-3'),
         currency: 'US',
@@ -64,16 +61,14 @@ function handlePlaystationGrid() {
       })
 
       // Regular Price
-      gameScrapper({
+      scrapper({
         priceElement: game.lastElementChild.querySelector('.psw-c-t-2'),
         eventElement: game.lastElementChild.querySelector('.psw-m-r-3'),
         currency: 'US',
         showEmoji: false,
       })
-
-      game.classList.add('impuestito', 'playstation--grid');
     }
-  }
+  );
 }
 
 /*
@@ -86,16 +81,13 @@ function handlePlaystationGrid() {
 */
 function handlePlaystationSlider() {
 
-  const games = document.querySelectorAll('.psw-strand-scroller .psw-product-tile__details');
-
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
+  handleMutations(
+    '.psw-strand-scroller .psw-product-tile__details',
+    'playstation--slider',
+    (game) => {
 
       // Price
-      gameScrapper({
+      scrapper({
         priceElement: game.lastElementChild.querySelector('.psw-m-r-3'),
         eventElement: game.lastElementChild.querySelector('.psw-m-r-3'),
         currency: 'US',
@@ -103,16 +95,14 @@ function handlePlaystationSlider() {
       })
 
       // Regular Price
-      gameScrapper({
+      scrapper({
         priceElement: game.lastElementChild.querySelector('.psw-c-t-2'),
         eventElement: game.lastElementChild.querySelector('.psw-m-r-3'),
         currency: 'US',
         showEmoji: false,
       })
-
-      game.classList.add('impuestito', 'playstation--slider');
     }
-  }
+  );
 }
 
 /*
@@ -122,25 +112,20 @@ function handlePlaystationSlider() {
 */
 function handlePlaystationPlus() {
 
-  const games = document.querySelectorAll('.cmp-experiencefragment--ps-plus-skus .box .automatedPricingCta .psw-label');
-
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
+  handleMutations(
+    '.cmp-experiencefragment--ps-plus-skus .box .automatedPricingCta .psw-label',
+    'playstation--plus',
+    (game) => {
 
       // Price
-      gameScrapper({
+      scrapper({
         priceElement: game.querySelector('.psw-t-title-m'),
         eventElement: game.querySelector('.psw-t-title-m'),
         currency: 'US',
         showEmoji: true,
       })
-
-      game.classList.add('impuestito', 'playstation--plus');
     }
-  }
+  );
 }
 
 /*
@@ -151,18 +136,14 @@ function handlePlaystationPlus() {
 */
 function handlePlaystationProduct() {
 
-  const games = document.querySelectorAll('.pdp-cta');
-
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
-
+  handleMutations(
+    '.pdp-cta',
+    'playstation--product',
+    (game) => {
       for (let offerNum = 0; offerNum < 2; offerNum++) {
 
         // Price
-        gameScrapper({
+        scrapper({
           priceElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
           eventElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
           currency: 'US',
@@ -170,18 +151,15 @@ function handlePlaystationProduct() {
         })
 
         // Regular Price
-        gameScrapper({
+        scrapper({
           priceElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#originalPrice"]`),
           eventElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
           currency: 'US',
           showEmoji: false,
         })
       }
-
-      game.classList.add('impuestito', 'playstation--product');
     }
-  }
-
+  );
 }
 
 /*
@@ -190,16 +168,13 @@ function handlePlaystationProduct() {
 */
 function handlePlaystationProductEditions() {
 
-  const games = document.querySelectorAll('.pdp-upsells article');
-
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
+  handleMutations(
+    '.pdp-upsells article',
+    'playstation--product-editions',
+    (game, i) => {
 
       // Price
-      gameScrapper({
+      scrapper({
         priceElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
         eventElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
         currency: 'US',
@@ -207,16 +182,14 @@ function handlePlaystationProductEditions() {
       })
 
       // Regular Price
-      gameScrapper({
+      scrapper({
         priceElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#originalPrice"]`),
         eventElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
         currency: 'US',
         showEmoji: false,
       })
-
-      game.classList.add('impuestito', 'playstation--product-editions');
     }
-  }
+  );
 }
 
 
@@ -226,24 +199,20 @@ function handlePlaystationProductEditions() {
 */
 function handlePlaystationProductComplements() {
 
-  const games = document.querySelectorAll('.pdp-add-ons [data-qa="add-ons"] li');
+  handleMutations(
+    '.pdp-add-ons [data-qa="add-ons"] li',
+    'playstation--product-complements',
+    (game, i) => {
 
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
-
-      gameScrapper({
+      // Price
+      scrapper({
         priceElement: game.lastElementChild.querySelector(`[data-qa="add-ons-grid#${i}#price#display-price"]`),
         eventElement: game.lastElementChild.querySelector(`[data-qa="add-ons-grid#${i}#price#display-price"]`),
         currency: 'US',
         showEmoji: true,
       })
-
-      game.classList.add('impuestito', 'playstation--product-complements');
     }
-  }
+  );
 }
 
 /*
@@ -253,17 +222,13 @@ function handlePlaystationProductComplements() {
 */
 function handlePlaystationGames() {
 
-  const games = document.querySelectorAll('.game-hero__title-content');
-
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
-
+  handleMutations(
+    '.game-hero__title-content',
+    'playstation--games',
+    (game) => {
       for (let offerNum = 0; offerNum < 2; offerNum++) {
         // Price
-        gameScrapper({
+        scrapper({
           priceElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
           eventElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
           currency: 'US',
@@ -271,18 +236,15 @@ function handlePlaystationGames() {
         })
 
         // Regular Price
-        gameScrapper({
+        scrapper({
           priceElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#originalPrice"]`),
           eventElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
           currency: 'US',
           showEmoji: false,
         })
       }
-
-
-      game.classList.add('impuestito', 'playstation--games');
     }
-  }
+  );
 }
 
 /*
@@ -292,16 +254,13 @@ function handlePlaystationGames() {
 */
 function handlePlaystationGamesEditions() {
 
-  const games = document.querySelectorAll('[data-qa="mfeUpsell"] article');
-
-  if (games && games.length > 0) {
-    for (let i = 0; i < games.length; i++) {
-      const game = games[i];
-
-      if (game.className.includes('impuestito')) return;
+  handleMutations(
+    '[data-qa="mfeUpsell"] article',
+    'playstation--games-editions',
+    (game, i) => {
 
       // Price
-      gameScrapper({
+      scrapper({
         priceElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
         eventElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
         currency: 'US',
@@ -309,15 +268,13 @@ function handlePlaystationGamesEditions() {
       })
 
       // Regular Price
-      gameScrapper({
+      scrapper({
         priceElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#originalPrice"]`),
         eventElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
         currency: 'US',
         showEmoji: false,
       })
-
-      game.classList.add('impuestito', 'playstation--product-editions');
     }
-  }
+  );
 }
 
