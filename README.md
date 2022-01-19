@@ -21,7 +21,7 @@ Impuestito calcula y muestra el precio de los juegos de la web de Xbox, PlayStat
 - [Xbox (AR)](https://www.xbox.com/es-ar/games/all-games)
 - [Epic Games Store (US)](https://www.epicgames.com/store/en-US/)
 - [XB Deals (AR)](https://xbdeals.net/ar-store)
-- PS Deals `próximamente`
+- [PS Deals (AR)](https://psdeals.net/ar-store)
 - Ubisoft Store `próximamente`
 - EA Origin `próximamente`
 - Battle Net `próximamente`
