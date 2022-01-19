@@ -26,7 +26,7 @@ function handleMutations(gamesSelector, className, callback) {
  * @returns {number}
  */
 function getNewPrice(originalPrice, taxes, currency = 'ARS') {
-  const exceptions = ['Free', 'FREE', 'Gratuito', 'No disponible',];
+  const exceptions = ['Free', 'FREE', 'Gratuito', 'No disponible', '--'];
   const priceTextNaN = exceptions.some(exception => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
 

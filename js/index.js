@@ -41,31 +41,21 @@ observer.observe(document, observerOptions);
 // Assign the correct method to handle the mutations based on website and region
 function handleMutationsInit() {
 
-  handlePlaystationMutations();
-  handleEpicMutations();
+  setTimeout(() => {
+    handlePlaystationMutations();
+    handleEpicMutations();
+    handleXBDealsMutations();
 
 
-  // Xbox
-  if (hostname.includes('xbox')) {
+    // Xbox
+    if (hostname.includes('xbox')) {
 
-    if (pathname.includes('games/all-games')) {
-      handleXboxAllGames();
-    }
-  }
-
-  // XB Deals
-  if (hostname.includes("xbdeals.net")) {
-
-    if (pathname.includes('/ar-store')) {
-
-      if (pathname.includes("/game/")) {
-        handleXbDealsGamePage();
-      } else {
-        handleXbDealsFeatured();
-        handleXbDealsDiscounts();
+      if (pathname.includes('games/all-games')) {
+        handleXboxAllGames();
       }
     }
-  }
+
+  }, 1000);
 
   // Nintendo
   if (hostname.includes('nintendo')) {
