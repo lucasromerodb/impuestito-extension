@@ -14,10 +14,11 @@
         "*://*.playstation.com/en-us/*",
         "*://*.xbox.com/es-AR/*",
         "*://*.xbox.com/es-ar/*",
-        "*://*.xbdeals.net/ar-store*",
         "*://*.nintendo.com/*",
         "*://*.nintendo.com.ar/*",
-        "*://*.epicgames.com/store/*"
+        "*://*.epicgames.com/store/*",
+        "*://*.xbdeals.net/ar-store*",
+        "*://*.psdeals.net/ar-store*"
       ],
       "css": [
         "css/styles.css"
@@ -27,9 +28,10 @@
         "js/helpers.js",
         "js/playstation/playstation.js",
         "js/xbox/xbox.js",
-        "js/xbox/xbdeals.js",
         "js/nintendo/nintendo.js",
-        "js/epic/epic.js"
+        "js/epic/epic.js",
+        "js/deals/xbdeals.js",
+        "js/deals/psdeals.js"
       ],
       "run_at": "document_idle"
     }

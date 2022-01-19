@@ -1,4 +1,4 @@
-const devMode = false;
+const devMode = true;
 
 const dollarMock = {
   data: {
@@ -21,7 +21,7 @@ const hostname = window.location.hostname;
 const pathname = window.location.pathname;
 
 // Get USD exchange rate
-if (window.location.hostname.includes('playstation') || window.location.hostname.includes('epicgames')) {
+if (['playstation.com', 'epicgames.com', 'psdeals.net'].some(w => hostname.includes(w))) {
   if (devMode) {
     console.warn('--- RUNNING IN DEV MODE ---');
     dollar = dollarMock;
@@ -45,6 +45,7 @@ function handleMutationsInit() {
     handlePlaystationMutations();
     handleEpicMutations();
     handleXBDealsMutations();
+    handlePSDealsMutations()
 
 
     // Xbox

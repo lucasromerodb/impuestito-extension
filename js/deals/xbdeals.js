@@ -6,10 +6,10 @@ function handleXBDealsMutations() {
   if (someURL(['xbdeals.net'], hostname) && someURL(['/ar-store'], pathname)) {
 
     if (someURL(['/game/'], pathname)) {
-      handleXbDealsGamePage();
-      handleXbDealsGamePageStats();
+      handleXBDealsGamePage();
+      handleXBDealsGamePageStats();
     } else {
-      handleXbDealsGrid();
+      handleXBDealsGrid();
     }
   }
 }
@@ -60,7 +60,7 @@ function xbdealsScrapper(game) {
  * https://xbdeals.net/ar-store/discounts
  * https://xbdeals.net/ar-store/search?type=addons&search_query=forza
 */
-function handleXbDealsGrid() {
+function handleXBDealsGrid() {
 
   handleMutations(
     '.game-collection-item-details-price',
@@ -73,7 +73,7 @@ function handleXbDealsGrid() {
  * Tested on:
  * https://xbdeals.net/ar-store/game/872909/forza-horizon-5-1993-jaguar-xj220s
 */
-function handleXbDealsGamePage() {
+function handleXBDealsGamePage() {
   handleMutations(
     '.game-buy-button-right p[itemprop=offers]',
     'xbdeals--game-page',
@@ -85,7 +85,7 @@ function handleXbDealsGamePage() {
  * Tested on:
  * https://xbdeals.net/ar-store/game/872909/forza-horizon-5-1993-jaguar-xj220s
 */
-function handleXbDealsGamePageStats() {
+function handleXBDealsGamePageStats() {
   handleMutations(
     '.game-stats.game-stats-price-history .game-stats-col-number-big',
     'xbdeals--game-page-stats',
