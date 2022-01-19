@@ -1,4 +1,17 @@
 /**
+ * Microsoft Xbox Web Store
+ */
+function handleXboxMutations() {
+  // Xbox
+  if (someURL(['xbox.com'], hostname)) {
+
+    if (someURL(['games/all-games'], pathname)) {
+      handleXboxAllGames();
+    }
+  }
+}
+
+/**
  * PAGES TO TEST
  *
  * Grid games (all games)
@@ -31,28 +44,58 @@
  */
 
 /**
- * Append calculated price badge to each game card and popup
- * then append a badge to each game card and popup preview
+ * HOW IT WORKS?
  *
+ * Find a game item list
+ * Then get the original price and their discount if exists
+ * Then replace both with the new price
+ * Then add a click event to switch between original and new prices
+ */
+
+/**
  * Tested on:
  * https://www.xbox.com/es-ar/games/all-games
  */
 function handleXboxAllGames() {
 
-  const gameCards = document.querySelectorAll('.gameDiv');
+  handleMutations(
+    '.gameDiv',
+    'xbox--all-games',
+    (game) => {
 
-  if (gameCards.length > 0) {
-    for (const card of gameCards) {
-      if (card.className.includes('impuestito') === false) {
+      // Price
+      scrapper({
+        priceElement: game.querySelector('.gameDivLink .c-price [itemprop=price]'),
+        eventElement: game.querySelector('.gameDivLink .c-price'),
+        currency: 'ARS',
+        showEmoji: true,
+      });
 
-        const price = getPriceWithTaxes(card, 'span[itemprop=price]', tax, 'ARS');
-        drawBadge(price, card);
-        drawBadge(price, card.querySelector('.popprice'));
-        card.classList.add('impuestito');
+      // Regular Price
+      scrapper({
+        priceElement: game.querySelector('.gameDivLink .c-price s span'),
+        eventElement: game.querySelector('.gameDivLink .c-price'),
+        currency: 'ARS',
+        showEmoji: true,
+      });
 
-      }
+      // Popup Price
+      scrapper({
+        priceElement: game.querySelector('.popprice .c-price [itemprop=price]'),
+        eventElement: game.querySelector('.popprice .c-price'),
+        currency: 'ARS',
+        showEmoji: true,
+      });
+
+      // Popup Regular Price
+      scrapper({
+        priceElement: game.querySelector('.popprice .c-price s span'),
+        eventElement: game.querySelector('.popprice .c-price'),
+        currency: 'ARS',
+        showEmoji: true,
+      });
     }
-  }
+  );
 }
 
 

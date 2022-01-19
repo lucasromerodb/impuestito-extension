@@ -46,16 +46,7 @@ function handleMutationsInit() {
     handleEpicMutations();
     handleXBDealsMutations();
     handlePSDealsMutations()
-
-
-    // Xbox
-    if (hostname.includes('xbox')) {
-
-      if (pathname.includes('games/all-games')) {
-        handleXboxAllGames();
-      }
-    }
-
+    handleXboxMutations();
   }, 1000);
 
   // Nintendo
