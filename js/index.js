@@ -47,15 +47,6 @@ function handleMutationsInit() {
     handleXBDealsMutations();
     handlePSDealsMutations()
     handleXboxMutations();
+    handleNintendoARMutations()
   }, 1000);
-
-  // Nintendo
-  if (hostname.includes('nintendo')) {
-
-    if (hostname.includes('.com.ar')) {
-      handleNintendoAllGamesArg();
-    }
-  }
-
-
 }

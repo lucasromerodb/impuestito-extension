@@ -1,23 +1,39 @@
 /**
- * Append calculated price badge to each game card
- * then append a badge to each game card
+ * Epic Games Web Store
+ */
+function handleNintendoARMutations() {
+  if (someURL(['nintendo.com.ar'], hostname)) {
+    handleNintendoAllGamesArg();
+  }
+}
+
+/**
+ * HOW IT WORKS?
  *
+ * Find a game item list
+ * Then get the original price and their discount if exists
+ * Then replace both with the new price
+ * Then add a click event to switch between original and new prices
+ */
+
+/**
  * Tested on:
  * https://store.nintendo.com.ar/
  */
 function handleNintendoAllGamesArg() {
 
-  const gameCards = document.querySelectorAll('.category-product-item');
+  handleMutations(
+    '.category-product-item',
+    'epic--hero',
+    (game) => {
 
-  if (gameCards.length > 0) {
-    for (const card of gameCards) {
-      if (card.className.includes('impuestito') === false) {
-
-        const price = getPriceWithTaxes(card, '.price', tax, 'ARS');
-        drawBadge(price, card.querySelector('.category-product-item-info'));
-        card.classList.add('impuestito');
-
-      }
+      // Price
+      scrapper({
+        priceElement: game.querySelector('.price'),
+        eventElement: game.querySelector('.price'),
+        currency: 'ARS',
+        showEmoji: true,
+      });
     }
-  }
+  );
 }

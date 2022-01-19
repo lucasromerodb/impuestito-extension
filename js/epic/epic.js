@@ -57,7 +57,6 @@ function epicScrapper(game) {
  * Then add a click event to switch between original and new prices
  */
 
-
 /*
  * Tested on:
  * https://www.epicgames.com/store/en-US/

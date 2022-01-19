@@ -76,7 +76,7 @@ function handleXboxAllGames() {
         priceElement: game.querySelector('.gameDivLink .c-price s span'),
         eventElement: game.querySelector('.gameDivLink .c-price'),
         currency: 'ARS',
-        showEmoji: true,
+        showEmoji: false,
       });
 
       // Popup Price
@@ -92,7 +92,7 @@ function handleXboxAllGames() {
         priceElement: game.querySelector('.popprice .c-price s span'),
         eventElement: game.querySelector('.popprice .c-price'),
         currency: 'ARS',
-        showEmoji: true,
+        showEmoji: false,
       });
     }
   );
