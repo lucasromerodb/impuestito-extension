@@ -1,7 +1,7 @@
 {
   "name": "Impuestito: precio real juegos en Argentina",
   "description": "Conocé el precio real de los juegos de Playstation, Xbox, Nintendo y Epic Games en Argentina! (Precio final con impuestos incluidos)",
-  "version": "1.4",
+  "version": "1.5",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js",
