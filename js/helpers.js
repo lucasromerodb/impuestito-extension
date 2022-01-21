@@ -26,7 +26,7 @@ function handleMutations(gamesSelector, className, callback) {
  * @returns {number}
  */
 function getNewPrice(originalPrice, taxes, currency = 'ARS') {
-  const exceptions = ['Free', 'FREE', 'Gratuito', 'No disponible', '--'];
+  const exceptions = ['Free', 'FREE', 'Gratuito', 'Gratis', 'Gratis+', 'No disponible', '--'];
   const priceTextNaN = exceptions.some(exception => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
 
@@ -93,18 +93,16 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
   priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
   priceElement.classList.add('priceWithTaxes');
 
-  eventElement.addEventListener('click', (e) => {
+  eventElement.addEventListener('mouseenter', (e) => {
     e.preventDefault();
+    priceElement.setAttribute('title', 'Precio original');
+    priceElement.textContent = `${originalEmoji}${originalPrice}`;
+  });
 
-    if (priceElement.classList.contains('originalPrice')) {
-      priceElement.setAttribute('title', 'Precio (AR$) con impuestos incluidos');
-      priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
-      priceElement.classList.remove('originalPrice');
-    } else {
-      priceElement.setAttribute('title', 'Precio original');
-      priceElement.textContent = `${originalEmoji}${originalPrice}`;
-      priceElement.classList.add('originalPrice');
-    }
+  eventElement.addEventListener('mouseleave', (e) => {
+    e.preventDefault();
+    priceElement.setAttribute('title', 'Precio (AR$) con impuestos incluidos');
+    priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
   });
 }
 
@@ -174,7 +172,7 @@ function sanitizePriceSigns(price) {
    *  ARS$ 1,222.43 +
    * ARS$1,222.43 +
    */
-  return price.replace(/^\s*[a-zA-z]*\$\s?(.*)\s?\+?/gi, '$1');
+  return price.replace(/^\s*[a-zA-z]*?\$\s?(\d+\W?\d+\W?\d+)\s?\+?/gi, '$1');
 }
 
 /**
