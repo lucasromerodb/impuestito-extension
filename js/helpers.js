@@ -5,6 +5,7 @@
  */
 function handleMutations(gamesSelector, className, callback) {
   const games = document.querySelectorAll(gamesSelector);
+  console.log("DEMO3",gamesSelector,games.length,games, className, callback)
 
   if (games && games.length > 0) {
     for (let i = 0; i < games.length; i++) {
@@ -33,8 +34,8 @@ function getNewPrice(originalPrice, taxes, currency = 'ARS') {
   if (priceTextNaN) {
     return 0;
   }
-
   const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(originalPrice));
+  console.log("DEMO",originalPrice,priceNumber)
   if (priceNumber === 0) {
     return 0;
   }
@@ -114,6 +115,8 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
  */
 function scrapper({ priceElement, eventElement, currency, showEmoji }) {
   if (priceElement) {
+    
+  console.log("DEMO2",priceElement, eventElement, currency, showEmoji)
     const originalPrice = priceElement.textContent;
     const newPrice = getNewPrice(originalPrice, tax, currency);
     newPrice && replacePrice(priceElement, eventElement, originalPrice, newPrice, showEmoji);

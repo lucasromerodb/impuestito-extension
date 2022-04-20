@@ -48,5 +48,6 @@ function handleMutationsInit() {
     handlePSDealsMutations()
     handleXboxMutations();
     handleNintendoARMutations()
+    handleBattleNetMutations();
   }, 1000);
 }
