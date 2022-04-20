@@ -30,12 +30,13 @@ function getNewPrice(originalPrice, taxes, currency = 'ARS') {
   const exceptions = ['Free', 'FREE', 'Gratuito', 'Gratis', 'Gratis+', 'No disponible', '--'];
   const priceTextNaN = exceptions.some(exception => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
+  console.log("DEMO5",originalPrice, taxes, currency,priceTextNaN,priceWithTaxes)
 
   if (priceTextNaN) {
     return 0;
   }
   const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(originalPrice));
-  console.log("DEMO",originalPrice,priceNumber)
+  console.log("DEMO",originalPrice,sanitizePriceSigns(originalPrice),priceNumber)
   if (priceNumber === 0) {
     return 0;
   }
@@ -175,7 +176,7 @@ function sanitizePriceSigns(price) {
    *  ARS$ 1,222.43 +
    * ARS$1,222.43 +
    */
-  return price.replace(/^\s*[a-zA-z]*?\$\s?(\d+\W?\d+\W?\d+)\s?\+?/gi, '$1');
+  return price.replace(/^\s*[a-zA-z]*?\$?\s?(\d+\W?\d+\W?\d+)\s?\+?/gi, '$1');
 }
 
 /**
