@@ -5,7 +5,7 @@
  */
 function handleMutations(gamesSelector, className, callback) {
   const games = document.querySelectorAll(gamesSelector);
-  console.log("DEMO3",gamesSelector,games.length,games, className, callback)
+  //console.log("DEMO3",gamesSelector,games.length,games, className, callback)
 
   if (games && games.length > 0) {
     for (let i = 0; i < games.length; i++) {
@@ -30,13 +30,13 @@ function getNewPrice(originalPrice, taxes, currency = 'ARS') {
   const exceptions = ['Free', 'FREE', 'Gratuito', 'Gratis', 'Gratis+', 'No disponible', '--','Juégalo gratis','Más información'];
   const priceTextNaN = exceptions.some(exception => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
-  console.log("DEMO5",originalPrice, taxes, currency,priceTextNaN,priceWithTaxes)
+  //console.log("DEMO5",originalPrice, taxes, currency,priceTextNaN,priceWithTaxes)
 
   if (priceTextNaN) {
     return 0;
   }
   const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(originalPrice));
-  console.log("DEMO",originalPrice,sanitizePriceSigns(originalPrice),priceNumber)
+  //console.log("DEMO",originalPrice,sanitizePriceSigns(originalPrice),priceNumber)
   if (priceNumber === 0) {
     return 0;
   }
@@ -117,7 +117,7 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
 function scrapper({ priceElement, eventElement, currency, showEmoji }) {
   if (priceElement) {
     
-  console.log("DEMO2",priceElement, eventElement, currency, showEmoji)
+  //console.log("DEMO2",priceElement, eventElement, currency, showEmoji)
     const originalPrice = priceElement.textContent;
     const newPrice = getNewPrice(originalPrice, tax, currency);
     newPrice && replacePrice(priceElement, eventElement, originalPrice, newPrice, showEmoji);
