@@ -27,7 +27,7 @@ function handleMutations(gamesSelector, className, callback) {
  * @returns {number}
  */
 function getNewPrice(originalPrice, taxes, currency = 'ARS') {
-  const exceptions = ['Free', 'FREE', 'Gratuito', 'Gratis', 'Gratis+', 'No disponible', '--'];
+  const exceptions = ['Free', 'FREE', 'Gratuito', 'Gratis', 'Gratis+', 'No disponible', '--','Juégalo gratis','Más información'];
   const priceTextNaN = exceptions.some(exception => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
   console.log("DEMO5",originalPrice, taxes, currency,priceTextNaN,priceWithTaxes)
@@ -175,8 +175,11 @@ function sanitizePriceSigns(price) {
    * $ 1,222.43 +
    *  ARS$ 1,222.43 +
    * ARS$1,222.43 +
+   * ARS790.00            ->  ^\s*[a-zA-z]*?\$?\s?(\d+\W?\d+\W?\d+)\s?\+?
+   * Desde ARS790.00      ->  ^\s*[a-zA-z\s]*?\$?\s?(\d+\W?\d+\W?\d+)\s?\+?
+   * Desde ARS566.67/mes  ->  ^\s*[a-zA-z\s]*?\$?\s?(\d+\W?\d+\W?\d+)\s?\+?[/a-zA-z\s]*
    */
-  return price.replace(/^\s*[a-zA-z]*?\$?\s?(\d+\W?\d+\W?\d+)\s?\+?/gi, '$1');
+  return price.replace(/^\s*[a-zA-z\s]*?\$?\s?(\d+\W?\d+\W?\d+)\s?\+?[/a-zA-z\s]*/gi, '$1');
 }
 
 /**

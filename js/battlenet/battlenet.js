@@ -1,9 +1,6 @@
-
-
 /**
  * Battle.net Web Store
  */
-
 
 /**
  * Tested on:
@@ -15,67 +12,95 @@
 // us.shop.battle.net/es-mx/
 //       handleBattleNetGamePageArg();
 
+function handleBattleNetMutations() {
+  /*
+  if (someURL(["us.shop.battle.net"], hostname)) {
+      handleBattleNetProductArg();
+  }
+  */
 
- function handleBattleNetMutations() {
-  if (someURL(['us.shop.battle.net'], hostname)) {
-    handleBattleNetProductArg();
+
+
+  if (someURL(['us.shop.battle.net'], hostname) && someURL(['/es-mx'], pathname)) {
+
+    if (someURL(['/product/'], pathname)) {
+      handleBattleNetProductArg();
+      handleBattleNetMultiProductArg();
+    } else {
+      handleBattleNetAllGamesArg()
+    }
   }
 }
-
 
 /**
  * Tested on:
  * https://us.shop.battle.net/es-mx/product/diablo-ii
  */
  function handleBattleNetProductArg() {
+  handleMutations(".price-container", "epic--hero", (game) => {
+    // https://stackoverflow.com/questions/62897456/access-a-shadow-root-element-using-document-queryselector
+    var appRoot = document.querySelector("meka-price-label").shadowRoot;
+    var appRootPrice = appRoot.querySelector(
+      ".meka-price-label--details__standard-price"
+    );
 
-  handleMutations(
-    '.price-container',
-    'epic--hero',
-    (game) => {
-
-
-      // https://stackoverflow.com/questions/62897456/access-a-shadow-root-element-using-document-queryselector
-      var appRoot = document.querySelector('meka-price-label').shadowRoot
-      var appRootPrice = appRoot.querySelector('.meka-price-label--details__standard-price')
-
-      console.log("DEMO4",game,"price",appRootPrice)
-      // Price
-      scrapper({
-        priceElement: appRootPrice,
-        eventElement: appRootPrice,
-        currency: 'ARS',
-        showEmoji: true,
-      });
-    }
-  );
+    console.log("DEMO4", game, "price", appRootPrice);
+    // Price
+    scrapper({
+      priceElement: appRootPrice,
+      eventElement: appRootPrice,
+      currency: "ARS",
+      showEmoji: true,
+    });
+  });
 }
+/**
+ * Tested on:
+ * https://us.shop.battle.net/es-mx/product/diablo_ii_resurrected?p=74831
+ */
+function handleBattleNetMultiProductArg() {
+  handleMutations(".price-container", "epic--hero", (game) => {
+    // https://stackoverflow.com/questions/62897456/access-a-shadow-root-element-using-document-queryselector
+    var appRoot = document.querySelector("meka-price-label").shadowRoot;
+    var appRootPrice = appRoot.querySelector(
+      ".meka-price-label--details__standard-price"
+    );
 
+    console.log("DEMO4", game, "price", appRootPrice);
+    // Price
+    scrapper({
+      priceElement: appRootPrice,
+      eventElement: appRootPrice,
+      currency: "ARS",
+      showEmoji: true,
+    });
+  });
+}
 
 /**
  * Tested on:
  * https://us.shop.battle.net/es-mx
  */
- function handleBattleNetAllGamesArg() {
-
+function handleBattleNetAllGamesArg() {
   // browsing-card-group__layout -> list of cards
   // browsing-card-group__layout--card browsing-card ng-star-inserted -> one card
   handleMutations(
-    '.browsing-card-group__layout--card browsing-card ng-star-inserted',
-    'epic--hero',
+    ".browsing-card-group__layout--card.browsing-card.ng-star-inserted",
+    "battlenet--hero",
     (game) => {
 
-      var insidecard1 = document.querySelector('meka-browsing-card').shadowRoot
-      var insidecard2 = insidecard1.querySelector('meka-price-label').shadowRoot
-      var appRootPrice = insidecard2.querySelector('.meka-price-label--details__standard-price')
-
+      var insidecard1 = game.querySelector("meka-browsing-card");
+      var insidecard1Super2 = insidecard1.querySelector("meka-price-label").shadowRoot
+      var insidecard1Super3 = insidecard1Super2.querySelector("span.meka-price-label--details__standard-price");
       // Price
       scrapper({
-        priceElement: appRootPrice,
-        eventElement: appRootPrice,
-        currency: 'ARS',
+        priceElement: insidecard1Super3,
+        eventElement: insidecard1Super3,
+        currency: "ARS",
         showEmoji: true,
       });
+      /*
+      */
     }
   );
 }
