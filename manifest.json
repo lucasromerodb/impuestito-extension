@@ -18,7 +18,9 @@
         "*://*.nintendo.com.ar/*",
         "*://*.epicgames.com/store/*",
         "*://*.xbdeals.net/ar-store*",
-        "*://*.psdeals.net/ar-store*"
+        "*://*.psdeals.net/ar-store*",
+        "*://*.shop.battle.net/es-mx/*",
+        "*://*.shop.battle.net/es-mx*"
       ],
       "css": [
         "css/styles.css"
@@ -31,7 +33,8 @@
         "js/nintendo/nintendo.js",
         "js/epic/epic.js",
         "js/deals/xbdeals.js",
-        "js/deals/psdeals.js"
+        "js/deals/psdeals.js",
+        "js/battlenet/battlenet.js"
       ],
       "run_at": "document_idle"
     }

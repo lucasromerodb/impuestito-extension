@@ -5,6 +5,7 @@
  */
 function handleMutations(gamesSelector, className, callback) {
   const games = document.querySelectorAll(gamesSelector);
+  //console.log("DEMO3",gamesSelector,games.length,games, className, callback)
 
   if (games && games.length > 0) {
     for (let i = 0; i < games.length; i++) {
@@ -26,15 +27,16 @@ function handleMutations(gamesSelector, className, callback) {
  * @returns {number}
  */
 function getNewPrice(originalPrice, taxes, currency = 'ARS') {
-  const exceptions = ['Free', 'FREE', 'Gratuito', 'Gratis', 'Gratis+', 'No disponible', '--'];
+  const exceptions = ['Free', 'FREE', 'Gratuito', 'Gratis', 'Gratis+', 'No disponible', '--','Juégalo gratis','Más información'];
   const priceTextNaN = exceptions.some(exception => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
+  //console.log("DEMO5",originalPrice, taxes, currency,priceTextNaN,priceWithTaxes)
 
   if (priceTextNaN) {
     return 0;
   }
-
   const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(originalPrice));
+  //console.log("DEMO",originalPrice,sanitizePriceSigns(originalPrice),priceNumber)
   if (priceNumber === 0) {
     return 0;
   }
@@ -114,6 +116,8 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
  */
 function scrapper({ priceElement, eventElement, currency, showEmoji }) {
   if (priceElement) {
+    
+  //console.log("DEMO2",priceElement, eventElement, currency, showEmoji)
     const originalPrice = priceElement.textContent;
     const newPrice = getNewPrice(originalPrice, tax, currency);
     newPrice && replacePrice(priceElement, eventElement, originalPrice, newPrice, showEmoji);
@@ -171,8 +175,11 @@ function sanitizePriceSigns(price) {
    * $ 1,222.43 +
    *  ARS$ 1,222.43 +
    * ARS$1,222.43 +
+   * ARS790.00            ->  ^\s*[a-zA-z]*?\$?\s?(\d+\W?\d+\W?\d+)\s?\+?
+   * Desde ARS790.00      ->  ^\s*[a-zA-z\s]*?\$?\s?(\d+\W?\d+\W?\d+)\s?\+?
+   * Desde ARS566.67/mes  ->  ^\s*[a-zA-z\s]*?\$?\s?(\d+\W?\d+\W?\d+)\s?\+?[/a-zA-z\s]*
    */
-  return price.replace(/^\s*[a-zA-z]*?\$\s?(\d+\W?\d+\W?\d+)\s?\+?/gi, '$1');
+  return price.replace(/^\s*[a-zA-z\s]*?\$?\s?(\d+\W?\d+\W?\d+)\s?\+?[/a-zA-z\s]*/gi, '$1');
 }
 
 /**
