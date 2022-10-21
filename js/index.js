@@ -35,12 +35,6 @@ if (["playstation.com", "epicgames.com", "psdeals.net"].some((w) => hostname.inc
   }
 }
 
-// Watch HTML mutations
-const observer = new MutationObserver(handleMutationsInit);
-const observerOptions = { subtree: true, attributes: true };
-
-observer.observe(document, observerOptions);
-
 // Assign the correct method to handle the mutations based on website and region
 function handleMutationsInit() {
   setTimeout(() => {
@@ -52,3 +46,9 @@ function handleMutationsInit() {
     handleNintendoARMutations();
   }, 1000);
 }
+
+// Watch HTML mutations
+const observer = new MutationObserver(handleMutationsInit);
+const observerOptions = { subtree: true, attributes: true };
+
+observer.observe(document, observerOptions);
