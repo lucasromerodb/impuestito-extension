@@ -1,5 +1,5 @@
 /**
- * @param  {string} gamesSelector
+ * @param  {string | object} gamesSelector
  * @param  {string} className
  * @param  {Function} callback
  */
@@ -10,25 +10,25 @@ function handleMutations(gamesSelector, className, callback) {
     for (let i = 0; i < games.length; i++) {
       const game = games[i];
 
-      if (game.className.includes('impuestito')) return;
+      if (game.className.includes("impuestito")) return;
 
       callback(game, i);
 
-      game.classList.add('impuestito', className);
+      game.classList.add("impuestito", className);
     }
   }
 }
 
 /**
  * @param  {string} originalPrice
- * @param  {object} taxes
+ * @param  {number} taxes
  * @param  {string} currency
  * @returns {number}
  */
-function getNewPrice(originalPrice, taxes, currency = 'ARS') {
-  const exceptions = ['Free', 'FREE', 'Gratuito', 'Gratis', 'Gratis+', 'No disponible', '--'];
-  const priceTextNaN = exceptions.some(exception => exception.toLowerCase() === originalPrice.toLowerCase());
-  const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
+function getNewPrice(originalPrice, taxes, currency = "ARS") {
+  const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "--", "", "NaN"];
+  const priceTextNaN = exceptions.some((exception) => exception.toLowerCase() === originalPrice.toLowerCase());
+  const priceWithTaxes = (p) => (p + p * taxes).toFixed(2);
 
   if (priceTextNaN) {
     return 0;
@@ -39,44 +39,13 @@ function getNewPrice(originalPrice, taxes, currency = 'ARS') {
     return 0;
   }
 
-  if (currency === 'US') {
+  if (currency === "US") {
+    const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(originalPrice));
     const newPrice = priceNumber * sanitizePricePunctuation(dollar.data.venta);
     return priceWithTaxes(newPrice);
   }
 
   return priceWithTaxes(priceNumber);
-}
-
-/**
- * TODO: DEPRECATE THIS FUNCTION
- *
- * @param  {object} containerDOMElement
- * @param  {string} priceDOMElement
- * @param  {object} taxes
- * @param  {string} currency
- * @returns {number}
- */
-function getPriceWithTaxes(containerDOMElement, priceDOMElement, taxes, currency = 'ARS') {
-  const priceText = containerDOMElement.querySelector(priceDOMElement).textContent;
-  const priceIsFree = priceText.includes('Free') || priceText.includes('FREE') || priceText.includes('Gratuito');
-  const priceWithTaxes = (p) => (p + p * (taxes.ganancias + taxes.pais)).toFixed(2)
-
-  if (priceIsFree) {
-    return 0;
-  }
-
-  const price = sanitizePricePunctuation(sanitizePriceSigns(priceText));
-
-  if (price === 0) {
-    return 0;
-  }
-
-  if (currency === 'US') {
-    const priceARS = price * sanitizePricePunctuation(dollar.data.venta);
-    return priceWithTaxes(priceARS);
-  }
-
-  return priceWithTaxes(price);
 }
 
 /**
@@ -87,21 +56,21 @@ function getPriceWithTaxes(containerDOMElement, priceDOMElement, taxes, currency
  * @param  {boolean} showEmoji
  */
 function replacePrice(priceElement, eventElement = priceElement, originalPrice, newPrice, showEmoji = true) {
-  const originalEmoji = showEmoji ? '⚠️ ' : '';
-  const newEmoji = showEmoji ? '🥲 ' : '';
+  const originalEmoji = showEmoji ? "❌ " : "";
+  const newEmoji = showEmoji ? "✅ " : "";
 
   priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
-  priceElement.classList.add('priceWithTaxes');
+  priceElement.classList.add("priceWithTaxes");
 
-  eventElement.addEventListener('mouseenter', (e) => {
+  eventElement.addEventListener("mouseenter", (e) => {
     e.preventDefault();
-    priceElement.setAttribute('title', 'Precio original');
+    priceElement.setAttribute("title", "Precio original");
     priceElement.textContent = `${originalEmoji}${originalPrice}`;
   });
 
-  eventElement.addEventListener('mouseleave', (e) => {
+  eventElement.addEventListener("mouseleave", (e) => {
     e.preventDefault();
-    priceElement.setAttribute('title', 'Precio (AR$) con impuestos incluidos');
+    priceElement.setAttribute("title", "Precio (AR$) con impuestos incluidos");
     priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
   });
 }
@@ -125,10 +94,10 @@ function scrapper({ priceElement, eventElement, currency, showEmoji }) {
  * @param  {object} targetDOMElement
  */
 function drawBadge(price, targetDOMElement) {
-  const badge = document.createElement('p');
-  badge.innerText = price === 0 ? ' Gratis' : `AR${priceFormatter(price)}`;
-  badge.setAttribute('title', 'Este es el precio real que vas a pagar (incluye impuestos)');
-  badge.classList.add('priceWithTaxesBadge');
+  const badge = document.createElement("p");
+  badge.innerText = price === 0 ? " Gratis" : `AR${priceFormatter(price)}`;
+  badge.setAttribute("title", "Este es el precio real que vas a pagar (incluye impuestos)");
+  badge.classList.add("priceWithTaxesBadge");
 
   targetDOMElement.appendChild(badge);
 }
@@ -139,10 +108,10 @@ function drawBadge(price, targetDOMElement) {
  * @param  {string} currency
  * @returns {string}
  */
-function priceFormatter(price, format = 'es-AR', currency = 'ARS') {
+function priceFormatter(price, format = "es-AR", currency = "ARS") {
   const formatter = new Intl.NumberFormat(format, {
-    style: 'currency',
-    currency: currency
+    style: "currency",
+    currency: currency,
   });
 
   return formatter.format(price);
@@ -172,7 +141,7 @@ function sanitizePriceSigns(price) {
    *  ARS$ 1,222.43 +
    * ARS$1,222.43 +
    */
-  return price.replace(/^\s*[a-zA-z]*?\$\s?(\d+\W?\d+\W?\d+)\s?\+?/gi, '$1');
+  return price.replace(/^\s*[a-zA-z]*?\$\s?(\d?\W?\d+\W?\d?\d?)\s?\+?/gi, "$1");
 }
 
 /**
@@ -197,12 +166,12 @@ function sanitizePricePunctuation(price) {
    * 1.2
    */
 
-  return +price.replace(/(\d?)[\.|\,]?(.+)[\,|\.](\d{1,2})/gi, '$1$2.$3');
+  return +price.replace(/(\d?)[\.|\,]?(.+)[\,|\.](\d{1,2})/gi, "$1$2.$3");
 }
 
 /**
  * @param  {array} arr
  */
 function someURL(arr, url = pathname) {
-  return arr.some(w => url.includes(w));
+  return arr.some((w) => url.includes(w));
 }
