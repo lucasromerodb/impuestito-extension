@@ -1,4 +1,4 @@
-const devMode = false;
+const devMode = true;
 
 const dollarMock = {
   data: {

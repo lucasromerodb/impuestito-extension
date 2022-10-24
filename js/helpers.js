@@ -61,18 +61,19 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
 
   priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
   priceElement.classList.add("priceWithTaxes");
+  priceElement.setAttribute("title", `Impuestos incluidos (el precio sin impuestos es ${originalPrice})`);
 
-  eventElement.addEventListener("mouseenter", (e) => {
-    e.preventDefault();
-    priceElement.setAttribute("title", "Precio original");
-    priceElement.textContent = `${originalEmoji}${originalPrice}`;
-  });
+  // eventElement.addEventListener("mouseenter", (e) => {
+  //   e.preventDefault();
+  //   priceElement.setAttribute("title", "Precio original");
+  //   priceElement.textContent = `${originalEmoji}${originalPrice}`;
+  // });
 
-  eventElement.addEventListener("mouseleave", (e) => {
-    e.preventDefault();
-    priceElement.setAttribute("title", "Precio (AR$) con impuestos incluidos");
-    priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
-  });
+  // eventElement.addEventListener("mouseleave", (e) => {
+  //   e.preventDefault();
+  //   priceElement.setAttribute("title", "Precio (AR$) con impuestos incluidos");
+  //   priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
+  // });
 }
 
 /**
@@ -141,7 +142,7 @@ function sanitizePriceSigns(price) {
    *  ARS$ 1,222.43 +
    * ARS$1,222.43 +
    */
-  return price.replace(/^\s*[a-zA-z]*?\$\s?(\d?\W?\d+\W?\d?\d?)\s?\+?/gi, "$1");
+  return price.replace(/^\s*[a-zA-z]*?\$\s?(\d?\d?\W?\d+\W?\d?\d?)\s?\+?/gi, "$1");
 }
 
 /**
@@ -166,7 +167,7 @@ function sanitizePricePunctuation(price) {
    * 1.2
    */
 
-  return +price.replace(/(\d?)[\.|\,]?(.+)[\,|\.](\d{1,2})/gi, "$1$2.$3");
+  return +price.replace(/(\d+)?[\.|\,]?(.+)[\,|\.](\d{1,2})/gi, "$1$2.$3");
 }
 
 /**

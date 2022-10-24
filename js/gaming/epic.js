@@ -30,12 +30,13 @@ function epicScrapper() {
 
   const targetElements = document.querySelectorAll(".impuestito");
   for (const element of targetElements) {
-    const emojiVisibility = element.className.includes("price-regular");
+    const iconVisibility = element.className.includes("price-regular");
+
     scrapper({
       priceElement: element,
       eventElement: element,
       currency: "US",
-      showEmoji: emojiVisibility,
+      showEmoji: iconVisibility,
     });
   }
 }
