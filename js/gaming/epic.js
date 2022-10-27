@@ -13,7 +13,7 @@ function handleEpicMutations() {
 }
 
 /**
- * @param  {object} game
+ * Epic Scrapper
  */
 function epicScrapper() {
   const discountPriceElements = [...document.querySelectorAll("main > div")[1].querySelectorAll("span")].filter((e) => e.innerText.includes("$") && e.innerText !== e.innerHTML && e.innerText.length < 15).map((e) => e.lastChild);
