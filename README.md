@@ -1,4 +1,4 @@
-![Impuestito](/assets/impuestito-cover.jpg "Impuestito Cover")
+![Impuestito](/assets/chrome-store.jpeg "Impuestito Cover")
 
 > Conocido anteriormente como `Xboxito`
 
@@ -6,8 +6,9 @@
 
 Impuestito calcula y muestra el precio de los juegos de la web de Xbox, PlayStation, Nintendo y Epic Games con los impuestos de Argentina incluidos y en pesos.
 
-### [🎁 Descargar Impuestito](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es)
-### [🐦 Seguir en Twitter](https://twitter.com/GamePassDayOne/status/1480886877490143232)
+### [🎁 Descarga la extensión de Impuestito](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es)
+
+### [🐦 Seguí Impuestito en Twitter](https://twitter.com/impuestito_org)
 
 ## 🎉 Novedades
 
@@ -44,9 +45,10 @@ Impuestito toma el precio original de cada juego en distintas tiendas online y h
 - OperaGX
 - Microsoft Edge
 
-> Nota: debería ser compatible con cualquier browser basado en [Chromium](https://es.wikipedia.org/wiki/Chromium_(navegador))
+> Nota: debería ser compatible con cualquier browser basado en [Chromium](<https://es.wikipedia.org/wiki/Chromium_(navegador)>)
 
 ### 😎 Próximas mejoras
+
 - ✅ Compatible para las tiendas web de Argentina para Xbox, PlayStation y Nintendo
 - ✅ Soporte para Epic Games Store
 - Compatible con las tiendas web de USA para PlayStation y Nintendo
@@ -71,5 +73,3 @@ Si tenés alguna idea interesante o encontraste algún problema con la extensió
 Hace tiempo existe 👑 [Steamcito](https://github.com/emilianog94/Steamcito-Precios-Steam-Argentina-Impuestos-Incluidos), la extensión que calcula los precios con impuestos y que además te permite personalizarlos.
 
 > Nota: Impuestito se basa en la misma idea que Steamcito pero para otras tiendas.
-
-
