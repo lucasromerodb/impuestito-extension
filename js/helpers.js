@@ -26,7 +26,7 @@ function handleMutations(gamesSelector, className, callback) {
  * @returns {number}
  */
 function getNewPrice(originalPrice, taxes, currency = "ARS") {
-  const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "--", "", "NaN"];
+  const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "--", "", "NaN", "Incluido"];
   const priceTextNaN = exceptions.some((exception) => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * taxes).toFixed(2);
 
@@ -57,7 +57,7 @@ function getNewPrice(originalPrice, taxes, currency = "ARS") {
  */
 function replacePrice(priceElement, eventElement = priceElement, originalPrice, newPrice, showEmoji = true) {
   const originalEmoji = showEmoji ? "❌ " : "";
-  const newEmoji = showEmoji ? "✅ " : "";
+  const newEmoji = showEmoji ? "🍄 " : "";
 
   priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
   priceElement.classList.add("priceWithTaxes");

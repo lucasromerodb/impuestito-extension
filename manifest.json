@@ -15,6 +15,7 @@
         "*://*.xbox.com/es-AR/*",
         "*://*.xbox.com/es-ar/*",
         "*://*.nintendo.com/es-ar/*",
+        "*://*.nintendo.com/search/es-ar/*",
         "*://*.epicgames.com/*",
         "*://*.xbdeals.net/ar-store*",
         "*://*.psdeals.net/ar-store*"
