@@ -6,8 +6,22 @@
 * Argentina: \01F1E6 \01F1F7 (https://emojiterra.com/es/bandera-argentina/)
 */
 
+.price-regular,
+.price-discount {
+  /* color: #d9f81d !important;
+  background-color: black !important;
+  border-radius: 3px !important;
+  padding: 0 3px !important;
+  box-shadow: 0 0 0 1px #d9f81d !important; */
+}
+
+.price-discount {
+  /* opacity: 0.5 !important; */
+  text-decoration: line-through !important;
+}
+
 .priceWithTaxes {
-  cursor: help !important;
+  /* cursor: not-allowed !important; */
 }
 
 /* PlayStation */
@@ -15,11 +29,19 @@
   font-size: 16px !important;
 }
 
+#impuestito-ui {
+  position: fixed;
+  z-index: 9999;
+  bottom: 0;
+  right: 0;
+  font-size: 50px;
+  background-color: white;
+}
+
 @media screen and (max-width: 1366px) {
   .playstation--grid .priceWithTaxes {
     font-size: 14px !important;
   }
-
 }
 
 @media screen and (min-width: 1919px) {
