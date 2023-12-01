@@ -3,11 +3,6 @@
  */
 function handleEpicMutations() {
   if (someURL(["epicgames"], hostname)) {
-    if (!dollar) {
-      console.log("Missing dollar value.");
-      return;
-    }
-
     epicScrapper();
   }
 }

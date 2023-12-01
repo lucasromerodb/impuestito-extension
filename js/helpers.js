@@ -26,7 +26,9 @@ function handleMutations(gamesSelector, className, callback) {
  * @returns {number}
  */
 function getNewPrice(originalPrice, taxes, currency = "ARS") {
-  const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "--", "", "NaN", "Incluido"];
+  if (taxes === undefined) return;
+
+  const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "Prueba del juego", "--", "", "NaN", "Incluido"];
   const priceTextNaN = exceptions.some((exception) => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * taxes).toFixed(2);
 
@@ -41,7 +43,7 @@ function getNewPrice(originalPrice, taxes, currency = "ARS") {
 
   if (currency === "US") {
     const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(originalPrice));
-    const newPrice = priceNumber * sanitizePricePunctuation(dollar.data.venta);
+    const newPrice = priceNumber * sanitizePricePunctuation(impuestitoDollar.data.venta);
     return priceWithTaxes(newPrice);
   }
 
@@ -85,7 +87,7 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
 function scrapper({ priceElement, eventElement, currency, showEmoji }) {
   if (priceElement) {
     const originalPrice = priceElement.textContent;
-    const newPrice = getNewPrice(originalPrice, tax, currency);
+    const newPrice = getNewPrice(originalPrice, impuestitoTaxes.data.defaultSum, currency);
     newPrice && replacePrice(priceElement, eventElement, originalPrice, newPrice, showEmoji);
   }
 }

@@ -3,8 +3,6 @@
  */
 function handlePlaystationMutations() {
   if (someURL(["playstation"], hostname)) {
-    if (!dollar) return;
-
     if (someURL(["/category", "/search"], pathname)) {
       handlePlaystationGrid();
     }

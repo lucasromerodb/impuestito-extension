@@ -1,6 +1,6 @@
 const devMode = false;
 
-const dollarMock = {
+const impuestitoDollarMock = {
   data: {
     compra: "103,46",
     venta: "109,46",
@@ -10,40 +10,48 @@ const dollarMock = {
   },
 };
 
-const allTaxes = {
-  ganancias: 0.35,
-  pais: 0.4,
-  qatar: 0.25,
+const impuestitoTaxesMock = {
+  pais: 0.3,
+  ganancias: 1,
+  bienespersonales: 0.25,
+  qatar: 0.05,
 };
 
-const tax = allTaxes.ganancias + allTaxes.pais;
-
-let dollar;
+let impuestitoDollar = undefined;
+let impuestitoTaxes = undefined;
 
 const hostname = window.location.hostname;
 const pathname = window.location.pathname;
 
-// Get USD exchange rate
-if (["playstation.com", "epicgames.com", "psdeals.net"].some((w) => hostname.includes(w))) {
-  if (devMode) {
-    console.warn("--- RUNNING IN DEV MODE ---");
-    dollar = dollarMock;
-  } else {
-    chrome.runtime.sendMessage("GET_DOLLAR_OFFICIAL", (response) => {
-      dollar = response;
-    });
-  }
+// Get Taxes and USD exchange rate
+if (devMode) {
+  console.warn("--- RUNNING IN DEV MODE ---");
+  impuestitoDollar = impuestitoDollarMock;
+  impuestitoTaxes = impuestitoTaxesMock;
+} else {
+  chrome.runtime.sendMessage("GET_DOLLAR_OFFICIAL", (response) => {
+    impuestitoDollar = response;
+  });
+  chrome.runtime.sendMessage("GET_TAXES", (response) => {
+    impuestitoTaxes = response;
+  });
 }
 
 // Assign the correct method to handle the mutations based on website and region
 function handleMutationsInit() {
   setTimeout(() => {
-    handlePlaystationMutations();
-    handleEpicMutations();
-    handleXBDealsMutations();
-    handlePSDealsMutations();
-    handleXboxMutations();
-    handleNintendoARMutations();
+    if (impuestitoTaxes && impuestitoDollar) {
+      handlePlaystationMutations();
+      handleEpicMutations();
+      handleXBDealsMutations();
+      handlePSDealsMutations();
+      handleXboxMutations();
+      handleNintendoARMutations();
+    } else {
+      console.warn("🔴 Missing dollar or taxes value.");
+      console.warn("🔴 MISSING_DATA", { dollar: impuestitoDollar, taxes: impuestitoTaxes });
+      return;
+    }
   }, 1000);
 }
 
