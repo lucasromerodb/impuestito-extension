@@ -3,92 +3,43 @@
  */
 function handleXBDealsMutations() {
   if (someURL(["xbdeals.net"], hostname) && someURL(["/ar-store"], pathname)) {
-    if (someURL(["/game/"], pathname)) {
-      observeInit(document, () => {
-        handleXBDealsGamePage();
-        handleXBDealsGamePageStats();
-      });
-    } else {
-      observeInit(document, handleXBDealsGrid);
-    }
+    console.log("🟢 impuestito is working...");
+    observeInit(document, dekuDealsScrapper);
   }
 }
 
-/**
- * @param  {object} game
- */
-function xbdealsScrapper(game) {
-  // Regular Price
-  scrapper({
-    priceElement: game.querySelector(".game-collection-item-regular-price"),
-    eventElement: game.querySelector(".game-collection-item-regular-price"),
-    currency: "ARS",
-    showEmoji: false,
-  });
+function dekuDealsScrapper() {
+  const elements = [];
+  const finalPriceElements = [
+    ...document.querySelectorAll(".game-collection-item-price"),
+    ...document.querySelectorAll(".game-collection-item-price-discount"),
+    ...document.querySelectorAll(".game-collection-item-price-bonus"),
+    ...document.querySelectorAll(".game-buy-button-price"),
+    ...document.querySelectorAll(".game-buy-button-price-bonus"),
+  ];
+  if (finalPriceElements.length > 0) {
+    for (const element of finalPriceElements) {
+      if (element.className.includes("impuestito")) return;
+      element.classList.add("impuestito", "impuestito-xbdeals");
+      elements.push(element);
+    }
+  }
 
-  // Bonus Price
-  scrapper({
-    priceElement: game.querySelector(".game-collection-item-bonus-price"),
-    eventElement: game.querySelector(".game-collection-item-bonus-price"),
-    currency: "ARS",
-    showEmoji: false,
-  });
-
-  // Price
-  scrapper({
-    priceElement: game.querySelector(".game-collection-item-discount-price"),
-    eventElement: game.querySelector(".game-collection-item-discount-price"),
-    currency: "ARS",
-    showEmoji: false,
-  });
-}
-
-/**
- * HOW IT WORKS?
- *
- * Find a game item list
- * Then get the original price and their discount if exists
- * Then replace both with the new price
- * Then add a click event to switch between original and new prices
- */
-
-/*
- * Tested on:
- * https://xbdeals.net/ar-store
- * https://xbdeals.net/ar-store/all-games
- * https://xbdeals.net/ar-store/discounts
- * https://xbdeals.net/ar-store/search?type=addons&search_query=forza
- */
-function handleXBDealsGrid() {
-  handleMutations(".game-collection-item-details-price", "xbdeals--grid", (game) => {
-    xbdealsScrapper(game);
-  });
-}
-
-/*
- * Tested on:
- * https://xbdeals.net/ar-store/game/872909/forza-horizon-5-1993-jaguar-xj220s
- */
-function handleXBDealsGamePage() {
-  handleMutations(".game-buy-button-right p[itemprop=offers]", "xbdeals--game-page", (game) => {
-    xbdealsScrapper(game);
-  });
-}
-
-/*
- * Tested on:
- * https://xbdeals.net/ar-store/game/872909/forza-horizon-5-1993-jaguar-xj220s
- */
-function handleXBDealsGamePageStats() {
-  handleMutations(".game-stats.game-stats-price-history .game-stats-col-number-big", "xbdeals--game-page-stats", (game) => {
-    // Price
-    scrapper({
-      priceElement: game,
-      eventElement: game,
-      currency: "ARS",
-      showEmoji: false,
-    });
-  });
+  const priceElementsTarget = elements;
+  if (priceElementsTarget.length > 0) {
+    for (const element of priceElementsTarget) {
+      if (!element.className.includes("impuestito-done")) {
+        scrapper({
+          priceElement: element,
+          eventElement: element,
+          currency: "ARS",
+          showEmoji: false,
+          isDiscount: element.classList.contains("strikethrough"),
+        });
+      }
+      element.classList.add("impuestito-done");
+    }
+  }
 }
 
 // Init

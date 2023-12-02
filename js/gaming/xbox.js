@@ -3,6 +3,7 @@
  */
 function handleXboxMutations() {
   if (someURL(["xbox.com"], hostname)) {
+    console.log("🟢 impuestito is working...");
     if (someURL(["games/all-games", "browse/games"], pathname)) {
       observeInit(document, handleXboxAllGames);
     }
@@ -77,6 +78,7 @@ function handleXboxAllGames() {
           eventElement: element,
           currency: "ARS",
           showEmoji: false,
+          isDiscount: element.classList.contains("price-discount"),
         });
         element.classList.add("impuestito-done");
       }
@@ -142,6 +144,7 @@ function handleXboxGameRelated() {
           eventElement: element,
           currency: "ARS",
           showEmoji: false,
+          isDiscount: element.classList.contains("price-discount"),
         });
         element.classList.add("impuestito-done");
       }
@@ -192,12 +195,12 @@ function handleXboxGameButton() {
   for (const element of targetElements) {
     if (targetElements.length > 0) {
       if (!element.className.includes("impuestito-done")) {
-        console.log(element);
         scrapper({
           priceElement: element,
           eventElement: element,
           currency: "ARS",
           showEmoji: false,
+          isDiscount: element.classList.contains("price-discount"),
         });
         element.classList.add("impuestito-done");
       }
@@ -247,7 +250,7 @@ function handleXboxGamesFeatured() {
           priceElement: element,
           eventElement: element,
           currency: "ARS",
-          showEmoji: false,
+          showEmoji: element.classList.contains("price-discount") || element.firstChild.classList.contains("price-discount"),
         });
         element.classList.add("impuestito-done");
       }
@@ -290,6 +293,7 @@ function handleXboxGamePass() {
           eventElement: element,
           currency: "ARS",
           showEmoji: false,
+          isDiscount: element.firstChild.classList.contains("price-discount"),
         });
         element.classList.add("impuestito-done");
       }

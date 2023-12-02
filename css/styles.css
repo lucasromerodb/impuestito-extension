@@ -7,7 +7,8 @@
 */
 
 .priceWithTaxes.price-regular,
-.priceWithTaxes .price-regular {
+.priceWithTaxes .price-regular,
+.eapl-subscription-tile__price-number {
   background: linear-gradient(45deg, #00be5c 25%, #00f275, #00be5c, #008641, #004f26, #008641, #00be5c, #00be5c, #00be5c);
   -webkit-background-clip: text;
   background-clip: text;
@@ -49,6 +50,13 @@
   -webkit-text-fill-color: inherit !important;
   text-fill-color: inherit !important; */
   color: inherit;
+}
+
+.impuestito-gog::before,
+.impuestito-gog:before,
+.big-spot__price:before,
+.big-spot__price::before {
+  display: none !important;
 }
 
 #impuestito-ui {

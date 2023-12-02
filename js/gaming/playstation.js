@@ -3,6 +3,7 @@
  */
 function handlePlaystationMutations() {
   if (someURL(["playstation"], hostname)) {
+    console.log("🟢 impuestito is working...");
     if (someURL(["/category", "/search"], pathname)) {
       observeInit(document, handlePlaystationGrid);
     }
@@ -238,6 +239,24 @@ function handlePlaystationGamesEditions() {
     });
   });
 }
+
+/*
+ * TODO: EA Play cards
+ * Tested on:
+ * https://store.playstation.com/es-ar/product/UP1004-CUSA03041_00-RDR2ULTMEDTNBUND
+ */
+// function handlePlaystationEAPlay() {
+//   handleMutations("#gdk__content > div.section", (game, i) => {
+//     // Price
+//     // priceElement: [...document.querySelectorAll('#gdk__content div.section')[2].querySelectorAll('span[data-qa]')].filter(e=>e.innerText.includes('US$'))
+//     scrapper({
+//       priceElement: game.querySelectorAll("span").filter((e) => e.innerText.includes("$") && e.innerText.includes("Ahorra") && e.innerText === e.innerHTML),
+//       eventElement: game.querySelector(`[data-qa="add-ons-grid#${i}#price#display-price"]`),
+//       currency: "US",
+//       showEmoji: false,
+//     });
+//   });
+// }
 
 // Init
 handlePlaystationMutations();

@@ -3,6 +3,7 @@
  */
 function handleNintendoARMutations() {
   if (someURL(["nintendo"], hostname)) {
+    console.log("🟢 impuestito is working...");
     observeInit(document, () => {
       handleNintendoAllGamesArg();
       handleNintendoOtherVersionsGamesArg();
