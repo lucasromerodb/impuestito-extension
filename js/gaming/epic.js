@@ -3,7 +3,7 @@
  */
 function handleEpicMutations() {
   if (someURL(["epicgames"], hostname)) {
-    epicScrapper();
+    observeInit(document, epicScrapper);
   }
 }
 
@@ -11,19 +11,19 @@ function handleEpicMutations() {
  * Epic Scrapper
  */
 function epicScrapper() {
-  const discountPriceElements = [...document.querySelectorAll("main > div")[1].querySelectorAll("span")].filter((e) => e.innerText.includes("$") && e.innerText !== e.innerHTML && e.innerText.length < 15).map((e) => e.lastChild);
-  if (discountPriceElements.length > 0) {
-    for (const element of discountPriceElements) {
-      if (element.className.includes("impuestito")) return;
-      element.classList.add("impuestito", "price-discount");
-    }
-  }
-
   const priceElements = [...document.querySelectorAll("main > div")[1].querySelectorAll("span")].filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 15);
   if (priceElements.length > 0) {
     for (const element of priceElements) {
       if (element.className.includes("impuestito")) return;
-      element.classList.add("impuestito", "price-regular");
+      element.classList.add("impuestito", "price-regular", "impuestito-epic");
+    }
+  }
+
+  const discountPriceElements = [...document.querySelectorAll("main > div")[1].querySelectorAll("span")].filter((e) => e.innerText.includes("$") && e.innerText !== e.innerHTML && e.innerText.length < 15).map((e) => e.lastChild);
+  if (discountPriceElements.length > 0) {
+    for (const element of discountPriceElements) {
+      if (element.className.includes("impuestito")) return;
+      element.classList.add("impuestito", "price-discount", "impuestito-epic");
     }
   }
 
@@ -37,10 +37,13 @@ function epicScrapper() {
           priceElement: element,
           eventElement: element,
           currency: "US",
-          showEmoji: iconVisibility,
+          showEmoji: false,
         });
       }
       element.classList.add("impuestito-done");
     }
   }
 }
+
+// Init
+handleEpicMutations();

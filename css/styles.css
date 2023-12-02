@@ -6,27 +6,49 @@
 * Argentina: \01F1E6 \01F1F7 (https://emojiterra.com/es/bandera-argentina/)
 */
 
-.price-regular,
-.price-discount {
-  /* color: #d9f81d !important;
-  background-color: black !important;
-  border-radius: 3px !important;
-  padding: 0 3px !important;
-  box-shadow: 0 0 0 1px #d9f81d !important; */
-}
-
-.price-discount {
-  /* opacity: 0.5 !important; */
-  text-decoration: line-through !important;
+.priceWithTaxes.price-regular,
+.priceWithTaxes .price-regular {
+  background: linear-gradient(45deg, #00be5c 25%, #00f275, #00be5c, #008641, #004f26, #008641, #00be5c, #00be5c, #00be5c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  background-size: 500% auto;
+  font-weight: bold !important;
+  animation: textShine 3.5s ease-in-out infinite;
 }
 
 .priceWithTaxes {
-  /* cursor: not-allowed !important; */
+  cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJMSURBVHgBtZU7aFNRGMd/SeqjotYHQh2CCdhOBeviYEHr4NBBxUmcFHTW2UncxcZNQdFF7SaioOImWujSVkiHVktKU2lB0mdq1Grj93nuTe+959w+JP3Dl8f/nPP/XucBNjrFcmIFseo6bUDskViGVbBHrHsDonHW7WlZ4gN1EA9mFHLijjzh2f9nIstN3QqhfPY3wvVjcDoLqSR8LMKdPijOm3FddTwNZ1tgr8wdLsHTPEyWieCUTn0sdikk/uoCtB0wcfiCXxegqwfGZuFiG1w5InxiRapUgWtvo07upuTjplhzjbrRAedaV8R97NoGB3fC9ga4ejQsrtixBRplrHciyDYLQ3vtr67RskTFfXQdhvTu+PHWfVEmk7QmpZLEIpWwIw9i5odFhdU0st6iycSFxSVYjgm/KvzLz2s4UNzuMw2N4s+ym/cDe/jJ7LYIErgqmpUzcuuEqbmWRSNX8e9LOCNX8Wd5Z28acEG34ptR01CteWxZxMbnzbeeh+kKa2egzL993h7fC198Yk4y8/b93E+43w+z4UbbPehIe4eI9YsrmuScnDxkTbUdnGlZfSu6xH1kmyzK7oHWMla8amo+WXaPO3qlGYyFmJGSe7GufTAI7wrEYmQ6ygyqgxch6kneXFwhcd2KIt4zZHaXNjSKqUV4P2450MtO2365RpV/wYeiudSS0ovRGbgn78frLyaLym8Y+ibFldi2yvIFmd8/Bc+HXefkvP8jR/1eM99yQU+b/mT6TuqRSc4lHkQG88ptJKOCJ9wZFfsLmHEy2XpKem4AAAAASUVORK5CYII="),
+    auto;
 }
 
-/* PlayStation */
+.priceWithTaxes.price-regular:hover,
+.priceWithTaxes .price-regular:hover {
+  transform: scale(1);
+  animation: textShine 1s ease-in-out infinite;
+}
+
+.priceWithTaxes.price-discount {
+  text-decoration: line-through !important;
+}
+
+.price-discount {
+  text-decoration: line-through !important;
+}
+
 .playstation--grid .priceWithTaxes {
   font-size: 16px !important;
+}
+
+.price-gamepass {
+  padding: 0 5px;
+  /* background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: inherit !important;
+  text-fill-color: inherit !important; */
+  color: inherit;
 }
 
 #impuestito-ui {
@@ -47,5 +69,14 @@
 @media screen and (min-width: 1919px) {
   .playstation--grid .priceWithTaxes {
     font-size: 15px !important;
+  }
+}
+
+@keyframes textShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }

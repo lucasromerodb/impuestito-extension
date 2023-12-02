@@ -28,7 +28,7 @@ function handleMutations(gamesSelector, className, callback) {
 function getNewPrice(originalPrice, taxes, currency = "ARS") {
   if (taxes === undefined) return;
 
-  const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "Prueba del juego", "--", "", "NaN", "Incluido"];
+  const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "Prueba del juego", "--", "", "NaN", "Incluido", "Anunciados"];
   const priceTextNaN = exceptions.some((exception) => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * taxes).toFixed(2);
 
@@ -63,7 +63,7 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
 
   priceElement.textContent = `${newEmoji}${priceFormatter(newPrice)}`;
   priceElement.classList.add("priceWithTaxes");
-  priceElement.setAttribute("title", `Impuestos incluidos (el precio sin impuestos es ${originalPrice})`);
+  priceElement.setAttribute("title", `El valor original es ${originalPrice}`);
 
   // eventElement.addEventListener("mouseenter", (e) => {
   //   e.preventDefault();
@@ -82,10 +82,12 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
  * @param  {object} {priceElement
  * @param  {object} eventElement
  * @param  {string} currency
- * @param  {boolean} showEmoji}
+ * @param  {boolean} showEmoji
+ * @param  {boolean} isDiscount}
  */
-function scrapper({ priceElement, eventElement, currency, showEmoji }) {
+function scrapper({ priceElement, eventElement, currency, showEmoji, isDiscount = false }) {
   if (priceElement) {
+    isDiscount ? priceElement.classList.add("price-discount") : priceElement.classList.add("price-regular");
     const originalPrice = priceElement.textContent;
     const newPrice = getNewPrice(originalPrice, impuestitoTaxes.data.defaultSum, currency);
     newPrice && replacePrice(priceElement, eventElement, originalPrice, newPrice, showEmoji);

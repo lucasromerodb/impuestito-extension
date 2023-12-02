@@ -4,26 +4,30 @@
 function handlePlaystationMutations() {
   if (someURL(["playstation"], hostname)) {
     if (someURL(["/category", "/search"], pathname)) {
-      handlePlaystationGrid();
+      observeInit(document, handlePlaystationGrid);
     }
 
     if (someURL(["/pages", "/view"], pathname)) {
-      handlePlaystationSlider();
+      observeInit(document, handlePlaystationSlider);
     }
 
     if (someURL(["/games"], pathname)) {
-      handlePlaystationGames();
-      handlePlaystationGamesEditions();
+      observeInit(document, () => {
+        handlePlaystationGames();
+        handlePlaystationGamesEditions();
+      });
     }
 
     if (someURL(["/ps-plus"], pathname)) {
-      handlePlaystationPlus();
+      observeInit(document, handlePlaystationPlus);
     }
 
     if (someURL(["/product", "/concept"], pathname)) {
-      handlePlaystationProduct();
-      handlePlaystationProductEditions();
-      handlePlaystationProductComplements();
+      observeInit(document, () => {
+        handlePlaystationProduct();
+        handlePlaystationProductEditions();
+        handlePlaystationProductComplements();
+      });
     }
   }
 }
@@ -48,7 +52,7 @@ function handlePlaystationGrid() {
       priceElement: game.lastElementChild.querySelector(".psw-m-r-3"),
       eventElement: game.lastElementChild.querySelector(".psw-m-r-3"),
       currency: "US",
-      showEmoji: true,
+      showEmoji: false,
     });
 
     // Regular Price
@@ -57,6 +61,7 @@ function handlePlaystationGrid() {
       eventElement: game.lastElementChild.querySelector(".psw-m-r-3"),
       currency: "US",
       showEmoji: false,
+      isDiscount: true,
     });
   });
 }
@@ -76,7 +81,7 @@ function handlePlaystationSlider() {
       priceElement: game.lastElementChild.querySelector(".psw-m-r-3"),
       eventElement: game.lastElementChild.querySelector(".psw-m-r-3"),
       currency: "US",
-      showEmoji: true,
+      showEmoji: false,
     });
 
     // Regular Price
@@ -85,6 +90,7 @@ function handlePlaystationSlider() {
       eventElement: game.lastElementChild.querySelector(".psw-m-r-3"),
       currency: "US",
       showEmoji: false,
+      isDiscount: true,
     });
   });
 }
@@ -102,7 +108,7 @@ function handlePlaystationPlus() {
         priceElement: game.querySelector(`[data-qa="mfe-tier-selector#standalonePrice#offer${offerNum}#price"]`),
         eventElement: game.querySelector(`[data-qa="mfe-tier-selector#standalonePrice#offer${offerNum}#price"]`),
         currency: "US",
-        showEmoji: true,
+        showEmoji: false,
       });
     }
   });
@@ -122,7 +128,7 @@ function handlePlaystationProduct() {
         priceElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
         eventElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
         currency: "US",
-        showEmoji: true,
+        showEmoji: false,
       });
 
       // Regular Price
@@ -131,6 +137,7 @@ function handlePlaystationProduct() {
         eventElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
         currency: "US",
         showEmoji: false,
+        isDiscount: true,
       });
     }
   });
@@ -147,7 +154,7 @@ function handlePlaystationProductEditions() {
       priceElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
       eventElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
       currency: "US",
-      showEmoji: true,
+      showEmoji: false,
     });
 
     // Regular Price
@@ -156,6 +163,7 @@ function handlePlaystationProductEditions() {
       eventElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
       currency: "US",
       showEmoji: false,
+      isDiscount: true,
     });
   });
 }
@@ -165,13 +173,14 @@ function handlePlaystationProductEditions() {
  * https://store.playstation.com/es-ar/product/UP1004-CUSA03041_00-RDR2ULTMEDTNBUND
  */
 function handlePlaystationProductComplements() {
-  handleMutations('.pdp-add-ons [data-qa="add-ons"] li', "playstation--product-complements", (game, i) => {
+  handleMutations('ul[data-qa="add-ons"] li', "playstation--product-complements", (game, i) => {
     // Price
+    console.log(game);
     scrapper({
-      priceElement: game.lastElementChild.querySelector(`[data-qa="add-ons-grid#${i}#price#display-price"]`),
-      eventElement: game.lastElementChild.querySelector(`[data-qa="add-ons-grid#${i}#price#display-price"]`),
+      priceElement: game.querySelector(`[data-qa="add-ons-grid#${i}#price#display-price"]`),
+      eventElement: game.querySelector(`[data-qa="add-ons-grid#${i}#price#display-price"]`),
       currency: "US",
-      showEmoji: true,
+      showEmoji: false,
     });
   });
 }
@@ -189,7 +198,7 @@ function handlePlaystationGames() {
         priceElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
         eventElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
         currency: "US",
-        showEmoji: true,
+        showEmoji: false,
       });
 
       // Regular Price
@@ -198,6 +207,7 @@ function handlePlaystationGames() {
         eventElement: game.querySelector(`[data-qa="mfeCtaMain#offer${offerNum}#finalPrice"]`),
         currency: "US",
         showEmoji: false,
+        isDiscount: true,
       });
     }
   });
@@ -215,7 +225,7 @@ function handlePlaystationGamesEditions() {
       priceElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
       eventElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
       currency: "US",
-      showEmoji: true,
+      showEmoji: false,
     });
 
     // Regular Price
@@ -224,6 +234,10 @@ function handlePlaystationGamesEditions() {
       eventElement: game.querySelector(`[data-qa="mfeUpsell#productEdition${i}#ctaWithPrice#offer0#finalPrice"]`),
       currency: "US",
       showEmoji: false,
+      isDiscount: true,
     });
   });
 }
+
+// Init
+handlePlaystationMutations();

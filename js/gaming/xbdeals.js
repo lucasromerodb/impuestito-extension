@@ -4,10 +4,12 @@
 function handleXBDealsMutations() {
   if (someURL(["xbdeals.net"], hostname) && someURL(["/ar-store"], pathname)) {
     if (someURL(["/game/"], pathname)) {
-      handleXBDealsGamePage();
-      handleXBDealsGamePageStats();
+      observeInit(document, () => {
+        handleXBDealsGamePage();
+        handleXBDealsGamePageStats();
+      });
     } else {
-      handleXBDealsGrid();
+      observeInit(document, handleXBDealsGrid);
     }
   }
 }
@@ -21,7 +23,7 @@ function xbdealsScrapper(game) {
     priceElement: game.querySelector(".game-collection-item-regular-price"),
     eventElement: game.querySelector(".game-collection-item-regular-price"),
     currency: "ARS",
-    showEmoji: true,
+    showEmoji: false,
   });
 
   // Bonus Price
@@ -29,7 +31,7 @@ function xbdealsScrapper(game) {
     priceElement: game.querySelector(".game-collection-item-bonus-price"),
     eventElement: game.querySelector(".game-collection-item-bonus-price"),
     currency: "ARS",
-    showEmoji: true,
+    showEmoji: false,
   });
 
   // Price
@@ -37,7 +39,7 @@ function xbdealsScrapper(game) {
     priceElement: game.querySelector(".game-collection-item-discount-price"),
     eventElement: game.querySelector(".game-collection-item-discount-price"),
     currency: "ARS",
-    showEmoji: true,
+    showEmoji: false,
   });
 }
 
@@ -84,7 +86,10 @@ function handleXBDealsGamePageStats() {
       priceElement: game,
       eventElement: game,
       currency: "ARS",
-      showEmoji: true,
+      showEmoji: false,
     });
   });
 }
+
+// Init
+handleXBDealsMutations();

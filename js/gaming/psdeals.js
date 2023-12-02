@@ -4,10 +4,12 @@
 function handlePSDealsMutations() {
   if (someURL(["psdeals.net"], hostname) && someURL(["/ar-store"], pathname)) {
     if (someURL(["/game/"], pathname)) {
-      handlePSDealsGamePage();
-      handlePSDealsGamePageStats();
+      observeInit(document, () => {
+        handlePSDealsGamePage();
+        handlePSDealsGamePageStats();
+      });
     } else {
-      handlePSDealsGrid();
+      observeInit(document, handlePSDealsGrid);
     }
   }
 }
@@ -88,3 +90,6 @@ function handlePSDealsGamePageStats() {
     });
   });
 }
+
+// Init
+handlePSDealsMutations();

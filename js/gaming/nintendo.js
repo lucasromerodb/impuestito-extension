@@ -3,8 +3,10 @@
  */
 function handleNintendoARMutations() {
   if (someURL(["nintendo"], hostname)) {
-    handleNintendoAllGamesArg();
-    handleNintendoOtherVersionsGamesArg();
+    observeInit(document, () => {
+      handleNintendoAllGamesArg();
+      handleNintendoOtherVersionsGamesArg();
+    });
   }
 }
 
@@ -25,14 +27,14 @@ function handleNintendoAllGamesArg() {
   const priceElements = [...document.querySelectorAll("span")].filter((e) => e.className.includes("Pricestyles__MSRP"));
   for (const element of priceElements) {
     if (element.className.includes("impuestito")) return;
-    element.innerHTML = element.innerHTML.replace(/(.*)(<\/span>)(.*)(<\/span>)?/gi, '$1$2<span class="price-regular">$3</span>$4');
+    element.innerHTML = element.innerHTML.replace(/(.*)(<\/span>)(.*)(<\/span>)?/gi, '$1$2<span class="price-regular impuestito-nintendo">$3</span>$4');
     element.classList.add("impuestito");
   }
 
   const discountPriceElements = [...document.querySelectorAll("span")].filter((e) => e.className.includes("Pricestyles__SalePrice"));
   for (const element of discountPriceElements) {
     if (element.className.includes("impuestito")) return;
-    element.innerHTML = element.innerHTML.replace(/(.*)(<\/span>)(.*)(<\/span>)?/gi, '$1$2<span class="price-regular">$3</span>$4');
+    element.innerHTML = element.innerHTML.replace(/(.*)(<\/span>)(.*)(<\/span>)?/gi, '$1$2<span class="price-regular impuestito-nintendo">$3</span>$4');
     element.classList.add("impuestito");
   }
 
@@ -45,7 +47,7 @@ function handleNintendoAllGamesArg() {
         priceElement: element,
         eventElement: element,
         currency: "ARS",
-        showEmoji: iconVisibility,
+        showEmoji: false,
       });
       element.classList.add("impuestito-done");
     }
@@ -68,9 +70,15 @@ function handleNintendoOtherVersionsGamesArg() {
         priceElement: element,
         eventElement: element,
         currency: "ARS",
-        showEmoji: iconVisibility,
+        showEmoji: false,
       });
       element.classList.add("impuestito-done");
     }
   }
 }
+
+// TODO: https://www.nintendo.com/es-ar/store/products/monster-hunter-rise-plus-sunbreak-switch/
+// Dropdown
+
+// Init
+handleNintendoARMutations();

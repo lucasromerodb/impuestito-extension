@@ -37,26 +37,23 @@ if (devMode) {
   });
 }
 
-// Assign the correct method to handle the mutations based on website and region
-function handleMutationsInit() {
-  setTimeout(() => {
-    if (impuestitoTaxes && impuestitoDollar) {
-      handlePlaystationMutations();
-      handleEpicMutations();
-      handleXBDealsMutations();
-      handlePSDealsMutations();
-      handleXboxMutations();
-      handleNintendoARMutations();
-    } else {
-      console.warn("🔴 Missing dollar or taxes value.");
-      console.warn("🔴 MISSING_DATA", { dollar: impuestitoDollar, taxes: impuestitoTaxes });
-      return;
-    }
-  }, 1000);
-}
-
 // Watch HTML mutations
-const observer = new MutationObserver(handleMutationsInit);
-const observerOptions = { subtree: true, attributes: true };
+function observeInit(targetElement, handleScrapperInit) {
+  const observer = new MutationObserver(() => {
+    setTimeout(() => {
+      if (impuestitoTaxes && impuestitoDollar) {
+        handleScrapperInit();
+      } else {
+        console.error("🔴 Missing dollar or taxes value.");
+        console.error("🔴 MISSING_DATA", { dollar: impuestitoDollar, taxes: impuestitoTaxes });
+        return;
+      }
+    }, 1000);
+  });
 
-observer.observe(document, observerOptions);
+  if (targetElement) {
+    observer.observe(targetElement, { subtree: true, attributes: true });
+  } else {
+    console.error("🔴 Missing targetElement to init observer");
+  }
+}
