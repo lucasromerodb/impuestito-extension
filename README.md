@@ -1,7 +1,5 @@
 ![Impuestito](/assets/chrome-store.jpg "Impuestito Cover")
 
-> Conocido anteriormente como `Xboxito`
-
 # Impuestito - Conocé el precio real de los juegos
 
 Impuestito calcula y muestra el precio final de los juegos con los impuestos incluidos para las tiendas web de Xbox, PlayStation, Nintendo, Epic Games Store, GOG, Ubisoft Store, EA Play, XBDeals, PSDeals, DekuDeals (sólo disponible en navegadores de escritorio para Windows, Mac y Linux)
@@ -70,7 +68,7 @@ Impuestito toma el precio original de cada juego en distintas tiendas online y h
 Si tenés alguna idea interesante o encontraste algún problema con la extensión:
 
 - 🐞 Podés hacerlo [creando un issue acá](https://github.com/lucasromerodb/impuestito/issues/new/choose)
-- 🐦 También podés [escribime en Twitter](https://twitter.com/GamePassDayOne)
+- 🗨️ También podés [escribime en Twitter](https://twitter.com/impuestito_org)
 
 ## ¿Buscas algo similar para Steam?
 
