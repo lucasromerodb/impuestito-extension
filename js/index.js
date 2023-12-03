@@ -41,7 +41,6 @@ if (devMode) {
 // Watch HTML mutations
 function observeInit(targetElement, handleScrapperInit) {
   setTimeout(() => {
-    handleScrapperInit();
     MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
     const observer = new MutationObserver(() => {
       if (impuestitoTaxes && impuestitoDollar) {

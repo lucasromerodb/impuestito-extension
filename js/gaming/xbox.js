@@ -93,6 +93,61 @@ function handleXboxAllGames() {
  * https://www.xbox.com/es-ar/games/store/lego-los-increbles/BZP3R43F8DNH
  * https://www.xbox.com/es-ar/games/store/tom-clancys-rainbow-six-extraction/9P53VF7859PW
  * https://www.xbox.com/es-ar/games/store/psychonauts/C5HHPG1TXDNG
+ * https://www.xbox.com/es-AR/games/store/the-elder-scrolls-v-skyrim-anniversary-edition/9PBN02CTMRTH/0010
+ */
+function handleXboxGameButton() {
+  const priceElements = [...document.querySelector("[data-focus-container='0']").querySelectorAll("span")]
+    .filter((e) => e.className.includes("Price-module__boldText"))
+    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20);
+  if (priceElements.length > 0) {
+    for (const element of priceElements) {
+      if (element.className.includes("impuestito")) return;
+      element.classList.add("impuestito", "price-regular", "impuestito-xbox");
+    }
+  }
+
+  const priceDiscountBrandElements = [...document.querySelector("[data-focus-container='0']").querySelectorAll("span")]
+    .filter((e) => e.className.includes("Price-module__brandOriginalPrice") || e.className.includes("Price-module__originalPrice"))
+    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20);
+  if (priceDiscountBrandElements.length > 0) {
+    for (const element of priceDiscountBrandElements) {
+      if (element.className.includes("impuestito")) return;
+      element.classList.add("impuestito", "price-discount", "impuestito-xbox");
+    }
+  }
+
+  const priceElementsSave = [...document.querySelector("[data-focus-container='0']").querySelectorAll("span")].filter((e) => e.innerText.includes("$") && e.innerText.includes("Ahorra") && e.innerText === e.innerHTML);
+  if (priceElementsSave.length > 0) {
+    for (const element of priceElementsSave) {
+      if (element.className.includes("impuestito")) return;
+      element.innerHTML = element.innerHTML.replace(/(Ahorra)(.*)(\s?con\s?)/gi, '$1<span class="impuestito price-gamepass price-xbox price-regular">$2</span> $3');
+    }
+  }
+
+  const targetElements = document.querySelectorAll(".impuestito");
+  for (const element of targetElements) {
+    if (targetElements.length > 0) {
+      if (!element.className.includes("impuestito-done")) {
+        scrapper({
+          priceElement: element,
+          eventElement: element,
+          currency: "ARS",
+          showEmoji: false,
+          isDiscount: element.classList.contains("price-discount"),
+        });
+        element.classList.add("impuestito-done");
+      }
+    }
+  }
+}
+
+/**
+ * Tested on:
+ * https://www.xbox.com/es-ar/games/store/dragon-ball-xenoverse-2/BX03760D0QGN
+ * https://www.xbox.com/es-ar/games/store/grand-theft-auto-iv/BRQ2SCZCTXF2
+ * https://www.xbox.com/es-ar/games/store/lego-los-increbles/BZP3R43F8DNH
+ * https://www.xbox.com/es-ar/games/store/tom-clancys-rainbow-six-extraction/9P53VF7859PW
+ * https://www.xbox.com/es-ar/games/store/psychonauts/C5HHPG1TXDNG
  */
 function handleXboxGameRelated() {
   const priceElements = [...document.querySelector("#PageContent").querySelectorAll("span")]
@@ -138,62 +193,6 @@ function handleXboxGameRelated() {
   const targetElements = document.querySelectorAll(".impuestito");
   if (targetElements.length > 0) {
     for (const element of targetElements) {
-      if (!element.className.includes("impuestito-done")) {
-        scrapper({
-          priceElement: element,
-          eventElement: element,
-          currency: "ARS",
-          showEmoji: false,
-          isDiscount: element.classList.contains("price-discount"),
-        });
-        element.classList.add("impuestito-done");
-      }
-    }
-  }
-}
-
-/**
- * Tested on:
- * https://www.xbox.com/es-ar/games/store/dragon-ball-xenoverse-2/BX03760D0QGN
- * https://www.xbox.com/es-ar/games/store/grand-theft-auto-iv/BRQ2SCZCTXF2
- * https://www.xbox.com/es-ar/games/store/lego-los-increbles/BZP3R43F8DNH
- * https://www.xbox.com/es-ar/games/store/tom-clancys-rainbow-six-extraction/9P53VF7859PW
- * https://www.xbox.com/es-ar/games/store/psychonauts/C5HHPG1TXDNG
- * https://www.xbox.com/es-AR/games/store/the-elder-scrolls-v-skyrim-anniversary-edition/9PBN02CTMRTH/0010
- */
-function handleXboxGameButton() {
-  const priceElements = [...document.querySelector("[data-focus-container='0']").querySelectorAll("span")]
-    .filter((e) => e.className.includes("Price-module__boldText"))
-    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20);
-  if (priceElements.length > 0) {
-    for (const element of priceElements) {
-      if (element.className.includes("impuestito")) return;
-      element.classList.add("impuestito", "price-regular", "impuestito-xbox");
-    }
-  }
-
-  const priceDiscountBrandElements = [...document.querySelector("[data-focus-container='0']").querySelectorAll("span")]
-    .filter((e) => e.className.includes("Price-module__brandOriginalPrice") || e.className.includes("Price-module__originalPrice"))
-    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20);
-  if (priceDiscountBrandElements.length > 0) {
-    for (const element of priceDiscountBrandElements) {
-      if (element.className.includes("impuestito")) return;
-      element.classList.add("impuestito", "price-discount", "impuestito-xbox");
-    }
-  }
-
-  const priceElementsSave = [...document.querySelector("[data-focus-container='0']").querySelectorAll("span")].filter((e) => e.innerText.includes("$") && e.innerText.includes("Ahorra") && e.innerText === e.innerHTML);
-  if (priceElementsSave.length > 0) {
-    for (const element of priceElementsSave) {
-      if (element.className.includes("impuestito")) return;
-      element.innerHTML = element.innerHTML.replace(/(Ahorra)(.*)(\s?con\s?)/gi, '$1<span class="impuestito price-gamepass price-xbox price-regular">$2</span> $3');
-    }
-  }
-
-  const targetElements = document.querySelectorAll(".impuestito");
-
-  for (const element of targetElements) {
-    if (targetElements.length > 0) {
       if (!element.className.includes("impuestito-done")) {
         scrapper({
           priceElement: element,
