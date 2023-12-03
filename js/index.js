@@ -59,3 +59,32 @@ function observeInit(targetElement, handleScrapperInit) {
     }
   }, 500);
 }
+
+// Force updates
+// function writeDOM(text) {
+//   const div = document.createElement("div");
+//   div.classList.add("impuestito-playground");
+//   document.querySelector("body").insertAdjacentElement("beforeend", div);
+
+//   const span = document.createElement("span");
+//   span.innerHTML = text;
+//   document.querySelector(".impuestito-playground").insertAdjacentElement("afterbegin", span);
+
+//   setTimeout(() => {
+//     document.querySelector(".impuestito-playground").remove();
+//   }, 1000);
+// }
+
+function writeDOM() {
+  const random = Math.floor(Math.random() * (1000 - 0 + 1)) + 0;
+  document.querySelector("body").classList.add(random);
+  setTimeout(() => {
+    document.querySelector("body").classList.remove(random);
+  }, 1000);
+}
+
+writeDOM();
+
+setTimeout(() => {
+  writeDOM();
+}, 5000);

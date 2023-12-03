@@ -68,6 +68,10 @@
   background-color: white;
 }
 
+.impuestito-trigger-playground {
+  display: none;
+}
+
 @media screen and (max-width: 1366px) {
   .playstation--grid .priceWithTaxes {
     font-size: 14px !important;

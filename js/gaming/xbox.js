@@ -96,7 +96,7 @@ function handleXboxAllGames() {
  * https://www.xbox.com/es-AR/games/store/the-elder-scrolls-v-skyrim-anniversary-edition/9PBN02CTMRTH/0010
  */
 function handleXboxGameButton() {
-  const priceElements = [...document.querySelector("[data-focus-container='0']").querySelectorAll("span")]
+  const priceElements = [...document.querySelectorAll("[data-focus-container] span")]
     .filter((e) => e.className.includes("Price-module__boldText"))
     .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20);
   if (priceElements.length > 0) {
@@ -106,7 +106,7 @@ function handleXboxGameButton() {
     }
   }
 
-  const priceDiscountBrandElements = [...document.querySelector("[data-focus-container='0']").querySelectorAll("span")]
+  const priceDiscountBrandElements = [...document.querySelectorAll("[data-focus-container] span")]
     .filter((e) => e.className.includes("Price-module__brandOriginalPrice") || e.className.includes("Price-module__originalPrice"))
     .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20);
   if (priceDiscountBrandElements.length > 0) {
@@ -116,7 +116,7 @@ function handleXboxGameButton() {
     }
   }
 
-  const priceElementsSave = [...document.querySelector("[data-focus-container='0']").querySelectorAll("span")].filter((e) => e.innerText.includes("$") && e.innerText.includes("Ahorra") && e.innerText === e.innerHTML);
+  const priceElementsSave = [...document.querySelectorAll("[data-focus-container] span")].filter((e) => e.innerText.includes("$") && e.innerText.includes("Ahorra") && e.innerText === e.innerHTML);
   if (priceElementsSave.length > 0) {
     for (const element of priceElementsSave) {
       if (element.className.includes("impuestito")) return;

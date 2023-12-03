@@ -4,6 +4,13 @@
 function handleDekuDealsMutations() {
   if (someURL(["dekudeals.com"], hostname)) {
     console.log("🟢 impuestito is working...");
+
+    // This is here because DekuDeals have issues with some elements
+    if (impuestitoTaxes && impuestitoDollar) {
+      dekuDealsScrapper();
+      dekuDealsRelatedScrapper();
+    }
+
     observeInit(document, dekuDealsScrapper);
 
     if (someURL(["items"], pathname)) {

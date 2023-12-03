@@ -15,7 +15,7 @@ function epicScrapper() {
   const finalPriceElements = [...document.querySelectorAll("main > div")[1].querySelectorAll("span")].filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 15);
   if (finalPriceElements.length > 0) {
     for (const element of finalPriceElements) {
-      if (element.className.includes("impuestito")) return;
+      if (element.nodeName === "#text" || element.className.includes("impuestito")) return;
       element.classList.add("impuestito", "price-regular", "impuestito-epic");
     }
   }
@@ -23,7 +23,7 @@ function epicScrapper() {
   const basePriceElements = [...document.querySelectorAll("main > div")[1].querySelectorAll("span")].filter((e) => e.innerText.includes("$") && e.innerText !== e.innerHTML && e.innerText.length < 15).map((e) => e.lastChild);
   if (basePriceElements.length > 0) {
     for (const element of basePriceElements) {
-      if (element.className.includes("impuestito")) return;
+      if (element.nodeName === "#text" || element.className.includes("impuestito")) return;
       element.classList.add("impuestito", "price-discount", "impuestito-epic");
     }
   }
