@@ -6,11 +6,11 @@
 
 Impuestito calcula y muestra el precio final de los juegos con los impuestos incluidos para las tiendas web de Xbox, PlayStation, Nintendo, Epic Games Store, GOG, Ubisoft Store, EA Play, XBDeals, PSDeals, DekuDeals (sólo disponible en navegadores de escritorio para Windows, Mac y Linux)
 
-### [🎁 Descarga la extensión de Impuestito](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es)
+### [⏬ Descarga la extensión de Impuestito](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es)
 
-### [🐦 Seguí Impuestito en Twitter](https://twitter.com/impuestito_org)
+### [🗨️ Seguí Impuestito en Twitter](https://twitter.com/impuestito_org)
 
-## 🎮 Sitios web soportados
+## 🎮 Tiendas web soportados
 
 - [Xbox (AR)](https://www.xbox.com/es-ar/games/all-games)
 - [PlayStation (USD)](https://store.playstation.com/es-ar/category/35027334-375e-423b-b500-0d4d85eff784)
@@ -27,6 +27,8 @@ Impuestito calcula y muestra el precio final de los juegos con los impuestos inc
 ## 🙋 ¿Qué hace Impuestito?
 
 Impuestito toma el precio original de cada juego en distintas tiendas online y hace un cálculo automáticamente, tomando los valores de los impuestos ya conocidos en Argentina (y el valor del dólar si es necesario) para mostrar el precio final de cada juego en la tienda sin que necesites hacer cálculos. Vas a poder ver todos los precios finales al mismo tiempo y de un color verde!
+
+> Los impuestos que se calculan en la extensión corresponden al impuesto PAIS, impuesto a las Ganancias y el impuesto a Bienes Personales (el porcentaje de impuestos puede variar dependiendo el lugar donde vivas)
 
 [![Invitame un café en cafecito.app](https://cdn.cafecito.app/imgs/buttons/button_2.svg)](https://cafecito.app/impuestito)
 
@@ -53,9 +55,8 @@ Impuestito toma el precio original de cada juego en distintas tiendas online y h
 - ✅ Soporte para Epic Games Store
 - ✅ Compatible con la página individual de cada juego
 - ✅ Compatible con los juegos relacionados (pag. individual.)
-- Compatible con las tiendas web de USA para PlayStation y Nintendo
-- Personalizar los impuestos
-- Versión para Firefox
+- Personalización de impuestos
+- Versión para Firefox (⚠️ desactualizada)
 
 ## Otras capturas
 
