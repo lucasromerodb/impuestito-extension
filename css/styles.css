@@ -72,6 +72,69 @@
   display: none;
 }
 
+.impuestito-available-on-game-pass {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  padding: 20px;
+
+  margin-top: 0;
+  margin-bottom: 15px;
+
+  border-radius: 4px;
+
+  background: linear-gradient(-45deg, #16ab16, #139113, #0c5a0c, #139113, #0c5a0c);
+  background-size: 600%;
+  animation: animated-background 20s linear infinite;
+
+  overflow: hidden;
+}
+
+.impuestito-available-on-game-pass p {
+  width: 367px;
+  margin-right: 10px;
+
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.impuestito-available-on-game-pass p strong {
+  color: white;
+}
+
+.impuestito-available-on-game-pass a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: auto;
+  padding: 15px;
+  padding-right: 20px;
+
+  border-radius: 30px;
+  background-color: black;
+
+  color: white;
+}
+
+.impuestito-available-on-game-pass a:hover {
+  color: #16ab16 !important;
+}
+
+.impuestito-available-on-game-pass a::before {
+  content: "";
+
+  display: block;
+  width: 24px;
+  height: 24px;
+
+  margin-right: 10px;
+
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQASURBVHgBrVVfbFNVGP+dc/p/q2zdKHQjTYnbComaYY0urJXuAYcaxAcN8Q0zQpwxLLyhQdBpDC8m24uLhgyM0QSiLxCMKMHFymLMosmY6TZAyoCuw9LK2GpX7r3Hc3rb0rVb5wxfcu+593zf9/t9/869wCqEP99kHvH5jKvxIZWU1/2P12oZtYdRBEGolxCsBwcoIbdByCS4dopqyhnXL+ORVREkWz01CaP1CAV/i1JqkHtifeBEFrsJzkGVKYc8ofD0igSXfU2PMhjOC41H4ujARKxkWYIcSYRD2ekeDo8tSzD11ObHFPBz4rFBB3oQeaUMiiRqBH923fDY1fxGwSsS2OxSOD+TB/+f0pABOX8t2FqT3zDkH4adlg/brv/jKfXgInf2iB1W39MweDaCmhh4Kgwkvgc0RU+zYAxZEw9zKkcwhANArkSbBnZ4bKp67cRXt1Cd0Qr20rfKvw2Od95H3LQWockFWE0ErW4jGi23oE0eAE/+uFQmKkurTrJjNpHNgFP+8ryYxcG2Wuz/6U7Bytq2FY6PB/DB6TkcvxiHqvGCrjvowMEXvwH5Yzf4nR9KCZhiNuwX63u5DvJX5PKdtxoRh36OCGOoe7sXR8/O4VgotQhcysDQPHpP3wNt6ReFXlOWAiE8mIXOvmnwZjMRJRlod+jRi9LMWNYLoBSWkxMXU4ilnSA1/nIlJ5uyBMHjQYugq8/vj7osGHFbYWpqwe9T91FJVNGu0MQCYGsuVxK+7tN9LhsNX0iwUl1/oA5pqiF9n2MlsZpF2kSWtfxs7HvNrNGZL0bnOfhMsSJexXDSHoe/2QRGKxNsEROF1Lhsmrj0Uw/9/hfpiKR1d04mSh2/zIyDGv7G6+22ZcG7gzYxrlHwxAUdvIhEzMRlaZOLj5cN873MPA6H+vDuTjveCC4mkVl1BWw4+EI1pscPCXcNeuREJ6DiMBLydS4TYMOxTodNw23xUtaP9sYn0RvoAZT6bNNlXwItZhFsEqdGjqKbnYQcw+wxlsce+sVUspF0xCKFzng/6+wTS89SpWAiqqD7GTQ7PFBVFX/evYFfp0fxeeMleC1pPcwicEE4aAjEugoZSHF/4q+1sqrf5LcE/0F2197FYVdM4KlFu9ksIgtp2l713I2o3CnMyNSbPycVhu3CIroSuJ2p6Fo7K7zFBFGT3tyskKi6QF7Kgy8ikHJ177krlBo7RSCRSgR76mbRaJKREx1c/vSoIaIofJt5+81LxbZlUx7ee3ZMbG4VmQwuBd5gVLCnfjYfsbwUrrE+ZuNbLB03r5TaV/zpy884YXyXxvmrYuyahbHzow1x7FozFxOeE5yTIYM91U+emEriYYhvxGfk3zaZV+PzL0tnVmUbMxLBAAAAAElFTkSuQmCC");
+}
+
 @media screen and (max-width: 1366px) {
   .playstation--grid .priceWithTaxes {
     font-size: 14px !important;
