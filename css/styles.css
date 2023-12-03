@@ -97,7 +97,7 @@
   margin-right: 10px;
 
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgb(106, 236, 106);
 }
 
 .impuestito-available-on-game-pass p strong {
@@ -120,7 +120,10 @@
 }
 
 .impuestito-available-on-game-pass a:hover {
-  color: #16ab16 !important;
+  color: rgb(106, 236, 106) !important;
+}
+.impuestito-available-on-game-pass a:hover::before {
+  animation: chromeRotation 1s linear infinite;
 }
 
 .impuestito-available-on-game-pass a::before {
@@ -153,5 +156,14 @@
   }
   100% {
     background-position: 100% 50%;
+  }
+}
+
+@keyframes chromeRotation {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(-360deg);
   }
 }
