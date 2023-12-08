@@ -292,7 +292,7 @@ function handleXboxGamePass() {
           eventElement: element,
           currency: "ARS",
           showEmoji: false,
-          isDiscount: element.firstChild.classList.contains("price-discount"),
+          isDiscount: false,
         });
         element.classList.add("impuestito-done");
       }
