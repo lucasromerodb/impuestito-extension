@@ -3,16 +3,17 @@
  */
 function handleGOGMutations() {
   if (someURL(["gog.com"], hostname)) {
-    console.log("🟢 impuestito is working...");
+    logWelcomeMessage({ store: hostname });
     observeInit(document, GOGScrapper);
   }
 }
 
 /**
- * Epic Scrapper
+ * GOG Scrapper
  */
-function GOGScrapper() {
+function GOGScrapper({ data }) {
   const elements = [];
+
   const finalPriceElements = [
     ...document.querySelectorAll("span.big-spot__price-amount"),
     ...document.querySelectorAll("span.product-tile__price-discounted._price"),
@@ -46,12 +47,14 @@ function GOGScrapper() {
   if (priceElementsTarget.length > 0) {
     for (const element of priceElementsTarget) {
       if (!element.className.includes("impuestito-done")) {
+        console.log("👁️ Mutation detected on", element);
         scrapper({
           priceElement: element,
           eventElement: element,
           currency: "US",
           showEmoji: false,
           isDiscount: element.classList.contains("price-discount"),
+          data,
         });
       }
       element.classList.add("impuestito-done");

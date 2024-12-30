@@ -21,32 +21,37 @@ function handleMutations(gamesSelector, className, callback) {
 
 /**
  * @param  {string} originalPrice
- * @param  {number} taxes
  * @param  {string} currency
+ * @param  {object} data
  * @returns {number}
  */
-function getNewPrice(originalPrice, taxes, currency = "ARS") {
-  if (taxes === undefined) return;
+function getNewPrice(originalPrice, currency = "ARS", data) {
+  if (!data.taxes.defaultTotal || !data.bancos) return;
 
   const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "Prueba del juego", "--", "", "NaN", "Incluido", "Anunciados"];
   const priceTextNaN = exceptions.some((exception) => exception.toLowerCase() === originalPrice.toLowerCase());
-  const priceWithTaxes = (p) => (p + p * taxes).toFixed(2);
+  const priceWithTaxes = (p) => (p + p * data.taxes.defaultTotal).toFixed(2);
 
   if (priceTextNaN) {
+    console.log("👁️ 1 getNewPrice: priceTextNaN", priceTextNaN);
     return 0;
   }
 
   const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(originalPrice));
+  console.log("👁️ 2 priceNumber", priceNumber);
+
   if (priceNumber === 0) {
+    console.log("👁️ 3 getNewPrice: priceNumber is 0");
     return 0;
   }
 
   if (currency === "US") {
-    const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(originalPrice));
-    const newPrice = priceNumber * sanitizePricePunctuation(impuestitoDollar.data.venta);
+    const newPrice = priceNumber * sanitizePricePunctuation(data.bancos);
+    console.log("👁️ 4 getNewPrice: newPrice", newPrice);
     return priceWithTaxes(newPrice);
   }
 
+  console.log("👁️ 5 getNewPrice: priceWithTaxes", priceWithTaxes(priceNumber));
   return priceWithTaxes(priceNumber);
 }
 
@@ -85,11 +90,13 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
  * @param  {boolean} showEmoji
  * @param  {boolean} isDiscount}
  */
-function scrapper({ priceElement, eventElement, currency, showEmoji, isDiscount = false }) {
+function scrapper({ priceElement, eventElement, currency, showEmoji, isDiscount = false, data = {} }) {
   if (priceElement) {
     isDiscount ? priceElement.classList.add("price-discount") : priceElement.classList.add("price-regular");
     const originalPrice = priceElement.textContent;
-    const newPrice = getNewPrice(originalPrice, impuestitoTaxes.data.defaultSum, currency);
+    console.log("✨ scrapper: originalPrice", { originalPrice });
+    const newPrice = getNewPrice(originalPrice, currency, data);
+    console.log("✨ scrapper: newPrice", { newPrice });
     newPrice && replacePrice(priceElement, eventElement, originalPrice, newPrice, showEmoji);
   }
 }
@@ -122,56 +129,39 @@ function priceFormatter(price, format = "es-AR", currency = "ARS") {
   return formatter.format(price);
 }
 
-/**
- * @param  {string} price
- * @returns {string}
+
+ /**
+ * Removes currency symbols and extra spaces from a price string
+ * @param {string} price - Price string with currency symbol (e.g. "US$ 1,222.43", "ARS$ 1,222.43")
+ * @returns {string} Price string without currency symbol (e.g. "1,222.43")
  */
 function sanitizePriceSigns(price) {
-  /**
-   * Tested on:
-   *
-   * ARS$ 1,222.43
-   * US$ 1,222.43
-   * $ 1,222.43
-   *  ARS$ 1,222.43
-   * ARS$1,222.43
-   * ARS$ 1,222.43+
-   * US$ 1,222.43+
-   * $ 1,222.43+
-   *  ARS$ 1,222.43 +
-   * ARS$1,222.43 +
-   * * ARS$ 1,222.43 +
-   * US$ 1,222.43 +
-   * $ 1,222.43 +
-   *  ARS$ 1,222.43 +
-   * ARS$1,222.43 +
-   */
-  return price.replace(/^\s*[a-zA-z]*?\$\s?(\d?\d?\W?\d+\W?\d?\d?)\s?\+?/gi, "$1");
+  const cleanedNumber = price
+    .trim()
+    .replace(/ARS|US/gi, "")
+    .replace(/\$+/gi, "")
+    .replace(/\s+/gi, "")
+    .replace(/\+/gi, "");
+
+  return cleanedNumber;
 }
 
 /**
- * @param  {string} price
- * @returns {number}
+ * Converts price string with various decimal/thousands separators to a number
+ * @param {string} price - Price string with decimal/thousands separators (e.g. "1.234,55", "1,234.55", "1234.55")
+ * @returns {number} Price as a number (e.g. 1234.55)
  */
 function sanitizePricePunctuation(price) {
-  /**
-   * Tested on:
-   *
-   * 1.234,55
-   * 1,234.55
-   * 1234,55
-   * 1234.55
-   * 111,22
-   * 111.22
-   * 11,22
-   * 11.22
-   * 1,22
-   * 1.22
-   * 1,2
-   * 1.2
-   */
+  if (!price.trim()) return NaN;
+  if (price.match(/[a-zA-Z]/gi)) return NaN;
+  if (price.match(/^\d+\.\d+\.\d+$/gi)) return NaN;
+  if (price.match(/^\d+\,\d+\,\d+$/gi)) return NaN;
 
-  return +price.replace(/(\d+)?[\.|\,]?(.+)[\,|\.](\d{1,2})/gi, "$1$2.$3");
+  const cleanedPrice = price
+    .trim()
+    .replace(/(\d+)?[\.|\,]?(.+)[\,|\.](\d{1,2})/gi, "$1$2.$3");
+
+  return isNaN(+cleanedPrice) ? NaN : +cleanedPrice;
 }
 
 /**

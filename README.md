@@ -75,3 +75,12 @@ Si tenés alguna idea interesante o encontraste algún problema con la extensió
 Hace tiempo existe 👑 [Steamcito](https://github.com/emilianog94/Steamcito-Precios-Steam-Argentina-Impuestos-Incluidos), la extensión que calcula los precios con impuestos y que además te permite personalizarlos.
 
 > Nota: Impuestito se basa en la misma idea que Steamcito pero para otras tiendas.
+
+---
+
+ToDo:
+- [ ] Soporte para Amazon
+- [ ] Soporte para Tiendamia
+- [ ] Soporte para Humble Bundle
+- [ ] Soporte para Green Man Gaming
+- [ ] Soporte para Steam (solo para recomendar Steamcito)

@@ -6,10 +6,8 @@ function handleDekuDealsMutations() {
     console.log("🟢 impuestito is working...");
 
     // This is here because DekuDeals have issues with some elements
-    if (impuestitoTaxes && impuestitoDollar) {
-      dekuDealsScrapper();
-      dekuDealsRelatedScrapper();
-    }
+    dekuDealsScrapper();
+    dekuDealsRelatedScrapper();
 
     observeInit(document, dekuDealsScrapper);
 

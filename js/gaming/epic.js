@@ -11,7 +11,7 @@ function handleEpicMutations() {
 /**
  * Epic Scrapper
  */
-function epicScrapper() {
+function epicScrapper({ data }) {
   const finalPriceElements = [...document.querySelectorAll("main > div")[1].querySelectorAll("span")].filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 15);
   if (finalPriceElements.length > 0) {
     for (const element of finalPriceElements) {
@@ -38,6 +38,7 @@ function epicScrapper() {
           currency: "US",
           showEmoji: false,
           isDiscount: element.classList.contains("price-discount"),
+          data,
         });
       }
       element.classList.add("impuestito-done");

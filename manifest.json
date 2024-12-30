@@ -7,24 +7,13 @@
     "service_worker": "background.js",
     "type": "module"
   },
+  "permissions": [
+    "storage",
+    "alarms"
+  ],
   "content_scripts": [
     {
-      "matches": [
-        "*://*.playstation.com/es-ar/*",
-        "*://*.playstation.com/en-us/*",
-        "*://*.xbox.com/es-AR/*",
-        "*://*.xbox.com/es-ar/*",
-        "*://*.nintendo.com/es-ar/*",
-        "*://*.nintendo.com/search/es-ar/*",
-        "*://*.epicgames.com/*",
-        "*://*.gog.com/*",
-        "*://*.ubisoft.com/*",
-        "*://*.ea.com/*",
-        "*://*.xbdeals.net/ar-store*",
-        "*://*.psdeals.net/ar-store*",
-        "*://*.dekudeals.com/*",
-        "*://*.steampowered.com/*"
-      ],
+      "matches": ["<all_urls>"],
       "css": ["css/styles.css"],
       "js": [
         "js/index.js",
