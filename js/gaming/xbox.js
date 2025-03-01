@@ -3,8 +3,9 @@
  */
 function handleXboxMutations() {
   if (someURL(["xbox.com"], hostname)) {
-    console.log("🟢 impuestito is working...");
-    if (someURL(["games/all-games", "browse/games"], pathname)) {
+    console.log("🟢 impuestito is working on: Xbox Store");
+    writePlayground("Usando impuestito: Xbox Store");
+    if (someURL(["games/all-games", "games/browse", "browse/games"], pathname)) {
       observeInit(document, handleXboxAllGames);
     }
 
@@ -47,9 +48,11 @@ function handleXboxMutations() {
 
 /**
  * Tested on:
- * https://www.xbox.com/es-ar/games/all-games
+ * https://www.xbox.com/es-ar/games/all-games [DEPRECATED]
+ * https://www.xbox.com/es-AR/games/browse
  */
 function handleXboxAllGames() {
+  console.log("🟢 Running handleXboxAllGames");
   const priceElements = [...document.querySelectorAll("li a[data-m] div div div span")].filter((e) => e.className.includes("ProductCard-module__price"));
   if (priceElements.length > 0) {
     for (const element of priceElements) {

@@ -90,8 +90,9 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
  * @param  {boolean} showEmoji
  * @param  {boolean} isDiscount}
  */
-function scrapper({ priceElement, eventElement, currency, showEmoji, isDiscount = false, data = {} }) {
-  if (priceElement) {
+async function scrapper({ priceElement, eventElement, currency, showEmoji, isDiscount = false }) {
+  const data = await getServerData();
+  if (priceElement && data) {
     isDiscount ? priceElement.classList.add("price-discount") : priceElement.classList.add("price-regular");
     const originalPrice = priceElement.textContent;
     console.log("✨ scrapper: originalPrice", { originalPrice });

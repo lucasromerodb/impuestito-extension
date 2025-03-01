@@ -6,6 +6,42 @@
 * Argentina: \01F1E6 \01F1F7 (https://emojiterra.com/es/bandera-argentina/)
 */
 
+.impuestito-playground {
+  position: fixed;
+  z-index: 999;
+  bottom: 0;
+  right: 10px;
+
+  padding: 5px 15px;
+
+  background-color: white;
+  border: 1px solid silver;
+  border-radius: 6px 6px 0 0;
+
+  color: white;
+}
+
+.impuestito-playground:hover {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(6px);
+  }
+  60% {
+    transform: translateY(3px);
+  }
+}
+
+.impuestito-playground svg {
+  width: 100px;
+  height: 22px;
+}
+
 .priceWithTaxes.price-regular,
 .priceWithTaxes .price-regular,
 .eapl-subscription-tile__price-number {
