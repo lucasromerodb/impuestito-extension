@@ -1,7 +1,7 @@
 {
   "name": "Impuestito: precio final juegos con impuestos",
   "description": "Conocé el precio final de los juegos de Playstation, Xbox, Nintendo y Epic, GOG y más! (Precio final con impuestos Argentina)",
-  "version": "1.10",
+  "version": "1.11",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js",

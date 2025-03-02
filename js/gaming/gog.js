@@ -3,15 +3,18 @@
  */
 function handleGOGMutations() {
   if (someURL(["gog.com"], hostname)) {
-    logWelcomeMessage({ store: hostname });
     observeInit(document, GOGScrapper);
+
+    setTimeout(() => {
+      writePlayground("Xbox Store");
+    }, 1000);
   }
 }
 
 /**
  * GOG Scrapper
  */
-function GOGScrapper({ data }) {
+function GOGScrapper() {
   const elements = [];
 
   const finalPriceElements = [
@@ -54,7 +57,6 @@ function GOGScrapper({ data }) {
           currency: "US",
           showEmoji: false,
           isDiscount: element.classList.contains("price-discount"),
-          data,
         });
       }
       element.classList.add("impuestito-done");

@@ -3,16 +3,21 @@
  */
 function handleEpicMutations() {
   if (someURL(["epicgames"], hostname)) {
-    console.log("🟢 impuestito is working...");
     observeInit(document, epicScrapper);
+
+    setTimeout(() => {
+      writePlayground("Xbox Store");
+    }, 1000);
   }
 }
 
 /**
  * Epic Scrapper
  */
-function epicScrapper({ data }) {
-  const finalPriceElements = [...document.querySelectorAll("main > div")[1].querySelectorAll("span")].filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 15);
+function epicScrapper() {
+  const finalPriceElements = [...document.querySelectorAll("main > div")[1].querySelectorAll("span")]
+    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 15);
+
   if (finalPriceElements.length > 0) {
     for (const element of finalPriceElements) {
       if (element.nodeName === "#text" || element.className.includes("impuestito")) return;
@@ -38,7 +43,6 @@ function epicScrapper({ data }) {
           currency: "US",
           showEmoji: false,
           isDiscount: element.classList.contains("price-discount"),
-          data,
         });
       }
       element.classList.add("impuestito-done");

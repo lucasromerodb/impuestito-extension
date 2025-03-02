@@ -1,4 +1,7 @@
-import { exampleFunction, sanitizePricePunctuation, sanitizePriceSigns } from './helpers';
+/**
+ * EXPORT FUNCTIONS TO TEST THIS FILE WITH JEST
+ */
+import { priceFormatter, sanitizePricePunctuation, sanitizePriceSigns, someURL } from './helpers';
 
 describe('sanitizePriceSigns', () => {
   const testCases = [
@@ -81,6 +84,8 @@ describe('sanitizePricePunctuation', () => {
     { input: '1.22', expected: 1.22 },
     { input: '1,2', expected: 1.2 },
     { input: '1.2', expected: 1.2 },
+    { input: 1.2, expected: 1.2},
+    { input: 1, expected: 1},
   ];
 
   test.each(testCases)('converts "$input" to "$expected"', ({ input, expected }) => {
@@ -89,22 +94,23 @@ describe('sanitizePricePunctuation', () => {
 
   // Additional edge cases
   test('handles empty string', () => {
-    expect(sanitizePricePunctuation('')).toBeNaN();
-  });
-
-  test('handles string with only decimal separator', () => {
-    expect(sanitizePricePunctuation('.')).toBeNaN();
-    expect(sanitizePricePunctuation(',')).toBeNaN();
+    expect(() => sanitizePricePunctuation('')).toThrow();
   });
 
   test('handles string with only spaces', () => {
-    expect(sanitizePricePunctuation('   ')).toBeNaN();
+    expect(() => sanitizePricePunctuation('   ')).toThrow();
   });
 
+  test('handles string with only decimal separator', () => {
+    expect(() => sanitizePricePunctuation('.')).toThrow();
+    expect(() => sanitizePricePunctuation(',')).toThrow();
+  });
+
+
   test('handles string with invalid characters', () => {
-    expect(sanitizePricePunctuation('abc')).toBeNaN();
-    expect(sanitizePricePunctuation('12.34.56')).toBeNaN();
-    expect(sanitizePricePunctuation('12,34,56')).toBeNaN();
+    expect(() => sanitizePricePunctuation('abc')).toThrow();
+    expect(() => sanitizePricePunctuation('12.34.56')).toThrow();
+    expect(() => sanitizePricePunctuation('12,34,56')).toThrow();
   });
 
   test('handles null input', () => {
@@ -113,5 +119,39 @@ describe('sanitizePricePunctuation', () => {
 
   test('handles undefined input', () => {
     expect(() => sanitizePricePunctuation(undefined)).toThrow();
+  });
+});
+
+describe('someURL', () => {
+  const testCases = [
+    { arr: ['page'], url: 'https://mypage.com/', expected: true },
+    { arr: ['page'], url: 'https://mypage.com/subpage', expected: true },
+
+    { arr: ['mypage'], url: 'https://mypage.com/page/subpage', expected: true },
+    { arr: ['subpage'], url: 'https://mypage.com/page/subpage', expected: true },
+    { arr: ['/page'], url: 'https://mypage.com/page/subpage', expected: true },
+    { arr: ['page/subpage'], url: 'https://mypage.com/page/subpage', expected: true },
+    { arr: ['/page', '/subpage'], url: 'https://mypage.com/page/subpage', expected: true },
+    { arr: ['com'], url: 'https://mypage.com/page/subpage', expected: true },
+
+    { arr: ['test'], url: 'https://mypage.com/page/subpage', expected: false },
+    { arr: [], url: 'http://mypage.com/page', expected: false },
+    { arr: ['mypage.com'], url: '', expected: false },
+    { arr: [], url: '', expected: false },
+    { arr: ['mypage'], url: null, expected: false },
+    { arr: ['mypage'], url: undefined, expected: false },
+
+    { arr: null, url: 'https://mypage.com', expected: false },
+    { arr: undefined, url: 'https://mypage.com', expected: false },
+    { arr: [null], url: 'https://mypage.com', expected: false },
+    { arr: [undefined], url: 'https://mypage.com', expected: false },
+    { arr: [null, undefined], url: 'https://mypage.com', expected: false },
+    { arr: null, url: null, expected: false },
+    { arr: null, url: null, expected: false },
+    { arr: undefined, url: undefined, expected: false },
+  ];
+
+  test.each(testCases)('returns $expected for array $arr and url $url', ({ arr, url, expected }) => {
+    expect(someURL(arr, url)).toBe(expected);
   });
 });

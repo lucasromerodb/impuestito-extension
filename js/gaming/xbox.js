@@ -3,8 +3,7 @@
  */
 function handleXboxMutations() {
   if (someURL(["xbox.com"], hostname)) {
-    console.log("🟢 impuestito is working on: Xbox Store");
-    writePlayground("Usando impuestito: Xbox Store");
+
     if (someURL(["games/all-games", "games/browse", "browse/games"], pathname)) {
       observeInit(document, handleXboxAllGames);
     }
@@ -21,6 +20,10 @@ function handleXboxMutations() {
     if (someURL(["game-pass"], pathname)) {
       observeInit(document, handleXboxGamePass);
     }
+
+    setTimeout(() => {
+      writePlayground("Xbox Store");
+    }, 1000);
   }
 }
 
@@ -91,6 +94,7 @@ function handleXboxAllGames() {
 
 /**
  * Tested on:
+ * https://www.xbox.com/es-AR/games/store/grand-theft-auto-v-xbox-series-xs/9NXMBTB02ZSF/0010
  * https://www.xbox.com/es-ar/games/store/dragon-ball-xenoverse-2/BX03760D0QGN
  * https://www.xbox.com/es-ar/games/store/grand-theft-auto-iv/BRQ2SCZCTXF2
  * https://www.xbox.com/es-ar/games/store/lego-los-increbles/BZP3R43F8DNH

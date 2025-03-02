@@ -45,14 +45,14 @@
 .priceWithTaxes.price-regular,
 .priceWithTaxes .price-regular,
 .eapl-subscription-tile__price-number {
-  background: linear-gradient(45deg, #00be5c 25%, #00f275, #00be5c, #008641, #004f26, #008641, #00be5c, #00be5c, #00be5c);
+  background: linear-gradient(45deg, #00be5c 25%, #00f275, #00be5c, #008641, #008641, #00be5c, #00be5c, #00be5c);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
   background-size: 500% auto;
   font-weight: bold !important;
-  animation: textShine 3.5s ease-in-out infinite;
+  animation: textShine 1s infinite;
 }
 
 .priceWithTaxes {

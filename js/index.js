@@ -2,15 +2,31 @@ const hostname = window.location.hostname;
 const pathname = window.location.pathname;
 const href = window.location.href;
 
+function logWelcomeMessage({ store }) {
+  const logo = `
+    11317     1111
+  13333333   3333331
+  333333333  3333333
+  13333333   333333
+    13331   333331
+          133331
+   33333333331   131
+  1333333331   13333
+  13333331   1333331
+    3331     13333
+  `
+  console.log(`\n\n\n${logo}\n✅ Estás usando la extensión de impuestito v${chrome.runtime.getManifest().version} (funcionando en ${store}).\n❇️ Visitá https://impuestito.org para más cálculos e información de compras en el exterior y suscripciones.\n\n\n\n\n\n`);
+}
+
 /**
  * Creates a new div element with the class "impuestito-playground" and appends it to the body of the document.
  * This function is used to dynamically add a playground area to the webpage for the "impuestito-extension".
  */
-function writePlayground() {
+function writePlayground(text) {
   const badge = document.createElement("a");
 
   badge.classList.add("impuestito-playground");
-  badge.href = `https://impuestito.org/gaming?utm_source=impuestito-extension&utm_medium=${window.location.href}`;
+  badge.href = `https://impuestito.org/gaming?utm_source=impuestito-extension&utm_medium=${window.location.hostname}`;
   badge.target = "_blank";
   badge.innerHTML = `<svg width="2344" height="512" viewBox="0 0 2344 512" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="87.5027" cy="168.503" r="87.4973" fill="#00BE5C"/>
@@ -21,30 +37,8 @@ function writePlayground() {
 `
 
   document.querySelector("body").insertAdjacentElement("beforeend", badge);
-}
+  logWelcomeMessage({ store: text || "tu navegador" });
 
-/**
- * Retrieves data from Chrome's local storage.
- *
- * @async
- * @function getServerData
- * @returns {Promise<*>} A promise that resolves to the data from storage if it exists, or null if no data is found or an error occurs.
- * @throws Will log an error message to the console if there is an issue retrieving the data.
- */
-async function getServerData() {
-  try {
-    const response = await chrome.storage.local.get(["data"]);
-    if (response.data) {
-      // console.log('❇️ DATA from Storage', response.data);
-      return response.data;
-    } else {
-      console.warn('⚠️ No data found in storage');
-      return null;
-    }
-  } catch (error) {
-    console.error('❌ Error retrieving data from storage', error);
-    return null;
-  }
 }
 
 // Watch HTML mutations
@@ -59,18 +53,12 @@ async function observeInit(targetElement, handleScrapperInit) {
     return;
   }
 
-  setTimeout(() => {
-    MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+  MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
-    const observer = new MutationObserver(async () => {
-      handleScrapperInit({ data: await getServerData() });
-    });
+  const observer = new MutationObserver(async () => {
+    handleScrapperInit();
+  });
 
-    observer.observe(targetElement, { subtree: true, attributes: true, childList: true });
-  }, 1000);
-}
-
-function logWelcomeMessage({ store }) {
-  console.log(`🟢 Estás usando impuestito v${chrome.runtime.getManifest().version} (funcionando en ${store}). Visitá https://impuestito.org para más cálculos e información de compras en el exterior y suscripciones.`);
+  observer.observe(targetElement, { subtree: true, attributes: true, childList: true });
 }
 

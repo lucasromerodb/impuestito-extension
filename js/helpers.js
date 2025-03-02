@@ -1,4 +1,28 @@
 /**
+ * Retrieves data from Chrome's local storage.
+ *
+ * @async
+ * @function getServerData
+ * @returns {Promise<*>} A promise that resolves to the data from storage if it exists, or null if no data is found or an error occurs.
+ * @throws Will log an error message to the console if there is an issue retrieving the data.
+ */
+async function getServerData() {
+  try {
+    const response = await chrome.storage.local.get(["data"]);
+    if (response.data) {
+      console.log('❇️ DATA from Storage');
+      return response.data;
+    } else {
+      console.warn('⚠️ No data found in storage');
+      return null;
+    }
+  } catch (error) {
+    console.error('❌ Error retrieving data from storage', error);
+    return null;
+  }
+}
+
+/**
  * @param  {string | object} gamesSelector
  * @param  {string} className
  * @param  {Function} callback
@@ -28,30 +52,30 @@ function handleMutations(gamesSelector, className, callback) {
 function getNewPrice(originalPrice, currency = "ARS", data) {
   if (!data.taxes.defaultTotal || !data.bancos) return;
 
-  const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "Prueba del juego", "--", "", "NaN", "Incluido", "Anunciados"];
+  const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "Prueba del juego", "--", "", "NaN", "Incluido", "Anunciados", "Ver juego"];
   const priceTextNaN = exceptions.some((exception) => exception.toLowerCase() === originalPrice.toLowerCase());
   const priceWithTaxes = (p) => (p + p * data.taxes.defaultTotal).toFixed(2);
 
   if (priceTextNaN) {
-    console.log("👁️ 1 getNewPrice: priceTextNaN", priceTextNaN);
+    // console.log("👁️ 1 getNewPrice: priceTextNaN", priceTextNaN);
     return 0;
   }
 
   const priceNumber = sanitizePricePunctuation(sanitizePriceSigns(originalPrice));
-  console.log("👁️ 2 priceNumber", priceNumber);
+  // console.log("👁️ 2 priceNumber", priceNumber);
 
   if (priceNumber === 0) {
-    console.log("👁️ 3 getNewPrice: priceNumber is 0");
+    // console.log("👁️ 3 getNewPrice: priceNumber is 0");
     return 0;
   }
 
   if (currency === "US") {
     const newPrice = priceNumber * sanitizePricePunctuation(data.bancos);
-    console.log("👁️ 4 getNewPrice: newPrice", newPrice);
+    // console.log("👁️ 4 getNewPrice: newPrice", newPrice);
     return priceWithTaxes(newPrice);
   }
 
-  console.log("👁️ 5 getNewPrice: priceWithTaxes", priceWithTaxes(priceNumber));
+  // console.log("👁️ 5 getNewPrice: priceWithTaxes", priceWithTaxes(priceNumber));
   return priceWithTaxes(priceNumber);
 }
 
@@ -95,9 +119,9 @@ async function scrapper({ priceElement, eventElement, currency, showEmoji, isDis
   if (priceElement && data) {
     isDiscount ? priceElement.classList.add("price-discount") : priceElement.classList.add("price-regular");
     const originalPrice = priceElement.textContent;
-    console.log("✨ scrapper: originalPrice", { originalPrice });
+    // console.log("✨ scrapper: originalPrice", { originalPrice });
     const newPrice = getNewPrice(originalPrice, currency, data);
-    console.log("✨ scrapper: newPrice", { newPrice });
+    // console.log("✨ scrapper: newPrice", { newPrice });
     newPrice && replacePrice(priceElement, eventElement, originalPrice, newPrice, showEmoji);
   }
 }
@@ -153,21 +177,35 @@ function sanitizePriceSigns(price) {
  * @returns {number} Price as a number (e.g. 1234.55)
  */
 function sanitizePricePunctuation(price) {
-  if (!price.trim()) return NaN;
-  if (price.match(/[a-zA-Z]/gi)) return NaN;
-  if (price.match(/^\d+\.\d+\.\d+$/gi)) return NaN;
-  if (price.match(/^\d+\,\d+\,\d+$/gi)) return NaN;
+  if (Boolean(price) === false) throw new Error('Price is required');
+  if (typeof price === 'string') {
+    if (price.trim() === '') throw new Error('Price is empty');
+    if (price.match(/[a-zA-Z]/gi)) throw new Error('Price contains letters');
+    if (price.match(/^\d+\.\d+\.\d+$/gi)) throw new Error('Price contains multiple decimal points');
+    if (price.match(/^\d+\,\d+\,\d+$/gi)) throw new Error('Price contains multiple commas');
 
-  const cleanedPrice = price
+    const formatedPrice = price
     .trim()
     .replace(/(\d+)?[\.|\,]?(.+)[\,|\.](\d{1,2})/gi, "$1$2.$3");
 
-  return isNaN(+cleanedPrice) ? NaN : +cleanedPrice;
+    if (isNaN(+formatedPrice)) throw new Error('Price is not a number after formatting');
+
+    console.log("\n💵 sanitizePricePunctuation", price, typeof price, +formatedPrice)
+    return +formatedPrice;
+
+  } else if (typeof price === 'number') {
+    return price;
+  } else {
+    throw new Error('Price is not a string or number');
+  }
 }
 
 /**
- * @param  {array} arr
+ * @param  {array} arr - Array of strings
+ * @param  {string} url - URL string
  */
-function someURL(arr, url = pathname) {
+function someURL(arr, url) {
+  if (!arr || arr.length === 0) return false;
+  if (!url) return false;
   return arr.some((w) => url.includes(w));
 }
