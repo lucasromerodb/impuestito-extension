@@ -7,10 +7,15 @@
 */
 
 .impuestito-playground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   position: fixed;
   z-index: 999;
   bottom: 0;
-  right: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 
   padding: 5px 15px;
 
@@ -25,24 +30,12 @@
   animation: bounce 2s infinite;
 }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(6px);
-  }
-  60% {
-    transform: translateY(3px);
-  }
-}
-
 .impuestito-playground svg {
   width: 100px;
   height: 22px;
 }
 
-.priceWithTaxes.price-regular,
+/* .priceWithTaxes.price-regular,
 .priceWithTaxes .price-regular,
 .eapl-subscription-tile__price-number {
   background: linear-gradient(45deg, #00be5c 25%, #00f275, #00be5c, #008641, #008641, #00be5c, #00be5c, #00be5c);
@@ -53,26 +46,40 @@
   background-size: 500% auto;
   font-weight: bold !important;
   animation: textShine 1s infinite;
-}
+} */
 
 .priceWithTaxes {
-  cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJMSURBVHgBtZU7aFNRGMd/SeqjotYHQh2CCdhOBeviYEHr4NBBxUmcFHTW2UncxcZNQdFF7SaioOImWujSVkiHVktKU2lB0mdq1Grj93nuTe+959w+JP3Dl8f/nPP/XucBNjrFcmIFseo6bUDskViGVbBHrHsDonHW7WlZ4gN1EA9mFHLijjzh2f9nIstN3QqhfPY3wvVjcDoLqSR8LMKdPijOm3FddTwNZ1tgr8wdLsHTPEyWieCUTn0sdikk/uoCtB0wcfiCXxegqwfGZuFiG1w5InxiRapUgWtvo07upuTjplhzjbrRAedaV8R97NoGB3fC9ga4ejQsrtixBRplrHciyDYLQ3vtr67RskTFfXQdhvTu+PHWfVEmk7QmpZLEIpWwIw9i5odFhdU0st6iycSFxSVYjgm/KvzLz2s4UNzuMw2N4s+ym/cDe/jJ7LYIErgqmpUzcuuEqbmWRSNX8e9LOCNX8Wd5Z28acEG34ptR01CteWxZxMbnzbeeh+kKa2egzL993h7fC198Yk4y8/b93E+43w+z4UbbPehIe4eI9YsrmuScnDxkTbUdnGlZfSu6xH1kmyzK7oHWMla8amo+WXaPO3qlGYyFmJGSe7GufTAI7wrEYmQ6ygyqgxch6kneXFwhcd2KIt4zZHaXNjSKqUV4P2450MtO2365RpV/wYeiudSS0ovRGbgn78frLyaLym8Y+ibFldi2yvIFmd8/Bc+HXefkvP8jR/1eM99yQU+b/mT6TuqRSc4lHkQG88ptJKOCJ9wZFfsLmHEy2XpKem4AAAAASUVORK5CYII="),
-    auto;
+  position: inherit;
+  display: flex  ;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 5px;
+  cursor: help;
 }
 
-.priceWithTaxes.price-regular:hover,
+.priceWithTaxes svg {
+  width: 1rem !important;
+  height: 1rem !important;
+  padding: 0.15rem;
+  background: white;
+  border-radius: 0.3rem;
+}
+
+/* .priceWithTaxes.price-regular:hover,
 .priceWithTaxes .price-regular:hover {
   transform: scale(1);
   animation: textShine 1s ease-in-out infinite;
-}
+} */
 
-.priceWithTaxes.price-discount {
+/* .priceWithTaxes.price-discount {
   text-decoration: line-through !important;
-}
+} */
 
-.price-discount {
+/* .price-discount {
   text-decoration: line-through !important;
-}
+} */
 
 .playstation--grid .priceWithTaxes {
   font-size: 16px !important;

@@ -3,11 +3,8 @@
  */
 function handleGOGMutations() {
   if (someURL(["gog.com"], hostname)) {
+    writePlayground("GOG Store");
     observeInit(document, GOGScrapper);
-
-    setTimeout(() => {
-      writePlayground("Xbox Store");
-    }, 1000);
   }
 }
 
@@ -15,50 +12,41 @@ function handleGOGMutations() {
  * GOG Scrapper
  */
 function GOGScrapper() {
-  const elements = [];
+  // FINAL: ...document.querySelectorAll(".final-value, .big-spot__price-amount, .product-tile__price-discounted, .product-actions-price__final-amount._price, .menu-inside-category ._price, .menu-cart-item__price ._price, .series__buy-all-price-final._price"),
+  // BASE: ...document.querySelectorAll(".base-value, .product-tile__price._price, .product-actions-price__base-amount._price, .series__buy-all-price-base._price"),
+  const targets = [
+    ".final-value",
+    ".base-value",
+    ".big-spot__price-amount",
+    ".product-tile__price-discounted",
+    ".product-actions-price__final-amount._price",
+    ".menu-inside-category ._price",
+    ".menu-cart-item__price ._price",
+    ".series__buy-all-price-final._price",
+    ".product-tile__price._price",
+    ".product-actions-price__base-amount._price",
+    ".series__buy-all-price-base._price",
+  ].join(", ");
 
-  const finalPriceElements = [
-    ...document.querySelectorAll("span.big-spot__price-amount"),
-    ...document.querySelectorAll("span.product-tile__price-discounted._price"),
-    ...document.querySelectorAll("span.product-actions-price__final-amount._price"),
-    ...document.querySelectorAll("div.paginated-products-grid span.final-value"),
-    ...document.querySelectorAll("div.menu-inside-category span._price"),
-    ...document.querySelectorAll("span.menu-cart-item__price ._price"),
-  ];
-  if (finalPriceElements.length > 0) {
-    for (const element of finalPriceElements) {
-      if (element.className.includes("impuestito")) return;
-      element.classList.add("impuestito", "price-regular", "impuestito-gog");
-      elements.push(element);
-    }
-  }
+  const elements = [...document.querySelectorAll(targets)]
+    .filter((e) => !alreadyScanned(e))
+    .map((e) => {
+      e.classList.add("impuestito", "impuestito-gog")
+      return e;
+    });
 
-  const basePriceElements = [
-    ...document.querySelectorAll("span.product-tile__price._price"),
-    ...document.querySelectorAll("span.product-actions-price__base-amount._price"),
-    ...document.querySelectorAll("div.paginated-products-grid span.base-value"),
-  ];
-  if (basePriceElements.length > 0) {
-    for (const element of basePriceElements) {
-      if (element.className.includes("impuestito")) return;
-      element.classList.add("impuestito", "price-discount", "impuestito-gog");
-      elements.push(element);
-    }
-  }
+  console.log(elements);
 
-  const priceElementsTarget = elements;
-  if (priceElementsTarget.length > 0) {
-    for (const element of priceElementsTarget) {
-      if (!element.className.includes("impuestito-done")) {
-        console.log("👁️ Mutation detected on", element);
-        scrapper({
-          priceElement: element,
-          eventElement: element,
-          currency: "US",
-          showEmoji: false,
-          isDiscount: element.classList.contains("price-discount"),
-        });
-      }
+  const targetElements = elements.filter((e) => !alreadyProcessed(e));
+  if (targetElements.length > 0) {
+    for (const element of targetElements) {
+      scrapper({
+        priceElement: element,
+        eventElement: element,
+        currency: "US",
+        showEmoji: true,
+        isDiscount: element.classList.contains("price-discount"),
+      });
       element.classList.add("impuestito-done");
     }
   }

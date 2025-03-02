@@ -3,27 +3,24 @@
  */
 function handleXboxMutations() {
   if (someURL(["xbox.com"], hostname)) {
+    writePlayground("Xbox Store");
 
     if (someURL(["games/all-games", "games/browse", "browse/games"], pathname)) {
-      observeInit(document, handleXboxAllGames);
+      observeInit(document.body, handleXboxAllGames);
     }
 
     if (someURL(["games/store/"], pathname)) {
-      observeInit(document, handleXboxGameButton);
-      observeInit(document, handleXboxGameRelated);
+      observeInit(document.body, handleXboxGameButton);
+      observeInit(document.body, handleXboxGameRelated);
     }
 
     if (someURL(["games/"], pathname)) {
-      observeInit(document, handleXboxGamesFeatured);
+      observeInit(document.body, handleXboxGamesFeatured);
     }
 
     if (someURL(["game-pass"], pathname)) {
-      observeInit(document, handleXboxGamePass);
+      observeInit(document.body, handleXboxGamePass);
     }
-
-    setTimeout(() => {
-      writePlayground("Xbox Store");
-    }, 1000);
   }
 }
 
@@ -55,39 +52,34 @@ function handleXboxMutations() {
  * https://www.xbox.com/es-AR/games/browse
  */
 function handleXboxAllGames() {
-  console.log("🟢 Running handleXboxAllGames");
-  const priceElements = [...document.querySelectorAll("li a[data-m] div div div span")].filter((e) => e.className.includes("ProductCard-module__price"));
-  if (priceElements.length > 0) {
-    for (const element of priceElements) {
-      if (element.className.includes("impuestito")) return;
-      element.classList.add("impuestito", "price-regular", "impuestito-xbox");
-    }
-  }
+  const priceElements = [...document.querySelectorAll("li a[data-m] div div div span")]
+    .filter((e) => e.className.includes("ProductCard-module__price"))
+    .filter((e) => !alreadyScanned(e))
+    .map((e) => {
+      e.classList.add("impuestito", "impuestito-xbox", "price-regular");
+      return e;
+    });
 
-  const discountPriceElements = [...document.querySelectorAll("li a[data-m] div div div span")].filter((e) => e.className.includes("Price-module__originalPrice"));
-  if (discountPriceElements.length > 0) {
-    for (const element of discountPriceElements) {
-      if (element.className.includes("impuestito")) return;
-      // element.innerHTML = element.innerHTML.replace(/(<.*\/span>)(.*)?/gi, '$1<span class="price-discount">$2</span>');
-      element.classList.add("impuestito", "price-discount", "impuestito-xbox");
-    }
-  }
+  const discountPriceElements = [...document.querySelectorAll("li a[data-m] div div div span")]
+    .filter((e) => e.className.includes("Price-module__originalPrice"))
+    .filter((e) => !alreadyScanned(e))
+    .map((e) => {
+      e.classList.add("impuestito", "impuestito-xbox", "price-discount");
+      return e;
+    });
 
-  const targetElements = document.querySelectorAll(".impuestito.price-regular, .impuestito.price-discount");
+  const targetElements = [...priceElements, ...discountPriceElements].filter((e) => !alreadyProcessed(e));
+
   if (targetElements.length > 0) {
     for (const element of targetElements) {
-      const iconVisibility = element.className.includes("price-regular");
-
-      if (!element.className.includes("impuestito-done")) {
         scrapper({
           priceElement: element,
           eventElement: element,
           currency: "ARS",
-          showEmoji: false,
+          showEmoji: true,
           isDiscount: element.classList.contains("price-discount"),
         });
         element.classList.add("impuestito-done");
-      }
     }
   }
 }
@@ -105,20 +97,22 @@ function handleXboxAllGames() {
 function handleXboxGameButton() {
   const priceElements = [...document.querySelectorAll("[data-focus-container] span")]
     .filter((e) => e.className.includes("Price-module__boldText"))
-    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20);
+    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20)
+    .filter((e) => !alreadyScanned(e));
+
   if (priceElements.length > 0) {
     for (const element of priceElements) {
-      if (element.className.includes("impuestito")) return;
       element.classList.add("impuestito", "price-regular", "impuestito-xbox");
     }
   }
 
   const priceDiscountBrandElements = [...document.querySelectorAll("[data-focus-container] span")]
     .filter((e) => e.className.includes("Price-module__brandOriginalPrice") || e.className.includes("Price-module__originalPrice"))
-    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20);
+    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20)
+    .filter((e) => !alreadyScanned(e));
+
   if (priceDiscountBrandElements.length > 0) {
     for (const element of priceDiscountBrandElements) {
-      if (element.className.includes("impuestito")) return;
       element.classList.add("impuestito", "price-discount", "impuestito-xbox");
     }
   }
@@ -126,7 +120,6 @@ function handleXboxGameButton() {
   const priceElementsSave = [...document.querySelectorAll("[data-focus-container] span")].filter((e) => e.innerText.includes("$") && e.innerText.includes("Ahorra") && e.innerText === e.innerHTML);
   if (priceElementsSave.length > 0) {
     for (const element of priceElementsSave) {
-      if (element.className.includes("impuestito")) return;
       element.innerHTML = element.innerHTML.replace(/(Ahorra)(.*)(\s?con\s?)/gi, '$1<span class="impuestito price-gamepass price-xbox price-regular">$2</span> $3');
     }
   }
@@ -139,7 +132,7 @@ function handleXboxGameButton() {
           priceElement: element,
           eventElement: element,
           currency: "ARS",
-          showEmoji: false,
+          showEmoji: true,
           isDiscount: element.classList.contains("price-discount"),
         });
         element.classList.add("impuestito-done");
@@ -159,40 +152,44 @@ function handleXboxGameButton() {
 function handleXboxGameRelated() {
   const priceElements = [...document.querySelector("#PageContent").querySelectorAll("span")]
     .filter((e) => e.className.includes("ProductCard-module__price"))
-    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20);
+    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20)
+    .filter((e) => !alreadyScanned(e));
+
   if (priceElements.length > 0) {
     for (const element of priceElements) {
-      if (element.className.includes("impuestito")) return;
       element.classList.add("impuestito", "price-regular", "impuestito-xbox");
     }
   }
 
   const discountPriceElements = [...document.querySelector("#PageContent").querySelectorAll("span")]
     .filter((e) => e.className.includes("Price-module__originalPrice"))
-    .filter((e) => e.innerText.includes("$") && e.innerText.includes("Ahorra") && e.innerText === e.innerHTML);
+    .filter((e) => e.innerText.includes("$") && e.innerText.includes("Ahorra") && e.innerText === e.innerHTML)
+    .filter((e) => !alreadyScanned(e));
+
   if (discountPriceElements.length > 0) {
     for (const element of discountPriceElements) {
-      if (element.className.includes("impuestito")) return;
       element.innerHTML = element.innerHTML.replace(/(Ahorra)(.*)(\s?con\s?)/gi, '$1<span class="impuestito price-gamepass price-xbox price-discount">$2</span> $3');
     }
   }
 
   const priceEditionElements = [...document.querySelector("#PageContent").querySelectorAll("span")]
     .filter((e) => e.className.includes("Price-module__boldText"))
-    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20);
+    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20)
+    .filter((e) => !alreadyScanned(e));
+
   if (priceEditionElements.length > 0) {
     for (const element of priceEditionElements) {
-      if (element.className.includes("impuestito")) return;
       element.classList.add("impuestito", "price-regular", "impuestito-xbox");
     }
   }
 
   const discountPriceEditionElements = [...document.querySelector("#PageContent").querySelectorAll("span")]
     .filter((e) => e.className.includes("Price-module__originalPrice"))
-    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20);
+    .filter((e) => e.innerText.includes("$") && e.innerText === e.innerHTML && e.innerText.length < 20)
+    .filter((e) => !alreadyScanned(e));
+
   if (discountPriceEditionElements.length > 0) {
     for (const element of discountPriceEditionElements) {
-      if (element.className.includes("impuestito")) return;
       element.classList.add("impuestito", "price-discount", "impuestito-xbox");
     }
   }
@@ -205,7 +202,7 @@ function handleXboxGameRelated() {
           priceElement: element,
           eventElement: element,
           currency: "ARS",
-          showEmoji: false,
+          showEmoji: true,
           isDiscount: element.classList.contains("price-discount"),
         });
         element.classList.add("impuestito-done");
@@ -222,27 +219,33 @@ function handleXboxGameRelated() {
  * https://www.xbox.com/es-ar/games/fortnite
  */
 function handleXboxGamesFeatured() {
-  const priceElements = [...document.querySelector("#PageContent").querySelectorAll(".leftCol h4")].filter((e) => e.innerText.includes("$") && e.innerText.length < 20);
+  const priceElements = [...document.querySelector("#PageContent").querySelectorAll(".leftCol h4")]
+    .filter((e) => e.innerText.includes("$") && e.innerText.length < 20)
+    .filter((e) => !alreadyScanned(e));
+
   if (priceElements.length > 0) {
     for (const element of priceElements) {
-      if (element.className.includes("impuestito")) return;
       element.classList.add("impuestito", "price-regular", "price-featured");
     }
   }
 
-  const priceElementsGP = [...document.querySelector("#PageContent").querySelectorAll("p")].filter((e) => e.innerText.includes("$"));
+  const priceElementsGP = [...document.querySelector("#PageContent").querySelectorAll("p")]
+    .filter((e) => e.innerText.includes("$"))
+    .filter((e) => !alreadyScanned(e));
+
   if (priceElementsGP.length > 0) {
     for (const element of priceElementsGP) {
-      if (element.className.includes("impuestito")) return;
       element.innerHTML = element.innerHTML.replace(/(.*)(\s?con Xbox Game Pass)/gi, '<span class="price-regular price-featured-gp">$1</span> $2');
       element.classList.add("impuestito");
     }
   }
 
-  const priceElementsComplementsGP = [...document.querySelector("#PageContent").querySelectorAll(".rightCol h4")].filter((e) => e.innerText.includes("$"));
+  const priceElementsComplementsGP = [...document.querySelector("#PageContent").querySelectorAll(".rightCol h4")]
+    .filter((e) => e.innerText.includes("$"))
+    .filter((e) => !alreadyScanned(e));
+
   if (priceElementsComplementsGP.length > 0) {
     for (const element of priceElementsComplementsGP) {
-      if (element.className.includes("impuestito")) return;
       element.innerHTML = element.innerHTML.replace(/(.*)(\scon.*)/gi, '<span class="price-regular price-featured-gp">$1</span> $2');
       element.classList.add("impuestito");
     }
@@ -270,19 +273,23 @@ function handleXboxGamesFeatured() {
  * https://www.xbox.com/es-AR/xbox-game-pass/pc-game-pass
  */
 function handleXboxGamePass() {
-  const pricingCardsPriceElements = [...document.querySelectorAll("li[data-panel-option] .price p")].filter((e) => e.innerText.includes("$"));
+  const pricingCardsPriceElements = [...document.querySelectorAll("li[data-panel-option] .price p")]
+    .filter((e) => e.innerText.includes("$"))
+    .filter((e) => !alreadyScanned(e));
+
   if (pricingCardsPriceElements.length > 0) {
     for (const element of pricingCardsPriceElements) {
-      if (element.className.includes("impuestito")) return;
       element.innerHTML = element.innerHTML.replace(/(\$\d)(\D)(\d+)(.+)(\/mes)/gi, '<span class="price-regular">$1$3$4</span> $5');
       element.classList.add("impuestito");
     }
   }
 
-  const strongPriceElements = [...document.querySelector("#PageContent").querySelectorAll("strong")].filter((e) => e.innerText.includes("$"));
+  const strongPriceElements = [...document.querySelector("#PageContent").querySelectorAll("strong")]
+    .filter((e) => e.innerText.includes("$"))
+    .filter((e) => !alreadyScanned(e));
+
   if (strongPriceElements.length > 0) {
     for (const element of strongPriceElements) {
-      if (element.className.includes("impuestito")) return;
       element.innerHTML = element.innerHTML.replace(/(\$\d)(\D)(\d+)(.+)(\/mes)/gi, '<span class="price-regular">$1$3$4</span> $5');
       element.classList.add("impuestito");
     }
@@ -298,7 +305,7 @@ function handleXboxGamePass() {
           priceElement: element,
           eventElement: element,
           currency: "ARS",
-          showEmoji: false,
+          showEmoji: true,
           isDiscount: false,
         });
         element.classList.add("impuestito-done");

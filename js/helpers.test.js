@@ -1,7 +1,7 @@
 /**
  * EXPORT FUNCTIONS TO TEST THIS FILE WITH JEST
  */
-import { priceFormatter, sanitizePricePunctuation, sanitizePriceSigns, someURL } from './helpers';
+import { sanitizePricePunctuation, sanitizePriceSigns, someURL } from './helpers';
 
 describe('sanitizePriceSigns', () => {
   const testCases = [
@@ -38,6 +38,8 @@ describe('sanitizePriceSigns', () => {
     { input: '$ 1,222.43 +', expected: '1,222.43'},
     { input: ' ARS$ 1,222.43 +', expected: '1,222.43'},
     { input: 'ARS$1,222.43 +', expected: '1,222.43'},
+    { input: 'ARS$1,222.43/mes', expected: '1,222.43'},
+    { input: 'ARS$1,222.43 /mes', expected: '1,222.43'},
   ];
 
   test.each(testCases)('converts "$input" to "$expected"', ({ input, expected }) => {
