@@ -1,7 +1,6 @@
 const hostname = window.location.hostname;
 const pathname = window.location.pathname;
 const href = window.location.href;
-document.querySelector('body').setAttribute('data-impuestito', Date.now());
 
 function logWelcomeMessage({ store }) {
   const logo = `
@@ -47,11 +46,11 @@ function writePlayground(text) {
   // document.querySelector("body").insertAdjacentElement("beforeend", web);
 
   logWelcomeMessage({ store: text || "tu navegador" });
-
+  document.querySelector('body').setAttribute('data-impuestito', Date.now());
 }
 
 // Watch HTML mutations
-function observeInit(targetElement, handleScrapperInit) {
+function observeInit(targetElement, handleScrapperInit, options = { subtree: true, attributes: true, childList: true }) {
   if (!targetElement) {
     console.error("🔴 Missing targetElement to scrap");
     return;
@@ -66,7 +65,7 @@ function observeInit(targetElement, handleScrapperInit) {
   const observer = new MutationObserver((mutations) => {
     mutations.length && handleScrapperInit()
   });
-  observer.observe(targetElement, { subtree: true, attributes: true, childList: true });
+  observer.observe(targetElement, { subtree: options.subtree, attributes: options.attributes, childList: options.childList });
 }
 
 
