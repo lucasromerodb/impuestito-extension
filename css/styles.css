@@ -19,11 +19,11 @@
 
   padding: 5px 15px;
 
-  background-color: white;
-  border: 1px solid silver;
+  background-color: white !important;
+  border: 1px solid silver !important;
   border-radius: 6px 6px 0 0;
 
-  color: white;
+  box-shadow: 0 -8px 12px rgba(0, 0, 0, 0.1);
 }
 
 .impuestito-playground:hover {
