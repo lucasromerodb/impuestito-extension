@@ -37,21 +37,24 @@ function handleXboxMutations() {
 function XboxScrapper() {
   console.log('🔃 Runnig:', arguments.callee.name);
 
-  const targets = [
-    "span",
-    "p"
-  ].join(", ")
-
-  const priceElements = [...document.querySelectorAll(targets)]
-    .filter((e) => e.innerText.includes("$"))
-    // .filter((e) => e.className.includes("Price-module") || e.innerText.includes("Ahorra"))
+  const priceElements = [...document.querySelectorAll("span")]
     .filter((e) => !alreadyScanned(e))
+    .filter((e) => e.className.includes("Price-module"))
+    .filter((e) => e.innerText.includes("$"))
     .map((e) => {
-      e.classList.add("impuestito", "impuestito-xbox", "price-regular");
+      e.classList.add("impuestito", "impuestito-xbox");
       return e;
     });
 
-  const targetElements = priceElements.filter((e) => !alreadyProcessed(e));
+  const priceElements2 = [...document.querySelectorAll("p")]
+    .filter((e) => !alreadyScanned(e))
+    .filter((e) => e.innerText.includes("$"))
+    .map((e) => {
+      e.classList.add("impuestito", "impuestito-xbox");
+      return e;
+    });
+
+  const targetElements = [...priceElements, ...priceElements2].filter((e) => !alreadyProcessed(e));
   if (targetElements.length > 0) {
     for (const element of targetElements) {
         scrapper({
@@ -59,7 +62,6 @@ function XboxScrapper() {
           eventElement: element,
           currency: "ARS",
           showEmoji: true,
-          isDiscount: element.classList.contains("price-discount"),
         });
         element.classList.add("impuestito-done");
     }
