@@ -27,8 +27,11 @@
         "js/gaming/ea.js",
         "js/gaming/xbdeals.js",
         "js/gaming/psdeals.js",
+        "js/gaming/ntdeals.js",
         "js/gaming/dekudeals.js",
-        "js/gaming/steam.js"
+        "js/gaming/steam.js",
+        "js/gaming/humble-bundle.js",
+        "js/gaming/green-man-gaming.js"
       ],
       "run_at": "document_idle"
     }

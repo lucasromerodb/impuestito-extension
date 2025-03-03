@@ -1,5 +1,5 @@
 /**
- * Epic Games Web Store
+ * Nintendo Store
  */
 function handleNintendoARMutations() {
   if (someURL(["nintendo"], hostname)) {
@@ -25,10 +25,13 @@ function handleNintendoARMutations() {
  */
 
 function NintendoARScrapper() {
+  console.log('🔃 Runnig:', arguments.callee.name);
+
   const targets = [
-    // ".fGENZM > div > div > span",
-    // ".Duonm div.MVVbT > div > div > div.o2BsP.SH2al",
-    // ".Duonm div.MVVbT > div > div > span",
+    ".W990N.SH2al._5auKz",
+    ".o2BsP.SH2al",
+    ".W990N.SH2al",
+    ".W990N.QS4uJ",
     ".W990N.QS4uJ._5auKz",
     ".o2BsP.QS4uJ"
   ].join(", ");
@@ -68,10 +71,15 @@ function NintendoARScrapper() {
 }
 
 function NintendoUSScrapper() {
+  console.log('🔃 Runnig:', arguments.callee.name);
 
   const targets = [
-    ".Duonm > div > div.MVVbT > div > div > div.o2BsP.SH2al",
-    ".Duonm > div > div.MVVbT > div > div > span",
+    ".W990N.SH2al._5auKz",
+    ".o2BsP.SH2al",
+    ".W990N.SH2al",
+    ".W990N.QS4uJ",
+    ".W990N.QS4uJ._5auKz",
+    ".o2BsP.QS4uJ"
   ].join(", ");
 
   const elements = [...document.querySelectorAll(targets)]
@@ -102,73 +110,6 @@ function NintendoUSScrapper() {
         currency: "US",
         showEmoji: true,
         isDiscount: false,
-      });
-      element.classList.add("impuestito-done");
-    }
-  }
-}
-
-/**
- * HOW IT WORKS?
- *
- * Find a game item list
- * Then get the original price and their discount if exists
- * Then replace both with the new price
- * Then add a click event to switch between original and new prices
- */
-
-/**
- * Tested on:
- * https://www.nintendo.com/es-ar/store/games/
- */
-function handleNintendoAllGamesArg() {
-  const priceElements = [...document.querySelectorAll("span")].filter((e) => e.className.includes("Pricestyles__MSRP"));
-  for (const element of priceElements) {
-    if (element.className.includes("impuestito")) return;
-    element.innerHTML = element.innerHTML.replace(/(.*)(<\/span>)(.*)(<\/span>)?/gi, '$1$2<span class="price-regular impuestito-nintendo">$3</span>$4');
-    element.classList.add("impuestito");
-  }
-
-  const discountPriceElements = [...document.querySelectorAll("span")].filter((e) => e.className.includes("Pricestyles__SalePrice"));
-  for (const element of discountPriceElements) {
-    if (element.className.includes("impuestito")) return;
-    element.innerHTML = element.innerHTML.replace(/(.*)(<\/span>)(.*)(<\/span>)?/gi, '$1$2<span class="price-regular impuestito-nintendo">$3</span>$4');
-    element.classList.add("impuestito");
-  }
-
-  const targetElements = document.querySelectorAll(".impuestito .price-regular, .impuestito .price-discount");
-  for (const element of targetElements) {
-    const iconVisibility = element.className.includes("price-regular");
-
-    if (!element.className.includes("impuestito-done")) {
-      scrapper({
-        priceElement: element,
-        eventElement: element,
-        currency: "ARS",
-        showEmoji: false,
-      });
-      element.classList.add("impuestito-done");
-    }
-  }
-}
-
-function handleNintendoOtherVersionsGamesArg() {
-  const priceElements = [...document.querySelectorAll("p")].filter((e) => e.innerHTML.includes("$"));
-  for (const element of priceElements) {
-    if (element.className.includes("impuestito")) return;
-    element.classList.add("impuestito", "price-regular");
-  }
-
-  const targetElements = document.querySelectorAll(".impuestito.price-regular");
-  for (const element of targetElements) {
-    const iconVisibility = element.className.includes("price-regular");
-
-    if (!element.className.includes("impuestito-done")) {
-      scrapper({
-        priceElement: element,
-        eventElement: element,
-        currency: "ARS",
-        showEmoji: false,
       });
       element.classList.add("impuestito-done");
     }

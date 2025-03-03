@@ -3,27 +3,28 @@
  */
 function handleXBDealsMutations() {
   if (someURL(["xbdeals.net"], hostname) && someURL(["/ar-store"], pathname)) {
-    console.log("🟢 impuestito is working...");
-    observeInit(document, dekuDealsScrapper);
+    writePlayground("XB Deals (AR) Store");
+    observeInit(document, XBDealsScrapper);
   }
 }
 
-function dekuDealsScrapper() {
-  const elements = [];
-  const finalPriceElements = [
-    ...document.querySelectorAll(".game-collection-item-price"),
-    ...document.querySelectorAll(".game-collection-item-price-discount"),
-    ...document.querySelectorAll(".game-collection-item-price-bonus"),
-    ...document.querySelectorAll(".game-buy-button-price"),
-    ...document.querySelectorAll(".game-buy-button-price-bonus"),
+function XBDealsScrapper() {
+  const targets = [
+    ".game-collection-item-price",
+    ".game-collection-item-price-discount",
+    ".game-collection-item-price-bonus",
+    ".game-buy-button-price",
+    ".game-buy-button-price-discount",
+    ".game-buy-button-price-bonus",
   ];
-  if (finalPriceElements.length > 0) {
-    for (const element of finalPriceElements) {
-      if (element.className.includes("impuestito")) return;
-      element.classList.add("impuestito", "impuestito-xbdeals");
-      elements.push(element);
-    }
-  }
+
+  const elements = [...document.querySelectorAll(targets)]
+    .filter((e) => e.innerText.includes("$"))
+    .filter((e) => !alreadyScanned(e))
+    .map((e) => {
+      e.classList.add("impuestito", "impuestito-xbdeals")
+      return e;
+    });
 
   const priceElementsTarget = elements;
   if (priceElementsTarget.length > 0) {
@@ -33,7 +34,7 @@ function dekuDealsScrapper() {
           priceElement: element,
           eventElement: element,
           currency: "ARS",
-          showEmoji: false,
+          showEmoji: true,
           isDiscount: element.classList.contains("strikethrough"),
         });
       }

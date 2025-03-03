@@ -23,14 +23,17 @@ function logWelcomeMessage({ store }) {
  * This function is used to dynamically add a playground area to the webpage for the "impuestito-extension".
  */
 function writePlayground(text) {
-  // const div = document.createElement("div");
-  const badge = document.createElement("a");
+  const badge = document.createElement("div");
+  const logo = document.createElement("a");
+  const donation = document.createElement("a");
   const web = document.createElement("iframe");
 
   badge.classList.add("impuestito-playground");
-  badge.href = `https://impuestito.org/gaming?utm_source=impuestito-extension&utm_medium=${window.location.hostname}`;
-  badge.target = "_blank";
-  badge.innerHTML = `
+
+  logo.href = `https://impuestito.org/gaming?utm_source=impuestito-extension&utm_medium=${window.location.hostname}`;
+  logo.title = "Ir al sitio de impuestito";
+  logo.target = "_blank";
+  logo.innerHTML = `
   <svg width="2344" height="512" viewBox="0 0 2344 512" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="87.5027" cy="168.503" r="87.4973" fill="#00BE5C"/>
     <path fill-rule="evenodd" clip-rule="evenodd" d="M87.5 290.18C154.702 290.18 209.18 235.702 209.18 168.5C209.18 151.621 205.743 135.544 199.531 120.932L215.639 104.824C246.163 74.2994 295.652 74.2995 326.176 104.824C356.7 135.348 356.701 184.837 326.176 215.361L134.361 407.176C103.837 437.701 54.3476 437.701 23.8235 407.176C-6.7006 376.652 -6.70061 327.163 23.8235 296.639L39.9318 280.531C54.544 286.743 70.6206 290.18 87.5 290.18Z" fill="#00BE5C"/>
@@ -39,14 +42,36 @@ function writePlayground(text) {
   </svg>
   `
 
+  donation.href = "https://cafecito.app/impuestito";
+  donation.target = "_blank";
+  donation.innerText = "Doná un cafecito »"
+
+
   // web.src = "https://impuestito.org/gaming"
   // web.width = 375;
   // web.height = 667;
+
+  badge.appendChild(logo);
+  badge.appendChild(donation);
   document.querySelector("body").insertAdjacentElement("beforeend", badge);
   // document.querySelector("body").insertAdjacentElement("beforeend", web);
 
   logWelcomeMessage({ store: text || "tu navegador" });
   document.querySelector('body').setAttribute('data-impuestito', Date.now());
+}
+
+/**
+ * Debounce function to limit the rate at which a function can fire.
+ * @param {Function} func - The function to debounce.
+ * @param {number} wait - The number of milliseconds to delay.
+ * @returns {Function} - The debounced function.
+ */
+function debounce(func, wait = 300) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
 }
 
 // Watch HTML mutations
@@ -62,9 +87,10 @@ function observeInit(targetElement, handleScrapperInit, options = { subtree: tru
   }
 
   MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-  const observer = new MutationObserver((mutations) => {
-    mutations.length && handleScrapperInit()
-  });
+  const observer = new MutationObserver(debounce((mutations) => {
+    mutations.length && handleScrapperInit();
+  }, 100)); // Adjust the debounce delay as needed
+
   observer.observe(targetElement, { subtree: options.subtree, attributes: options.attributes, childList: options.childList });
 }
 

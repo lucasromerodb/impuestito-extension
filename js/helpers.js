@@ -192,9 +192,7 @@ function sanitizePriceSigns(price) {
   const cleanedNumber = price
     .trim()
     // Remove occurrences of "ARS" or "US" (case insensitive)
-    .replace(/ARS|US/gi, "")
-    // Remove occurrences of "Under" (case insensitive)
-    .replace(/Under|under/gi, "")
+    .replace(/ARS|MSRP|US|Ahorra|Under|under|con|Xbox|Game|Pass|:/gi, "")
     // Remove all dollar signs
     .replace(/\$+/gi, "")
     // Remove all whitespace characters
@@ -202,7 +200,8 @@ function sanitizePriceSigns(price) {
     // Remove all plus signs
     .replace(/\+/gi, "")
     // Remove occurrences of "/mes"
-    .replace(/\s?\/mes/gi, "");
+    .replace(/\s?\/mes/gi, "")
+    .trim();
 
   return cleanedNumber;
 }

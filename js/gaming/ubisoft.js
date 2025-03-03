@@ -1,50 +1,51 @@
 /**
- * Epic Games Web Store
+ * Ubisoft Store
  */
 function handleUbisoftMutations() {
-  if (someURL(["ubisoft"], hostname)) {
-    if (someURL(["es_AR"], href)) {
-      console.log("🟢 impuestito is working...");
-      observeInit(document, UbisoftScrapper);
-    }
+  if (someURL(["store.ubisoft"], hostname)) {
+    writePlayground('Ubisoft Store')
+    observeInit(document.body, UbisoftScrapper);
   }
 }
 
 /**
- * Epic Scrapper
+ * Ubisoft Scrapper
+ *
+ * https://store.ubisoft.com/
+ * https://store.ubisoft.com/ofertas/home
  */
 function UbisoftScrapper() {
-  const elements = [];
-  const finalPriceElements = [...document.querySelectorAll("span.standard-price")];
-  if (finalPriceElements.length > 0) {
-    for (const element of finalPriceElements) {
-      if (element.className.includes("impuestito")) return;
-      element.classList.add("impuestito", "price-regular", "impuestito-ubisoft");
-      elements.push(element);
-    }
-  }
 
-  const basePriceElements = [...document.querySelectorAll("span.price-item")];
-  if (basePriceElements.length > 0) {
-    for (const element of basePriceElements) {
-      if (element.className.includes("impuestito")) return;
-      element.classList.add("impuestito", "price-discount", "impuestito-ubisoft");
-      elements.push(element);
-    }
-  }
+  console.log('🔃 Runnig:', arguments.callee.name);
 
-  const priceElementsTarget = elements;
+  const targets = [
+    "span.product-tiles_ui_components_ProductPrice__price",
+    "span.product-tiles_ui_components_ProductPrice__regularPrice",
+    ".standard-price",
+    ".price-discount",
+    ".price-item",
+    ".product-tiles_product-card_components_Content__container span"
+  ].join(", ")
+
+
+  const finalPriceElements = [...document.querySelectorAll(targets)]
+    .filter((e) => e.innerText.includes("$"))
+    .filter((e) => !alreadyScanned(e))
+    .map((e) => {
+      e.classList.add("impuestito", "impuestito-ubisoft")
+      return e;
+    });
+
+  const priceElementsTarget = finalPriceElements.filter((e) => !alreadyProcessed(e));
   if (priceElementsTarget.length > 0) {
     for (const element of priceElementsTarget) {
-      if (!element.className.includes("impuestito-done")) {
         scrapper({
           priceElement: element,
           eventElement: element,
-          currency: "ARS",
-          showEmoji: false,
+          currency: "US",
+          showEmoji: true,
           isDiscount: element.classList.contains("price-discount"),
         });
-      }
       element.classList.add("impuestito-done");
     }
   }

@@ -1,5 +1,5 @@
 /**
- * Epic Games Web Store
+ * GOG (Good Old Games) Store
  */
 function handleGOGMutations() {
   if (someURL(["gog.com"], hostname)) {
@@ -12,8 +12,8 @@ function handleGOGMutations() {
  * GOG Scrapper
  */
 function GOGScrapper() {
-  // FINAL: ...document.querySelectorAll(".final-value, .big-spot__price-amount, .product-tile__price-discounted, .product-actions-price__final-amount._price, .menu-inside-category ._price, .menu-cart-item__price ._price, .series__buy-all-price-final._price"),
-  // BASE: ...document.querySelectorAll(".base-value, .product-tile__price._price, .product-actions-price__base-amount._price, .series__buy-all-price-base._price"),
+  console.log('🔃 Runnig:', arguments.callee.name);
+
   const targets = [
     ".final-value",
     ".base-value",

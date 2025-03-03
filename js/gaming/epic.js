@@ -4,7 +4,7 @@
 function handleEpicMutations() {
   if (someURL(["epicgames"], hostname)) {
     writePlayground("Epic Games Store");
-    observeInit(document.body, epicScrapper);
+    observeInit(document.body, EpicScrapper);
   }
 }
 
@@ -17,7 +17,8 @@ function handleEpicMutations() {
  * https://store.epicgames.com/en-US/browse?q=assassins&sortBy=relevancy&sortDir=DESC&count=40
  *
  */
-function epicScrapper() {
+function EpicScrapper() {
+  console.log('🔃 Runnig:', arguments.callee.name);
 
   const finalPriceElements = [...document.querySelectorAll("div, span, b")]
     .filter((e) => e.innerText.includes("$") && e.innerText.length < 15 && e.innerText === e.innerHTML)
@@ -27,7 +28,7 @@ function epicScrapper() {
       return e;
     });
 
-  const priceElementsTarget = [...document.querySelectorAll(".impuestito")].filter((e) => !alreadyProcessed(e));
+  const priceElementsTarget = finalPriceElements.filter((e) => !alreadyProcessed(e));
   if (priceElementsTarget.length > 0) {
     for (const element of priceElementsTarget) {
         scrapper({

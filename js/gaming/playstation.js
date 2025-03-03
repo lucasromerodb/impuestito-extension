@@ -1,5 +1,5 @@
 /**
- * PlayStation Web Store
+ * PlayStation Store
  */
 function handlePlaystationMutations() {
   if (someURL(["playstation"], hostname)) {
