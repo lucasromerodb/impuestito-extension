@@ -81,6 +81,6 @@ Hace tiempo existe 👑 [Steamcito](https://github.com/emilianog94/Steamcito-Pre
 ToDo:
 - [ ] Soporte para Amazon
 - [ ] Soporte para Tiendamia
-- [ ] Soporte para Humble Bundle
-- [ ] Soporte para Green Man Gaming
+- [x] Soporte para Humble Bundle
+- [x] Soporte para Green Man Gaming
 - [ ] Soporte para Steam (solo para recomendar Steamcito)

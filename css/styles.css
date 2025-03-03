@@ -29,6 +29,7 @@
   color: black !important;
   text-decoration: none !important;
 
+  font-family: sans-serif !important;
   transition: background-color 0.2s ease-in-out !important;
 }
 
