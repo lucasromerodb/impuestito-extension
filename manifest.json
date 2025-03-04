@@ -28,6 +28,8 @@
         "*://*.steampowered.com/*",
         "*://*.humblebundle.com/*",
         "*://*.greenmangaming.com/*",
+        "*://*.fanatical.com/*",
+        "*://*.isthereanydeal.com/*",
         "*://*.battle.net/*",
         "*://*.amazon.com/*",
         "*://*.tiendamia.com/*",
@@ -59,7 +61,8 @@
         "js/gaming/dekudeals.js",
         "js/gaming/steam.js",
         "js/gaming/humble-bundle.js",
-        "js/gaming/green-man-gaming.js"
+        "js/gaming/green-man-gaming.js",
+        "js/gaming/isthereanydeal.js"
       ],
       "run_at": "document_idle"
     }
