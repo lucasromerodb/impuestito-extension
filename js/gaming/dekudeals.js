@@ -3,18 +3,48 @@
  */
 function handleDekuDealsMutations() {
   if (someURL(["dekudeals.com"], hostname)) {
-    console.log("🟢 impuestito is working...");
+    writePlayground("Deku Deals Store")
+    DekuDealsScrapper();
 
     // This is here because DekuDeals have issues with some elements
-    if (impuestitoTaxes && impuestitoDollar) {
-      dekuDealsScrapper();
-      dekuDealsRelatedScrapper();
-    }
+    // dekuDealsScrapper();
+    // dekuDealsRelatedScrapper();
 
-    observeInit(document, dekuDealsScrapper);
+    // observeInit(document, dekuDealsScrapper);
 
     if (someURL(["items"], pathname)) {
       observeInit(document, dekuDealsRelatedScrapper);
+    }
+  }
+}
+
+function DekuDealsScrapper() {
+  const targets = [
+    "div.row.item-grid2 .card-badge > s",
+    "div.row.item-grid2 .card-badge > strong",
+  ];
+
+  const elements = [...document.querySelectorAll(targets)]
+    .filter((e) => e.innerText.includes("$"))
+    .filter((e) => !alreadyScanned(e))
+    .map((e) => {
+      e.classList.add("impuestito", "impuestito-dekudeals")
+      return e;
+    });
+
+  const priceElementsTarget = elements;
+  if (priceElementsTarget.length > 0) {
+    for (const element of priceElementsTarget) {
+      if (!element.className.includes("impuestito-done")) {
+        scrapper({
+          priceElement: element,
+          eventElement: element,
+          currency: "US",
+          showEmoji: true,
+          isDiscount: element.classList.contains("strikethrough"),
+        });
+      }
+      element.classList.add("impuestito-done");
     }
   }
 }
@@ -53,7 +83,7 @@ function dekuDealsScrapper() {
           priceElement: element,
           eventElement: element,
           currency: "ARS",
-          showEmoji: false,
+          showEmoji: true,
           isDiscount: element.classList.contains("text-muted"),
         });
       }
@@ -69,7 +99,7 @@ function dekuDealsRelatedScrapper() {
   if (buttonPriceElements.length > 0) {
     for (const element of buttonPriceElements) {
       if (element.childNodes[0].nodeName.toLowerCase() === "span" && element.childNodes[0].className.includes("impuestito")) return;
-      element.style.cssText = "background: black;";
+      element.style.cssText = "background: black; color: white";
       const span = document.createElement("span");
       span.append(element.childNodes[0]);
       element.childNodes[0].remove;
@@ -101,7 +131,7 @@ function dekuDealsRelatedScrapper() {
           priceElement: element,
           eventElement: element,
           currency: "ARS",
-          showEmoji: false,
+          showEmoji: true,
           isDiscount: element.classList.contains("text-muted"),
         });
       }

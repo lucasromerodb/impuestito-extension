@@ -1,19 +1,26 @@
-chrome.runtime.onMessage.addListener((msg, sender, response) => {
-  if (msg === "GET_DOLLAR_OFFICIAL") {
-    const url = "https://mercados.ambito.com/dolar/oficial/variacion";
-    fetch(url)
-      .then((res) => res.json())
-      .then((res) => response({ status: "SUCCESS", data: res, message: "Cotización del dólar" }))
-      .catch((err) => response({ status: "ERROR", data: {}, message: err }));
+async function requestData() {
+  console.log("Working...⏳");
+  try {
+    const response = await fetch("https://impuestito-api-production.up.railway.app/impuestito", {});
+    const data = await response.json();
+    chrome.storage.local.set({ data: { ...data } });
+    console.log("Done ✅");
+  } catch (error) {
+    console.log("Error ❌");
+    console.error("Error fetching data:", error);
   }
+}
 
-  if (msg == "GET_TAXES") {
-    const url = "https://impuestito-api-production.up.railway.app/api/taxes";
-    fetch(url)
-      .then((res) => res.json())
-      .then((res) => response({ status: "SUCCESS", data: res, message: "Impuestos Argentina" }))
-      .catch((err) => response({ status: "ERROR", data: {}, message: err }));
-  }
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.local.set({ updates: "hasUpdates" });
 
-  return true;
+  // create alarm after extension is installed / upgraded
+  // https://levelup.gitconnected.com/how-to-use-background-script-to-fetch-data-in-chrome-extension-ef9d7f69625d
+  // https://www.section.io/engineering-education/how-to-build-a-chrome-extension-using-javascript/
+  chrome.alarms.create("requestData", { periodInMinutes: 1440 }); // Ej: minutes = hours * 60
+  requestData();
+});
+
+chrome.alarms.onAlarm.addListener((alarm) => {
+  requestData();
 });

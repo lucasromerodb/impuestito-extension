@@ -1,42 +1,87 @@
-/*
-* ICONS
-*
-* Mate: \01F9C9 (https://emojiterra.com/es/mate/)
-* Empanada: https://emojipedia.org/dumpling/
-* Argentina: \01F1E6 \01F1F7 (https://emojiterra.com/es/bandera-argentina/)
-*/
+.impuestito-playground {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
 
-.priceWithTaxes.price-regular,
-.priceWithTaxes .price-regular,
-.eapl-subscription-tile__price-number {
-  background: linear-gradient(45deg, #00be5c 25%, #00f275, #00be5c, #008641, #004f26, #008641, #00be5c, #00be5c, #00be5c);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-fill-color: transparent;
-  background-size: 500% auto;
-  font-weight: bold !important;
-  animation: textShine 3.5s ease-in-out infinite;
+  position: fixed !important;
+  z-index: 999 !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+
+
+  background-color: white !important;
+  border: 1px solid silver !important;
+  border-radius: 8px 8px 0 0 !important;
+
+  box-shadow: 0 -8px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.impuestito-playground a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  height: 38px !important;
+  padding: 5px 15px !important;
+
+  font-size: 0.8rem !important;
+  color: black !important;
+  text-decoration: none !important;
+
+  font-family: sans-serif !important;
+  transition: background-color 0.2s ease-in-out !important;
+}
+
+.impuestito-playground a:nth-child(2) {
+  padding-top: 9px !important;
+}
+
+.impuestito-playground a:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  text-decoration: underline !important;
+  color: black !important;
+}
+
+.impuestito-playground svg {
+  width: 100px !important;
+  height: 22px !important;
 }
 
 .priceWithTaxes {
-  cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJMSURBVHgBtZU7aFNRGMd/SeqjotYHQh2CCdhOBeviYEHr4NBBxUmcFHTW2UncxcZNQdFF7SaioOImWujSVkiHVktKU2lB0mdq1Grj93nuTe+959w+JP3Dl8f/nPP/XucBNjrFcmIFseo6bUDskViGVbBHrHsDonHW7WlZ4gN1EA9mFHLijjzh2f9nIstN3QqhfPY3wvVjcDoLqSR8LMKdPijOm3FddTwNZ1tgr8wdLsHTPEyWieCUTn0sdikk/uoCtB0wcfiCXxegqwfGZuFiG1w5InxiRapUgWtvo07upuTjplhzjbrRAedaV8R97NoGB3fC9ga4ejQsrtixBRplrHciyDYLQ3vtr67RskTFfXQdhvTu+PHWfVEmk7QmpZLEIpWwIw9i5odFhdU0st6iycSFxSVYjgm/KvzLz2s4UNzuMw2N4s+ym/cDe/jJ7LYIErgqmpUzcuuEqbmWRSNX8e9LOCNX8Wd5Z28acEG34ptR01CteWxZxMbnzbeeh+kKa2egzL993h7fC198Yk4y8/b93E+43w+z4UbbPehIe4eI9YsrmuScnDxkTbUdnGlZfSu6xH1kmyzK7oHWMla8amo+WXaPO3qlGYyFmJGSe7GufTAI7wrEYmQ6ygyqgxch6kneXFwhcd2KIt4zZHaXNjSKqUV4P2450MtO2365RpV/wYeiudSS0ovRGbgn78frLyaLym8Y+ibFldi2yvIFmd8/Bc+HXefkvP8jR/1eM99yQU+b/mT6TuqRSc4lHkQG88ptJKOCJ9wZFfsLmHEy2XpKem4AAAAASUVORK5CYII="),
-    auto;
+  position: inherit;
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  gap: 5px;
+  cursor: help;
 }
 
-.priceWithTaxes.price-regular:hover,
+.priceWithTaxes svg {
+  width: 1rem !important;
+  height: 1rem !important;
+  padding: 0.15rem;
+  background: white;
+  border-radius: 0.3rem;
+}
+
+/* .priceWithTaxes.price-regular:hover,
 .priceWithTaxes .price-regular:hover {
   transform: scale(1);
   animation: textShine 1s ease-in-out infinite;
-}
+} */
 
-.priceWithTaxes.price-discount {
+/* .priceWithTaxes.price-discount {
   text-decoration: line-through !important;
-}
+} */
 
-.price-discount {
+/* .price-discount {
   text-decoration: line-through !important;
-}
+} */
 
 .playstation--grid .priceWithTaxes {
   font-size: 16px !important;

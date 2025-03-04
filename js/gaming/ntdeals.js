@@ -1,14 +1,14 @@
 /**
- * XB Deals Web Store
+ * NT Deals Web Store
  */
-function handlePSDealsMutations() {
-  if (someURL(["psdeals.net"], hostname) && someURL(["/ar-store"], pathname)) {
-    writePlayground("PS Deals (AR) Store");
-    observeInit(document, psdealsScrapperAR);
+function handleNTDealsMutations() {
+  if (someURL(["ntdeals.net"], hostname) && someURL(["/us-store"], pathname)) {
+    writePlayground("NT Deals Store");
+    observeInit(document, ntdealsScrapper);
   }
 }
 
-function psdealsScrapperAR() {
+function ntdealsScrapper() {
   const targets = [
     ".game-collection-item-price",
     ".game-collection-item-price-discount",
@@ -22,7 +22,7 @@ function psdealsScrapperAR() {
     .filter((e) => e.innerText.includes("$"))
     .filter((e) => !alreadyScanned(e))
     .map((e) => {
-      e.classList.add("impuestito", "impuestito-psdeals")
+      e.classList.add("impuestito", "impuestito-ntdeals")
       return e;
     });
 
@@ -44,4 +44,4 @@ function psdealsScrapperAR() {
 }
 
 // Init
-handlePSDealsMutations();
+handleNTDealsMutations();

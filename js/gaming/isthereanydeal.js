@@ -1,10 +1,10 @@
 /**
  * Epic Games Web Store
  */
-function handleEpicMutations() {
-  if (someURL(["epicgames"], hostname)) {
-    writePlayground("Epic Games Store");
-    observeInit(document.body, EpicScrapper);
+function handleIsThereAnyDealMutations() {
+  if (someURL(["isthereanydeal"], hostname)) {
+    writePlayground("Is There Any Deal Store");
+    observeInit(document.body, IsThereAnyDealScrapper);
   }
 }
 
@@ -17,14 +17,19 @@ function handleEpicMutations() {
  * https://store.epicgames.com/en-US/browse?q=assassins&sortBy=relevancy&sortDir=DESC&count=40
  *
  */
-function EpicScrapper() {
+function IsThereAnyDealScrapper() {
   console.log('🔃 Runnig:', arguments.callee.name);
 
-  const finalPriceElements = [...document.querySelectorAll("div, span, b")]
-    .filter((e) => e.innerText.includes("$") && e.innerText.length < 15 && e.innerText === e.innerHTML)
+  const targets = [
+    "span",
+    "div"
+  ].join(", ")
+
+  const finalPriceElements = [...document.querySelectorAll(targets)]
     .filter((e) => !alreadyScanned(e))
+    .filter((e) => e.innerText.includes("$"))
     .map((e) => {
-      e.classList.add("impuestito", "impuestito-epic")
+      e.classList.add("impuestito", "impuestito-isthereanydeal")
       return e;
     });
 
@@ -44,4 +49,4 @@ function EpicScrapper() {
 }
 
 // Init
-handleEpicMutations();
+handleIsThereAnyDealMutations();
