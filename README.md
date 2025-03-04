@@ -1,4 +1,4 @@
-![Impuestito](/assets/chrome-store.jpg "Impuestito Cover")
+![Impuestito](/assets/chrome-store-2.jpg "Impuestito Cover")
 
 # Impuestito - Conocé el precio real de los juegos
 
@@ -84,3 +84,13 @@ ToDo:
 - [x] Soporte para Humble Bundle
 - [x] Soporte para Green Man Gaming
 - [ ] Soporte para Steam (solo para recomendar Steamcito)
+
+
+## Imagenes promocionales
+
+![Impuestito](/assets/chrome-store-3.jpg "Impuestito Cover")
+![Impuestito](/assets/chrome-store-4.jpg "Impuestito Cover")
+![Impuestito](/assets/chrome-store-5.jpg "Impuestito Cover")
+![Impuestito](/assets/chrome-store-6.jpg "Impuestito Cover")
+![Impuestito](/assets/chrome-store-7.jpg "Impuestito Cover")
+![Impuestito](/assets/chrome-store-8.jpg "Impuestito Cover")
