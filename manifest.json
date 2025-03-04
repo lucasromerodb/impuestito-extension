@@ -9,7 +9,8 @@
   },
   "permissions": [
     "storage",
-    "alarms"
+    "alarms",
+    "activeTab"
   ],
   "content_scripts": [
     {
