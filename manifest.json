@@ -9,12 +9,39 @@
   },
   "permissions": [
     "storage",
-    "alarms",
-    "activeTab"
+    "alarms"
   ],
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": [
+        "*://*.playstation.com/*",
+        "*://*.xbox.com/*",
+        "*://*.nintendo.com/*",
+        "*://*.epicgames.com/*",
+        "*://*.gog.com/*",
+        "*://*.ubisoft.com/*",
+        "*://*.ea.com/*",
+        "*://*.xbdeals.net/*",
+        "*://*.psdeals.net/*",
+        "*://*.ntdeals.net/*",
+        "*://*.dekudeals.com/*",
+        "*://*.steampowered.com/*",
+        "*://*.humblebundle.com/*",
+        "*://*.greenmangaming.com/*",
+        "*://*.battle.net/*",
+        "*://*.amazon.com/*",
+        "*://*.tiendamia.com/*",
+        "*://*.aliexpress.com/*",
+        "*://*.alibaba.com/*",
+        "*://*.bestbuy.com/*",
+        "*://*.walmart.com/*",
+        "*://*.g2a.com/*",
+        "*://*.instant-gaming.com/*",
+        "*://*.eneba.com/*",
+        "*://*.gamivo.com/*",
+        "*://*.digitalworldpsn.com/*",
+        "*://*.bonoxs.com/*"
+      ],
       "css": ["css/styles.css"],
       "js": [
         "js/index.js",
