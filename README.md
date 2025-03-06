@@ -1,5 +1,5 @@
 
-# impuestito - Conocé el precio final de todos los videojuegos con impuestos incluidos en más de 14 tiendas gaming
+# impuestito - Te muestra el precio final de todos los videojuegos con impuestos incluidos en más de 14 tiendas gaming
 
 ![](https://img.shields.io/twitter/follow/impuestito_org)
 ![](https://img.shields.io/github/stars/lucasromerodb/impuestito-extension)
@@ -7,7 +7,7 @@
 ![](https://img.shields.io/chrome-web-store/size/kodbfkngjgckpmipedoomkdhhihioaio)
 ![](https://img.shields.io/chrome-web-store/last-updated/kodbfkngjgckpmipedoomkdhhihioaio)
 ![](https://img.shields.io/chrome-web-store/rating/kodbfkngjgckpmipedoomkdhhihioaio)
-![](https://img.shields.io/chrome-web-store/rating-count/kodbfkngjgckpmipedoomkdhhihioaio)
+<!-- ![](https://img.shields.io/chrome-web-store/rating-count/kodbfkngjgckpmipedoomkdhhihioaio) -->
 
 ![impuestito](/assets/chrome-store-2.jpg "Impuestito Cover")
 
@@ -17,19 +17,15 @@
 Impuestito es una extensión para tu navegador que te muestra el precio final de los juegos de +14 tiendas distintas. Vas a ver el precio con todos los impuestos incluidos.
 
 
-### [⏬ Descarga la extensión de Impuestito](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es)
+## ⏬ Instrucciones de instalación
 
-![](https://img.shields.io/chrome-web-store/v/kodbfkngjgckpmipedoomkdhhihioaio)
-![](https://img.shields.io/chrome-web-store/last-updated/kodbfkngjgckpmipedoomkdhhihioaio)
-
-1. [Instalá la extensión](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es) en tu navegador
+1. [Instalá la extensión desde acá](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es) en tu navegador
 2. ¡Listo! ya podes navegar por más de 14 stores de videojuegos viendo el precio final
 3. [Seguí Impuestito en X (Twitter)](https://twitter.com/impuestito_org)
+4. [Ver más imágenes abajo](#imagenes-promocionales) 🖼️
 
-> [Ver más imágenes](#imagenes-promocionales)
 
-
-## 🛍️ Tiendas / Stores donde funciona
+## 🛍️ ¿En que tiendas funciona?
 
 - ✅ [GOG](https://www.gog.com/)
 - ✅ [Xbox (PC y Consola)](https://www.xbox.com/es-AR/games/browse)
