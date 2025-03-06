@@ -1,6 +1,6 @@
 ![Impuestito](/assets/chrome-store-2.jpg "Impuestito Cover")
 
-# Impuestito - Conocé el precio real de los juegos
+# Impuestito - Precio final de videojuegos en Argentina con impuestos incluidos
 
 Impuestito calcula y muestra el precio final de los juegos con los impuestos incluidos para las tiendas web de Xbox, PlayStation, Nintendo, Epic Games Store, GOG, Ubisoft Store, EA Play, XBDeals, PSDeals, DekuDeals (sólo disponible en navegadores de escritorio para Windows, Mac y Linux)
 
@@ -9,18 +9,22 @@ Impuestito calcula y muestra el precio final de los juegos con los impuestos inc
 ### [🗨️ Seguí Impuestito en Twitter](https://twitter.com/impuestito_org)
 
 ## 🎮 Tiendas web soportados
-
-- [Xbox (AR)](https://www.xbox.com/es-ar/games/all-games)
-- [PlayStation (USD)](https://store.playstation.com/es-ar/category/35027334-375e-423b-b500-0d4d85eff784)
-- [Nintendo (ARS)](https://store.nintendo.com.ar/)
-- [Epic Games Store (USD)](https://www.epicgames.com/store/en-US/)
-- [GOG (USD)](https://gog.com/)
-- [Ubisoft Store (ARS)](https://store.ubisoft.com/ofertas/home?lang=es_AR)
-- [EA Play (USD)](https://www.ea.com/es-es/ea-play)
-- [XB Deals (ARS)](https://xbdeals.net/ar-store)
-- [PS Deals (ARS)](https://psdeals.net/ar-store)
-- [Deku Deals (ARS)](https://dekudeals.com/)
-- Battle Net `próximamente`
+- [x] [GOG](https://www.gog.com/)
+- [x] [Xbox (PC y Consola)](https://www.xbox.com/es-AR/games/browse)
+- [ ] [Microsoft Store](https://www.microsoft.com/es-ar/store/deals/games/pc) (próximamente)
+- [x] [PlayStation](https://store.playstation.com/es-ar/category/3f772501-f6f8-49b7-abac-874a88ca4897)
+- [x] [Nintendo (AR)](https://www.nintendo.com/es-ar/)
+- [x] [Epic Games Store](https://store.epicgames.com/en-US/)
+- [x] [Green Man Gaming](https://www.greenmangaming.com/) (soporte parcial)
+- [x] [Humble Bundle](https://humblebundle.com) (soporte parcial)
+- [x] [XBDeals](https://xbdeals.net/ar-store)
+- [x] [PSDeals](https://psdeals.net/ar-store)
+- [x] [NTDeals](https://ntdeals.net/us-store)
+- [x] [DekuDeals](https://www.dekudeals.com/)
+- [x] [Ubisoft](https://store.ubisoft.com/ofertas/home?lang=es_AR) (soporte parcial)
+- [x] [EA Play](https://www.ea.com/es-es/ea-play)
+- [x] [Is There Any Deal](https://isthereanydeal.com/) (soporte parcial)
+- [ ] [Battle.net](https://us.shop.battle.net/en-us) (próximamente)
 
 ## 🙋 ¿Qué hace Impuestito?
 
@@ -33,7 +37,7 @@ Impuestito toma el precio original de cada juego en distintas tiendas online y h
 ## 📖 Instrucciones de instalación?
 
 1. [Instalá la extensión](https://chrome.google.com/webstore/detail/impuestito/kodbfkngjgckpmipedoomkdhhihioaio/related?hl=es) en tu navegador.
-2. ¡Listo! Ya podes saber el precio real de los juegos de Xbox, PlayStation, Nintendo y Epic Games con los impuestos calculados y en pesos (AR$).
+2. ¡Listo! Ya podes saber el precio real de los juegos en casi todas las tiendas de videojuegos conocidas como de Microsoft, Xbox, PlayStation, GOG, Nintendo, Epic Games, Ubisoft y más con los impuestos calculados y en pesos (AR$).
 
 ### 🌎 Navegadores soportados
 
@@ -42,7 +46,6 @@ Impuestito toma el precio original de cada juego en distintas tiendas online y h
 - OperaGX
 - Opera
 - Brave
-- Vivaldi
 - Chromium
 
 > Nota: debería ser compatible con cualquier browser basado en [Chromium](<https://es.wikipedia.org/wiki/Chromium_(navegador)>)
@@ -55,13 +58,6 @@ Impuestito toma el precio original de cada juego en distintas tiendas online y h
 - ✅ Compatible con los juegos relacionados (pag. individual.)
 - Personalización de impuestos
 - Versión para Firefox (⚠️ desactualizada)
-
-## Otras capturas
-
-![Impuestito](/assets/chrome-store-epic.jpg "Impuestito Cover")
-![Impuestito](/assets/chrome-store-ea.jpg "Impuestito Cover")
-![Impuestito](/assets/chrome-store-stores.jpg "Impuestito Cover")
-![Impuestito](/assets/chrome-store-stores-icons.jpg "Impuestito Cover")
 
 ## ¿Tenés alguna idea o problema?
 
