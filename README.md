@@ -9,7 +9,7 @@
 ![](https://img.shields.io/chrome-web-store/rating/kodbfkngjgckpmipedoomkdhhihioaio)
 <!-- ![](https://img.shields.io/chrome-web-store/rating-count/kodbfkngjgckpmipedoomkdhhihioaio) -->
 
-![impuestito](/assets/chrome-store-2.jpg "Impuestito Cover")
+![impuestito](/media/chrome-store-2.jpg "Impuestito Cover")
 
 > [!NOTE]
 > Podes ver más en [impuestito.org/gaming](https://impuestito.org/gaming?utm_source=github)
@@ -96,11 +96,11 @@ Hace tiempo existe 👑 [Steamcito](https://github.com/emilianog94/Steamcito-Pre
 
 ## Imagenes promocionales
 
-![Impuestito](/assets/chrome-store-4.jpg "Impuestito Cover")
-![Impuestito](/assets/chrome-store-5.jpg "Impuestito Cover")
-![Impuestito](/assets/chrome-store-6.jpg "Impuestito Cover")
-![Impuestito](/assets/chrome-store-7.jpg "Impuestito Cover")
-![Impuestito](/assets/chrome-store-8.jpg "Impuestito Cover")
-![Impuestito](/assets/chrome-store-3.jpg "Impuestito Cover")
+![Impuestito](/media/chrome-store-4.jpg "Impuestito Cover")
+![Impuestito](/media/chrome-store-5.jpg "Impuestito Cover")
+![Impuestito](/media/chrome-store-6.jpg "Impuestito Cover")
+![Impuestito](/media/chrome-store-7.jpg "Impuestito Cover")
+![Impuestito](/media/chrome-store-8.jpg "Impuestito Cover")
+![Impuestito](/media/chrome-store-3.jpg "Impuestito Cover")
 
 ![](https://img.shields.io/twitter/follow/impuestito_org)
