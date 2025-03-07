@@ -1,0 +1,78 @@
+{
+  "name": "Impuestito: precio final juegos con impuestos",
+  "description": "Te dice el precio final y con impuestos de los juegos de Playstation, Xbox, Nintendo, Epic, GOG y más tiendas. (Argentina)",
+  "version": "1.12",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage",
+    "alarms"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.playstation.com/*",
+        "*://*.xbox.com/*",
+        "*://*.nintendo.com/*",
+        "*://*.epicgames.com/*",
+        "*://*.gog.com/*",
+        "*://*.ubisoft.com/*",
+        "*://*.ea.com/*",
+        "*://*.xbdeals.net/*",
+        "*://*.psdeals.net/*",
+        "*://*.ntdeals.net/*",
+        "*://*.dekudeals.com/*",
+        "*://*.steampowered.com/*",
+        "*://*.humblebundle.com/*",
+        "*://*.greenmangaming.com/*",
+        "*://*.fanatical.com/*",
+        "*://*.isthereanydeal.com/*",
+        "*://*.battle.net/*",
+        "*://*.amazon.com/*",
+        "*://*.tiendamia.com/*",
+        "*://*.aliexpress.com/*",
+        "*://*.alibaba.com/*",
+        "*://*.bestbuy.com/*",
+        "*://*.walmart.com/*",
+        "*://*.g2a.com/*",
+        "*://*.instant-gaming.com/*",
+        "*://*.eneba.com/*",
+        "*://*.gamivo.com/*",
+        "*://*.digitalworldpsn.com/*",
+        "*://*.bonoxs.com/*"
+      ],
+      "css": [
+        "css/styles.css"
+      ],
+      "js": [
+        "js/index.js",
+        "js/helpers.js",
+        "js/gaming/playstation.js",
+        "js/gaming/xbox.js",
+        "js/gaming/nintendo.js",
+        "js/gaming/epic.js",
+        "js/gaming/gog.js",
+        "js/gaming/ubisoft.js",
+        "js/gaming/ea.js",
+        "js/gaming/xbdeals.js",
+        "js/gaming/psdeals.js",
+        "js/gaming/ntdeals.js",
+        "js/gaming/dekudeals.js",
+        "js/gaming/steam.js",
+        "js/gaming/humble-bundle.js",
+        "js/gaming/green-man-gaming.js",
+        "js/gaming/isthereanydeal.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "/assets/icon16.png",
+    "32": "/assets/icon32.png",
+    "48": "/assets/icon48.png",
+    "128": "/assets/icon128.png"
+  }
+}
