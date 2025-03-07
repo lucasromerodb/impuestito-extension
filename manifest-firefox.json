@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Impuestito: precio final juegos con impuestos",
   "description": "Te dice el precio final y con impuestos de los juegos de Playstation, Xbox, Nintendo, Epic, GOG y más tiendas. (Argentina)",
-  "version": "1.12",
+  "version": "1.13",
   "browser_specific_settings": {
     "gecko": {
       "id": "{91a9979c-49cc-4748-96b0-54930ce3618c}"
