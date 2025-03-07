@@ -5,15 +5,22 @@
   "version": "1.12",
   "browser_specific_settings": {
     "gecko": {
-      "id": "hola@impuestito.org"
+      "id": "{91a9979c-49cc-4748-96b0-54930ce3618c}"
     }
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "js/background.js"
+    ]
   },
+  "host_permissions": [
+    "*://localhost:3000/*",
+    "https://impuestito-api-production.up.railway.app/impuestito"
+  ],
   "permissions": [
     "storage",
-    "alarms"
+    "alarms",
+    "webRequest"
   ],
   "content_scripts": [
     {
@@ -48,7 +55,9 @@
         "*://*.digitalworldpsn.com/*",
         "*://*.bonoxs.com/*"
       ],
-      "css": ["css/styles.css"],
+      "css": [
+        "css/styles.css"
+      ],
       "js": [
         "js/index.js",
         "js/helpers.js",

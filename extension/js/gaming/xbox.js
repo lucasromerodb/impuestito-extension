@@ -33,6 +33,9 @@ function handleXboxMutations() {
  * https://www.xbox.com/es-ar/games/fortnite
  * https://www.xbox.com/es-AR/xbox-game-pass
  * https://www.xbox.com/es-AR/xbox-game-pass/pc-game-pass
+ *
+ * TODO:
+ * https://www.xbox.com/es-AR/promotions/sales/sales-and-specials
  */
 function XboxScrapper() {
   console.log('🔃 Runnig:', arguments.callee.name);

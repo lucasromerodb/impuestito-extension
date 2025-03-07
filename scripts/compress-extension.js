@@ -46,8 +46,9 @@ const version = getManifestVersion();
 console.log('Getting version:', version);
 
 zip({
-  source: 'extension/*',
-  destination: `./builds/impuestito-extension-v${version}-${browser}.zip`
+  cwd: 'extension/',
+  source: '*',
+  destination: `../builds/impuestito-extension-v${version}-${browser}.zip`
 }).then(function() {
   console.log('all done!');
 }).catch(function(err) {

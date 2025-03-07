@@ -1,10 +1,12 @@
 {
   "scripts": {
-    "build:chromium": "cp manifest-chromium.json extension/manifest.json && node compress-extension.js chromium",
-    "build:firefox": "cp manifest-firefox.json extension/manifest.json && node compress-extension.js firefox",
-    "pack": "node scripts/compress-extension.js",
+    "test": "jest --watch",
     "bump": "node scripts/bump-manifest-version.js",
-    "test": "jest --watch"
+    "build:clean": "rm -rf builds/*.zip",
+    "build:chromium": "cp manifest-chromium.json extension/manifest.json && node scripts/compress-extension.js chromium",
+    "build:firefox": "cp manifest-firefox.json extension/manifest.json && node scripts/compress-extension.js firefox",
+    "build": "npm run build:clean && npm run build:chromium && npm run build:firefox",
+    "release": "npm run bump && npm run build:chromium && npm run build:firefox"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",

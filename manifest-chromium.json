@@ -4,7 +4,7 @@
   "version": "1.12",
   "manifest_version": 3,
   "background": {
-    "service_worker": "background.js",
+    "service_worker": "js/background.js",
     "type": "module"
   },
   "permissions": [

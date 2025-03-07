@@ -1,19 +1,5 @@
 const fs = require('fs');
 
-const getManifestVersion = (browser) => {
-  try {
-    const manifestPath = `./manifest-${browser}.json`
-    const manifestChromium = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-    return manifestChromium.version;
-  } catch (err) {
-    console.error(`Error reading manifest-${browser}.json:`, err);
-    process.exit(1);
-  }
-};
-
-const versionChromium = getManifestVersion('chromium');
-const versionFirefox = getManifestVersion('firefox');
-
 const bumpManifestVersion = (browser) => {
   try {
     const manifestPath = `./manifest-${browser}.json`
