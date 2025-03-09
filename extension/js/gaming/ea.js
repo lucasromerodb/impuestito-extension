@@ -4,7 +4,7 @@
 function handleEAMutations() {
   if (someURL(["ea.com"], hostname)) {
     if (someURL(["ea-play"], pathname)) {
-      writePlayground("EA Store");
+      initMenu("EA Store");
       setTimeout(() => {
         observeInit(document, EAScrapper);
       }, 200);

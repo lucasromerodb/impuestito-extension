@@ -3,7 +3,7 @@
  */
 function handleHumbleBundleMutations() {
   if (someURL(["humblebundle.com"], hostname)) {
-    writePlayground("Humble Bundle Store");
+    initMenu("Humble Bundle Store");
     observeInit(document.body, HumbleBundleScrapper);
   }
 }

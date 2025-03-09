@@ -22,5 +22,6 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.alarms.onAlarm.addListener((alarm) => {
+  console.log("⏰ Alarm:", alarm);
   requestData();
 });

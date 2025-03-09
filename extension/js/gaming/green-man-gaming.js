@@ -3,7 +3,7 @@
  */
 function handleGreenManGamingMutations() {
   if (someURL(["greenmangaming.com"], hostname)) {
-    writePlayground("Green Man Gaming Store");
+    initMenu("Green Man Gaming Store");
     observeInit(document.body, GreenManGamingScrapper);
   }
 }

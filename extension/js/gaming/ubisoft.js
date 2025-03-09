@@ -3,7 +3,7 @@
  */
 function handleUbisoftMutations() {
   if (someURL(["store.ubisoft"], hostname)) {
-    writePlayground('Ubisoft Store')
+    initMenu('Ubisoft Store')
     observeInit(document.body, UbisoftScrapper);
   }
 }

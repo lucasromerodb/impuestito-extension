@@ -3,7 +3,7 @@
  */
 function handleXBDealsMutations() {
   if (someURL(["xbdeals.net"], hostname) && someURL(["/ar-store"], pathname)) {
-    writePlayground("XB Deals (AR) Store");
+    initMenu("XB Deals (AR) Store");
     observeInit(document, XBDealsScrapper);
   }
 }

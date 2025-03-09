@@ -3,7 +3,7 @@
  */
 function handlePlaystationMutations() {
   if (someURL(["playstation"], hostname)) {
-    writePlayground("PlayStation Store");
+    initMenu("PlayStation Store");
     observeInit(document, PlaystationScrapper);
   }
 }

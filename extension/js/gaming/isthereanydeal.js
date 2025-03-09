@@ -3,7 +3,7 @@
  */
 function handleIsThereAnyDealMutations() {
   if (someURL(["isthereanydeal"], hostname)) {
-    writePlayground("Is There Any Deal Store");
+    initMenu("Is There Any Deal Store");
     observeInit(document.body, IsThereAnyDealScrapper);
   }
 }

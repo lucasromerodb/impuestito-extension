@@ -3,7 +3,7 @@
  */
 function handleGOGMutations() {
   if (someURL(["gog.com"], hostname)) {
-    writePlayground("GOG Store");
+    initMenu("GOG Store");
     observeInit(document, GOGScrapper);
   }
 }

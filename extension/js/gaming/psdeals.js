@@ -3,7 +3,7 @@
  */
 function handlePSDealsMutations() {
   if (someURL(["psdeals.net"], hostname) && someURL(["/ar-store"], pathname)) {
-    writePlayground("PS Deals (AR) Store");
+    initMenu("PS Deals (AR) Store");
     observeInit(document, psdealsScrapperAR);
   }
 }
