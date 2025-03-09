@@ -3,7 +3,7 @@ async function requestData() {
   try {
     const response = await fetch("https://impuestito-api-production.up.railway.app/impuestito", {});
     const data = await response.json();
-    chrome.storage.local.set({ data: { ...data } });
+    chrome.storage.sync.set({ data: { ...data } });
     console.log("Done ✅");
   } catch (error) {
     console.log("Error ❌");
@@ -12,7 +12,7 @@ async function requestData() {
 }
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.local.set({ updates: "hasUpdates" });
+  chrome.storage.sync.set({ updates: "hasUpdates" });
 
   // create alarm after extension is installed / upgraded
   // https://levelup.gitconnected.com/how-to-use-background-script-to-fetch-data-in-chrome-extension-ef9d7f69625d

@@ -8,7 +8,7 @@
  */
 async function getServerData() {
   try {
-    const response = await chrome.storage.local.get(["data"]);
+    const response = await chrome.storage.sync.get(["data"]);
     if (response.data) {
       // console.log('❇️ DATA from Storage');
       return response.data;
