@@ -1,5 +1,6 @@
 function handleSteamMutations() {
   if (someURL(["steampowered"], hostname)) {
+    // initMenu("Epic Games Store");
     if (someURL(["app"], pathname)) {
       console.log("🟢 impuestito is working...");
       const element = document.querySelector(".leftcol.game_description_column");

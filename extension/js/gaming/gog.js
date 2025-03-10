@@ -3,7 +3,7 @@
  */
 function handleGOGMutations() {
   if (someURL(["gog.com"], hostname)) {
-    writePlayground("GOG Store");
+    initMenu("GOG Store");
     observeInit(document, GOGScrapper);
   }
 }
@@ -35,7 +35,7 @@ function GOGScrapper() {
       return e;
     });
 
-  console.log(elements);
+  // console.log(elements);
 
   const targetElements = elements.filter((e) => !alreadyProcessed(e));
   if (targetElements.length > 0) {

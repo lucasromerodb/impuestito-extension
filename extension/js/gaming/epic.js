@@ -3,7 +3,7 @@
  */
 function handleEpicMutations() {
   if (someURL(["epicgames"], hostname)) {
-    writePlayground("Epic Games Store");
+    initMenu("Epic Games Store");
     observeInit(document.body, EpicScrapper);
   }
 }

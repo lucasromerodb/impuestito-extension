@@ -3,7 +3,7 @@
  */
 function handleNTDealsMutations() {
   if (someURL(["ntdeals.net"], hostname) && someURL(["/us-store"], pathname)) {
-    writePlayground("NT Deals Store");
+    initMenu("NT Deals Store");
     observeInit(document, ntdealsScrapper);
   }
 }

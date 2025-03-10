@@ -3,7 +3,7 @@
  */
 function handleXboxMutations() {
   if (someURL(["xbox.com"], hostname)) {
-    writePlayground("Xbox Store");
+    initMenu("Xbox Store");
 
     if (someURL(["/es-AR", "/es-ar"], pathname)) {
       observeInit(document.body, XboxScrapper);

@@ -56,10 +56,12 @@
         "*://*.bonoxs.com/*"
       ],
       "css": [
-        "css/styles.css"
+        "css/styles.css",
+        "css/menu.css"
       ],
       "js": [
         "js/index.js",
+        "js/menu.js",
         "js/helpers.js",
         "js/gaming/playstation.js",
         "js/gaming/xbox.js",

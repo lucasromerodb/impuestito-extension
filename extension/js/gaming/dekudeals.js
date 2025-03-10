@@ -3,7 +3,7 @@
  */
 function handleDekuDealsMutations() {
   if (someURL(["dekudeals.com"], hostname)) {
-    writePlayground("Deku Deals Store")
+    initMenu("Deku Deals Store")
     DekuDealsScrapper();
 
     // This is here because DekuDeals have issues with some elements

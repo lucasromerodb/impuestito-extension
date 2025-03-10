@@ -3,7 +3,7 @@
  */
 function handleNintendoARMutations() {
   if (someURL(["nintendo"], hostname)) {
-    writePlayground("Nintendo Store");
+    initMenu("Nintendo Store");
 
     if (someURL(["/es-ar"], pathname)) {
       observeInit(document, NintendoARScrapper, { subtree: true, attributes: false, childList: true });
