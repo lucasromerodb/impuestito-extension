@@ -11,6 +11,18 @@ function initMenu(text) {
       initMenu()
     };
 
+    // Initialize user config if not set
+    if (!result.userConfig) {
+      console.log("🙋‍♂️ Initializing user config");
+      chrome.storage.sync.set({
+        userConfig: {
+          selectedProvince: 'AR-C',
+          selectedPaymentMethod: 'tarjeta',
+          dismissedUpdate: false
+        }
+      })
+    }
+
     // Create elements
     const trigger = document.createElement("div");
     const menu = document.createElement("div");
@@ -81,8 +93,8 @@ function initMenu(text) {
       <div class="impuestito-menu__config__section impuestito-menu__config__section--right">
         ${
           isFirefox()
-          ? `<a target="_blank" href="https://x.com/impuestito_org">
-              <img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/impuestito_org">
+          ? `<a target="_blank" href="https://addons.mozilla.org/es-ES/firefox/addon/impuestito/">
+              <img alt="Mozilla Add-on Version" src="https://img.shields.io/amo/v/impuestito">
             </a>`
           : `<a target="_blank" href="https://chromewebstore.google.com/detail/impuestito-precio-final-j/kodbfkngjgckpmipedoomkdhhihioaio">
               <img alt="Chrome Web Store Version" src="https://img.shields.io/chrome-web-store/v/kodbfkngjgckpmipedoomkdhhihioaio">
@@ -140,18 +152,6 @@ function initMenu(text) {
       paymentMethodSelect.appendChild(new Option('Tarjeta de crédito', 'tarjeta', true, true));
       paymentMethodSelect.appendChild(new Option('Dólar MEP', 'mep'));
       paymentMethodSelect.appendChild(new Option('Crypto', 'crypto'));
-    }
-
-    // Initialize user config if not set
-    if (!result.userConfig) {
-      console.log("🙋‍♂️ Initializing user config");
-      chrome.storage.sync.set({
-        userConfig: {
-          selectedProvince: 'AR-C',
-          selectedPaymentMethod: 'tarjeta',
-          dismissedUpdate: false
-        }
-      })
     }
 
     // Province change
