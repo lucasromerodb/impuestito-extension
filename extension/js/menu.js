@@ -61,26 +61,49 @@ function initMenu(text) {
     // Menu markup
     const menuHTML = `
       <div class="impuestito-menu__config__section impuestito-menu__config__section--left">
+
         <div class="impuestito-menu__config__title">Configuración</div>
-        <div class="impuestito-menu__config__form-group">
-          <label>Método de pago</label>
-          <select id="impuestito-menu__config__select-payment-method" disabled>
-          </select>
-        </div>
 
         <div class="impuestito-menu__config__form-group">
           <label>Impuestos provinciales</label>
           <select id="impuestito-menu__config__select-province">
           </select>
         </div>
+
+        <div class="impuestito-menu__config__form-group">
+          <label>Método de pago</label>
+          <select id="impuestito-menu__config__select-payment-method" disabled>
+          </select>
+        </div>
+
       </div>
 
       <div class="impuestito-menu__config__section impuestito-menu__config__section--right">
-        <span class="impuestito-menu__config__version">versión: ${chrome.runtime.getManifest().version}</span>
-        <a target="_blank" href="https://cafecito.app/impuestito">Hacer una donación</a>
-        <a target="_blank" href="https://x.com/impuestito_org">Seguir en X / Twitter</a>
-        <a target="_blank" href="https://impuestito.org/?utm_source=impuestito-extension&utm_medium=${window.location.hostname}">Ver más en el sitio web</a>
-        <a target="_blank" href="https://chromewebstore.google.com/detail/impuestito-precio-final-j/kodbfkngjgckpmipedoomkdhhihioaio">Dejar una review</a>
+        ${
+          isFirefox()
+          ? `<a target="_blank" href="https://x.com/impuestito_org">
+              <img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/impuestito_org">
+            </a>`
+          : `<a target="_blank" href="https://chromewebstore.google.com/detail/impuestito-precio-final-j/kodbfkngjgckpmipedoomkdhhihioaio">
+              <img alt="Chrome Web Store Version" src="https://img.shields.io/chrome-web-store/v/kodbfkngjgckpmipedoomkdhhihioaio">
+            </a>`
+        }
+        <a target="_blank" href="https://x.com/impuestito_org">
+          <img alt="X (formerly Twitter) Follow" src="https://img.shields.io/twitter/follow/impuestito_org">
+        </a>
+        <div class="impuestito-menu__amazon-recommendation">
+          <a target="_blank" href="https://amzn.to/3DgDekl">
+            <img src="https://m.media-amazon.com/images/I/61xtwHIMHpL._SX522_.jpg">
+          </a>
+          <a target="_blank" href="https://amzn.to/3FentLc">
+            <img src="https://m.media-amazon.com/images/I/61uQKdWCfAL._SX522_.jpg">
+          </a>
+          <a target="_blank" href="https://amzn.to/4iAdqOP">
+            <img src="https://m.media-amazon.com/images/I/51iXILIT27L._SX522_.jpg">
+          </a>
+        </div>
+        <a target="_blank" href="https://amzn.to/3XzcKRO">Más accesorios gaming</a>
+        <a target="_blank" href="https://amzn.to/4kttBzg">Amazon Prime Gaming</a>
       </div>
       `
 
@@ -143,6 +166,9 @@ function initMenu(text) {
           selectedProvince: e.target.value,
         }
       });
+
+      // Force window reload to apply province change
+      window.location.reload();
     });
   });
 }
@@ -158,3 +184,10 @@ function handleProvinceChange(province) {
     }
   });
 }
+
+function isFirefox() {
+  return navigator.userAgent.toLowerCase().includes('firefox');
+}
+
+{/* <a target="_blank" href="https://cafecito.app/impuestito">Hacer una donación</a> */}
+        // <a target="_blank" href="https://impuestito.org/?utm_source=impuestito-extension&utm_medium=${window.location.hostname}">Ver más en el sitio web</a>

@@ -35,7 +35,7 @@ function GOGScrapper() {
       return e;
     });
 
-  console.log(elements);
+  // console.log(elements);
 
   const targetElements = elements.filter((e) => !alreadyProcessed(e));
   if (targetElements.length > 0) {

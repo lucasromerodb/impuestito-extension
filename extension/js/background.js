@@ -17,7 +17,7 @@ chrome.runtime.onInstalled.addListener(() => {
   // create alarm after extension is installed / upgraded
   // https://levelup.gitconnected.com/how-to-use-background-script-to-fetch-data-in-chrome-extension-ef9d7f69625d
   // https://www.section.io/engineering-education/how-to-build-a-chrome-extension-using-javascript/
-  chrome.alarms.create("requestData", { periodInMinutes: 1440 }); // Ej: minutes = hours * 60
+  chrome.alarms.create("requestData", { periodInMinutes: 4320 }); // Ej: minutes = hours * 60
   requestData();
 });
 

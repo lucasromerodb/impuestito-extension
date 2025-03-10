@@ -8,12 +8,23 @@
  */
 async function getServerData() {
   try {
-    const response = await chrome.storage.sync.get(["data"]);
-    if (response.data) {
-      // console.log('❇️ DATA from Storage');
-      return response.data;
+    const response = await chrome.storage.sync.get(["data", "userConfig"]);
+    if (response) {
+      console.log('❇️ DATA from Storage', response);
+
+      // TODO: refactor the server response
+      // NOTE: this is a temporary solution to normalize data from the server
+      return {
+        dollar: {
+          bancos: response.data.bancos
+        },
+        taxes: response.data.taxes,
+        province: response.data.province,
+        userConfig: response.userConfig,
+      };
     } else {
-      console.warn('🐞 No data found in storage');
+      console.warn('🐞 No data found in storage, trying again...');
+      getServerData();
       return null;
     }
   } catch (error) {
@@ -70,11 +81,12 @@ const alreadyProcessed = (e) => e.className.includes("impuestito-done")
  * @returns {number}
  */
 function getNewPrice(originalPrice, currency = "ARS", data) {
-  if (!data.taxes.defaultTotal || !data.bancos) return;
+  if (!data.taxes.ganancias || !data.userConfig.selectedProvince) return;
 
   const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "Prueba del juego", "--", "", "NaN", "Incluido", "Anunciados", "Ver juego", "Coming Soon", "Available", "Under"];
   const priceTextNaN = exceptions.some((exception) => exception.toLowerCase() === originalPrice.toLowerCase());
-  const priceWithTaxes = (p) => (p + p * data.taxes.defaultTotal).toFixed(2);
+  const provinceTax = data.userConfig.selectedProvince ? data.province[data.userConfig.selectedProvince].tax : data.province[data.province["AR-C"]].tax;
+  const priceWithTaxes = (p) => (p + p * (data.taxes.iva + data.taxes.ganancias + provinceTax)).toFixed(2);
 
   if (priceTextNaN) {
     // console.log("👁️ 1 getNewPrice: priceTextNaN", priceTextNaN);
@@ -90,7 +102,7 @@ function getNewPrice(originalPrice, currency = "ARS", data) {
   }
 
   if (currency === "US") {
-    const newPrice = priceNumber * sanitizePricePunctuation(data.bancos);
+    const newPrice = priceNumber * sanitizePricePunctuation(data.dollar.bancos);
     // console.log("👁️ 4 getNewPrice: newPrice", newPrice);
     return priceWithTaxes(newPrice);
   }
@@ -143,6 +155,7 @@ function replacePrice(priceElement, eventElement = priceElement, originalPrice, 
  */
 async function scrapper({ priceElement, eventElement, currency, showEmoji, isDiscount = false }) {
   const data = await getServerData();
+
   if (priceElement && data) {
     isDiscount ? priceElement.classList.add("price-discount") : priceElement.classList.add("price-regular");
     const originalPrice = priceElement.textContent;
