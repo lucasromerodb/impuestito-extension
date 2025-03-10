@@ -10,7 +10,7 @@ async function getServerData() {
   try {
     const response = await chrome.storage.sync.get(["data", "userConfig"]);
     if (response) {
-      console.log('❇️ DATA from Storage', response);
+      // console.log('❇️ DATA from Storage', response);
 
       // TODO: refactor the server response
       // NOTE: this is a temporary solution to normalize data from the server
