@@ -6,7 +6,7 @@
   position: fixed;
   bottom: 16px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) !important;
 
   display: flex;
   background-color: white;
@@ -80,12 +80,12 @@
 }
 
 .impuestito-menu__config__section--left {
-  gap: 20px;
+  gap: 20px !important;
   border-right: 1px solid silver;
 }
 
 .impuestito-menu__config__section--right {
-  gap: 12px;
+  gap: 12px !important;
 }
 
 .impuestito-menu__config__form-group {
@@ -100,7 +100,7 @@
 
 .impuestito-menu__config__form-group select {
   width: 100% !important;
-  padding: 10px 12px;
+  padding: 10px 12px !important;
 
   border: 1px solid silver;
   border-radius: 8px;
@@ -168,6 +168,34 @@
   pointer-events: none !important;
 }
 
+.impuestito-menu__amazon-recommendation {
+  display: flex;
+  flex-direction: row;
+  gap: 8px !important;
+}
+
+.impuestito-menu__amazon-recommendation a {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 6px;
+  border: 1px solid silver;
+
+  overflow: hidden;
+  transition: all 0.15s ease-out;
+}
+
+.impuestito-menu__amazon-recommendation a:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+}
+
+.impuestito-menu__amazon-recommendation img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 @media screen and (max-width: 480px) {
   .impuestito-menu__config {
     flex-direction: column;
@@ -205,33 +233,5 @@
   25% {
     transform: translateX(-50%) translateY(-4px);
   }
-}
-
-.impuestito-menu__amazon-recommendation {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-}
-
-.impuestito-menu__amazon-recommendation a {
-  width: 50px;
-  height: 50px;
-
-  border-radius: 6px;
-  border: 1px solid silver;
-
-  overflow: hidden;
-  transition: all 0.15s ease-out;
-}
-
-.impuestito-menu__amazon-recommendation a:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transform: scale(1.05);
-}
-
-.impuestito-menu__amazon-recommendation img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
