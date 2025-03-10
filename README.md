@@ -4,9 +4,9 @@
 ![](https://img.shields.io/twitter/follow/impuestito_org)
 ![](https://img.shields.io/github/stars/lucasromerodb/impuestito-extension)
 ![](https://img.shields.io/chrome-web-store/v/kodbfkngjgckpmipedoomkdhhihioaio)
-![](https://img.shields.io/chrome-web-store/size/kodbfkngjgckpmipedoomkdhhihioaio)
+![Mozilla Add-on Version](https://img.shields.io/amo/v/impuestito)
 ![](https://img.shields.io/chrome-web-store/last-updated/kodbfkngjgckpmipedoomkdhhihioaio)
-![](https://img.shields.io/chrome-web-store/rating/kodbfkngjgckpmipedoomkdhhihioaio)
+<!-- ![](https://img.shields.io/chrome-web-store/rating/kodbfkngjgckpmipedoomkdhhihioaio) -->
 <!-- ![](https://img.shields.io/chrome-web-store/rating-count/kodbfkngjgckpmipedoomkdhhihioaio) -->
 
 ![impuestito](/media/chrome-store-2.jpg "Impuestito Cover")
