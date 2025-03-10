@@ -15,11 +15,7 @@ async function getServerData() {
       // TODO: refactor the server response
       // NOTE: this is a temporary solution to normalize data from the server
       return {
-        dollar: {
-          bancos: response.data.bancos
-        },
-        taxes: response.data.taxes,
-        province: response.data.province,
+        ...response.data, // dollar, taxes, province
         userConfig: response.userConfig,
       };
     } else {
