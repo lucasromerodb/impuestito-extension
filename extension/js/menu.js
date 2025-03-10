@@ -149,7 +149,7 @@ function initMenu(text) {
 
       handleProvinceChange(result.userConfig.selectedProvince);
 
-      paymentMethodSelect.appendChild(new Option('Tarjeta de crédito', 'tarjeta', true, true));
+      paymentMethodSelect.appendChild(new Option('Tarjeta', 'tarjeta', true, true));
       paymentMethodSelect.appendChild(new Option('Dólar MEP', 'mep'));
       paymentMethodSelect.appendChild(new Option('Crypto', 'crypto'));
     }
@@ -189,5 +189,5 @@ function isFirefox() {
   return navigator.userAgent.toLowerCase().includes('firefox');
 }
 
-{/* <a target="_blank" href="https://cafecito.app/impuestito">Hacer una donación</a> */}
-        // <a target="_blank" href="https://impuestito.org/?utm_source=impuestito-extension&utm_medium=${window.location.hostname}">Ver más en el sitio web</a>
+// <a target="_blank" href="https://cafecito.app/impuestito">Hacer una donación</a>
+// <a target="_blank" href="https://impuestito.org/?utm_source=impuestito-extension&utm_medium=${window.location.hostname}">Ver más en el sitio web</a>
