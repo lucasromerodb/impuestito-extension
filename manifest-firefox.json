@@ -8,19 +8,27 @@
       "id": "{91a9979c-49cc-4748-96b0-54930ce3618c}"
     }
   },
+  "side_panel": {
+    "default_path": "config/sidepanel.html"
+  },
+  "action": {
+    "default_title": "Click to open panel"
+  },
+
   "background": {
     "scripts": [
-      "js/background.js"
+      "core/background.js"
     ]
   },
   "host_permissions": [
     "*://localhost:3000/*",
-    "https://impuestito-api-production.up.railway.app/impuestito"
+    "https://*.up.railway.app/*"
   ],
   "permissions": [
     "storage",
     "alarms",
-    "webRequest"
+    "webRequest",
+    "sidePanel"
   ],
   "content_scripts": [
     {
@@ -56,30 +64,40 @@
         "*://*.bonoxs.com/*"
       ],
       "css": [
-        "css/styles.css",
-        "css/menu.css"
+        "config/config.css",
+        "prices/prices.css",
+        "gamepass/gamepass.css"
       ],
       "js": [
-        "js/index.js",
-        "js/menu.js",
-        "js/helpers.js",
-        "js/gaming/playstation.js",
-        "js/gaming/xbox.js",
-        "js/gaming/nintendo.js",
-        "js/gaming/epic.js",
-        "js/gaming/gog.js",
-        "js/gaming/ubisoft.js",
-        "js/gaming/ea.js",
-        "js/gaming/xbdeals.js",
-        "js/gaming/psdeals.js",
-        "js/gaming/ntdeals.js",
-        "js/gaming/dekudeals.js",
-        "js/gaming/steam.js",
-        "js/gaming/humble-bundle.js",
-        "js/gaming/green-man-gaming.js",
-        "js/gaming/isthereanydeal.js"
+        "core/index.js",
+        "core/helpers.js",
+        "config/menu.js",
+        "prices/playstation.js",
+        "prices/xbox.js",
+        "prices/nintendo.js",
+        "prices/epic.js",
+        "prices/gog.js",
+        "prices/ubisoft.js",
+        "prices/ea.js",
+        "prices/xbdeals.js",
+        "prices/psdeals.js",
+        "prices/ntdeals.js",
+        "prices/dekudeals.js",
+        "prices/steam.js",
+        "prices/humble-bundle.js",
+        "prices/green-man-gaming.js",
+        "prices/isthereanydeal.js",
+        "gamepass/index.js",
+        "gamepass/menu.js",
+        "gamepass/steam.js"
       ],
       "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [ "" ],
+      "matches": [ "https://*/*" ]
     }
   ],
   "icons": {

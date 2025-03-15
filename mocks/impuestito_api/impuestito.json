@@ -1,0 +1,113 @@
+{
+  "dollar": {
+    "bancos": 1098.33,
+    "cripto": 1245.24,
+    "mep": 1237.06,
+    "oficial": 1088
+  },
+  "taxes": {
+    "iva": 0.21,
+    "pais": 0,
+    "ganancias": 0.3,
+    "iibb": "AR-C",
+    "defaultTotal": 0.53
+  },
+  "province": {
+    "AR-C": {
+      "name": "CABA",
+      "tax": 0.02
+    },
+    "AR-B": {
+      "name": "Buenos Aires",
+      "tax": 0.02
+    },
+    "AR-K": {
+      "name": "Catamarca",
+      "tax": 0
+    },
+    "AR-H": {
+      "name": "Chaco",
+      "tax": 0.055
+    },
+    "AR-U": {
+      "name": "Chubut",
+      "tax": 0
+    },
+    "AR-W": {
+      "name": "Corrientes",
+      "tax": 0
+    },
+    "AR-X": {
+      "name": "Córdoba",
+      "tax": 0.03
+    },
+    "AR-E": {
+      "name": "Entre Ríos",
+      "tax": 0
+    },
+    "AR-P": {
+      "name": "Formosa",
+      "tax": 0
+    },
+    "AR-Y": {
+      "name": "Jujuy",
+      "tax": 0
+    },
+    "AR-L": {
+      "name": "La Pampa",
+      "tax": 0.01
+    },
+    "AR-F": {
+      "name": "La Rioja",
+      "tax": 0
+    },
+    "AR-M": {
+      "name": "Mendoza",
+      "tax": 0
+    },
+    "AR-N": {
+      "name": "Misiones",
+      "tax": 0.025
+    },
+    "AR-Q": {
+      "name": "Neuquén",
+      "tax": 0.04
+    },
+    "AR-R": {
+      "name": "Río Negro",
+      "tax": 0.05
+    },
+    "AR-J": {
+      "name": "San Juan",
+      "tax": 0
+    },
+    "AR-D": {
+      "name": "San Luis",
+      "tax": 0
+    },
+    "AR-A": {
+      "name": "Salta",
+      "tax": 0.036
+    },
+    "AR-Z": {
+      "name": "Santa Cruz",
+      "tax": 0
+    },
+    "AR-S": {
+      "name": "Santa Fe",
+      "tax": 0.045
+    },
+    "AR-G": {
+      "name": "Sgo. del Estero",
+      "tax": 0
+    },
+    "AR-V": {
+      "name": "T. del Fuego",
+      "tax": 0.03
+    },
+    "AR-T": {
+      "name": "Tucumán",
+      "tax": 0
+    }
+  }
+}

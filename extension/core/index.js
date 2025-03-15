@@ -51,24 +51,3 @@ function observeInit(targetElement, handleScrapperInit, options = { subtree: tru
 
   observer.observe(targetElement, { subtree: options.subtree, attributes: options.attributes, childList: options.childList });
 }
-
-// "matches": [
-//   "*://*.playstation.com/*",
-//   "*://*.xbox.com/*",
-//   "*://*.nintendo.com/*",
-//   "*://*.epicgames.com/*",
-//   "*://*.gog.com/*",
-//   "*://*.ubisoft.com/*",
-//   "*://*.ea.com/*",
-//   "*://*.xbdeals.net/*",
-//   "*://*.psdeals.net/*",
-//   "*://*.ntdeals.net/*",
-//   "*://*.dekudeals.com/*",
-//   "*://*.steampowered.com/*",
-//   "*://*.humblebundle.com/*",
-//   "*://*.greenmangaming.com/*",
-//   "*://*.battle.net/*",
-//   "*://*.amazon.com/*"
-//   "*://*.tiendamia.com/*"
-//   "*://*.aliexpress.com/*"
-// ],
