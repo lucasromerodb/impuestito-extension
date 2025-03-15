@@ -2,12 +2,12 @@
   "scripts": {
     "test": "jest --watch",
     "bump": "node scripts/bump-manifest-version.js",
-    "build:clean": "rm -rf builds/*.zip",
-    "dev:chromium": "npm run build:clean && cp manifest-chromium.json extension/manifest.json && node scripts/compress-extension.js chromium",
-    "dev:firefox": "npm run build:clean && cp manifest-firefox.json extension/manifest.json && node scripts/compress-extension.js firefox",
+    "clean:builds": "rm -rf builds/*.zip",
+    "dev:chromium": "npm run clean:builds && cp manifest-chromium.json extension/manifest.json && node scripts/compress-extension.js chromium",
+    "dev:firefox": "npm run clean:builds && cp manifest-firefox.json extension/manifest.json && node scripts/compress-extension.js firefox",
     "build:chromium": "cp manifest-chromium.json extension/manifest.json && node scripts/compress-extension.js chromium",
     "build:firefox": "cp manifest-firefox.json extension/manifest.json && node scripts/compress-extension.js firefox",
-    "build": "npm run build:clean && npm run build:chromium && npm run build:firefox",
+    "build": "npm run clean:builds && npm run build:chromium && npm run build:firefox",
     "release": "npm run bump && npm run build:chromium && npm run build:firefox"
   },
   "devDependencies": {

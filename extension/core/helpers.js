@@ -1,3 +1,13 @@
+const logos = {
+  impuestito: {
+    name: "Impuestito",
+    icon: `<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="3.59476" cy="3.59476" r="2.90518" fill="#00BE5C"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.59472 7.63486C5.82603 7.63486 7.63486 5.82603 7.63486 3.59472C7.63486 3.03427 7.52075 2.50047 7.31448 2.0153L7.84933 1.48046C8.86282 0.466962 10.506 0.466964 11.5195 1.48046C12.533 2.49396 12.533 4.13716 11.5195 5.15065L5.15065 11.5195C4.13716 12.533 2.49396 12.533 1.48046 11.5195C0.466963 10.506 0.466963 8.86282 1.48046 7.84933L2.0153 7.31448C2.50048 7.52075 3.03427 7.63486 3.59472 7.63486Z" fill="#00BE5C"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7.10034 11.174C7.63143 11.865 8.46631 12.3104 9.40522 12.3104C11.0097 12.3104 12.3104 11.0097 12.3104 9.40522C12.3104 8.46631 11.865 7.63143 11.174 7.10034L7.10034 11.174Z" fill="#00BE5C"/>
+          </svg>`,
+  }
+}
 /**
  * Retrieves data from Chrome's local storage.
  *
@@ -7,24 +17,27 @@
  * @throws Will log an error message to the console if there is an issue retrieving the data.
  */
 async function getServerData() {
-  try {
-    const response = await chrome.storage.sync.get(["data", "userConfig"]);
-    if (response) {
-      // console.log('❇️ DATA from Storage', response);
+  // sync: is used to store or get data across devices
+  // local: is used to store or get data like localstorage
+  const responseSync = await chrome.storage.sync.get(["userConfig","market"]);
+  const responseLocal = await chrome.storage.local.get(["impuestito", "gamepass"]);
 
-      // TODO: refactor the server response
-      // NOTE: this is a temporary solution to normalize data from the server
-      return {
-        ...response.data, // dollar, taxes, province
-        userConfig: response.userConfig,
-      };
-    } else {
-      console.warn('🐞 No data found in storage, trying again...');
-      getServerData();
-      return null;
-    }
-  } catch (error) {
-    console.error('❌ Error retrieving data from storage', error);
+  if (responseSync.userConfig && responseLocal.impuestito && responseLocal.gamepass && responseSync.market) {
+    // console.log('❇️ DATA from Storage', response);
+
+    // TODO: refactor the server response
+    // NOTE: this is a temporary solution to normalize data from the server
+    return {
+      dollar: responseLocal.impuestito.dollar,
+      taxes: responseLocal.impuestito.taxes,
+      province: responseLocal.impuestito.province,
+      market: responseSync.market, // name, lang, region, tax
+      gamepass: responseLocal.gamepass, // gamepass games
+      userConfig: responseSync.userConfig,
+    };
+  } else {
+    console.warn('🐞 No data found in storage, trying again...');
+    getServerData();
     return null;
   }
 }
@@ -117,13 +130,7 @@ function getNewPrice(originalPrice, currency = "ARS", data) {
 function replacePrice(priceElement, eventElement = priceElement, originalPrice, newPrice, showEmoji = true) {
   const originalEmoji = showEmoji ? "❌ " : "";
   // const newEmoji = showEmoji ? "❇️ " : "";
-  const newEmoji = showEmoji ? `
-    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="3.59476" cy="3.59476" r="2.90518" fill="#00BE5C"/>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M3.59472 7.63486C5.82603 7.63486 7.63486 5.82603 7.63486 3.59472C7.63486 3.03427 7.52075 2.50047 7.31448 2.0153L7.84933 1.48046C8.86282 0.466962 10.506 0.466964 11.5195 1.48046C12.533 2.49396 12.533 4.13716 11.5195 5.15065L5.15065 11.5195C4.13716 12.533 2.49396 12.533 1.48046 11.5195C0.466963 10.506 0.466963 8.86282 1.48046 7.84933L2.0153 7.31448C2.50048 7.52075 3.03427 7.63486 3.59472 7.63486Z" fill="#00BE5C"/>
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M7.10034 11.174C7.63143 11.865 8.46631 12.3104 9.40522 12.3104C11.0097 12.3104 12.3104 11.0097 12.3104 9.40522C12.3104 8.46631 11.865 7.63143 11.174 7.10034L7.10034 11.174Z" fill="#00BE5C"/>
-    </svg>
-  ` : "";
+  const newEmoji = showEmoji ? logos.impuestito.icon : "";
 
   priceElement.innerHTML = `${newEmoji}${priceFormatter(newPrice)}`;
   priceElement.classList.add("priceWithTaxes");

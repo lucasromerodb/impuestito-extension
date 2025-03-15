@@ -1,0 +1,342 @@
+.page_game-pass--banner-wrapper {
+  /* display: flex; */
+}
+
+.page_game-pass--banner {
+  position: relative;
+
+  padding-top: 65px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 90px;
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  border-radius: 4px;
+
+  background: linear-gradient(-45deg, #16ab16, #139113, #0c5a0c, #139113, #0c5a0c);
+  background-size: 600%;
+  animation: animated-background 20s linear infinite;
+
+  overflow: hidden;
+}
+
+.page_game-pass--banner .header {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+
+  padding: 10px;
+
+  border-radius: 4px 4px 0 0;
+
+  color: white;
+  text-align: center;
+}
+
+.gp-available .header,
+.gp-fallback.gp-available .header {
+  background: linear-gradient(to right, #435876, #253142, #435876, #253142);
+  background-size: 600%;
+  animation: animated-background 20s linear infinite;
+}
+
+.gp-leaving .header,
+.gp-fallback.gp-leaving .header {
+  background: #b43636;
+  background-size: 600%;
+  animation: animated-background 20s linear infinite;
+  color: white;
+}
+
+.gp-coming .header,
+.gp-fallback.gp-coming .header {
+  background: linear-gradient(to right, #6aec6a, #e9fde9, #6aec6a, #e9fde9);
+  background-size: 600%;
+  animation: animated-background 20s linear infinite;
+  color: #052405;
+}
+
+.page_game-pass--banner .footer {
+  box-sizing: border-box;
+
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 22px;
+
+  /* background-color: #052405; */
+  /* background-color: rgb(5, 36, 5, 0.5); */
+  background: linear-gradient(-45deg, rgba(5, 36, 5, 0.6), rgba(5, 36, 5, 0.1));
+  border-radius: 0 0 4px 4px;
+  /* border-top: 1px solid #0a510a; */
+
+  font-size: 14px;
+  color: white;
+  text-align: center;
+}
+
+/* .page_game-pass--banner .footer div {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  color: #6aec6a;
+} */
+
+/* .gp-ms-store--config {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.gp-ms-store--button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+} */
+
+.page_game-pass--banner .footer .store {
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  padding: 8px 14px;
+  background: transparent;
+  border-radius: 20px;
+  border: 1px solid #6aec6a;
+
+  color: #6aec6a;
+  text-decoration: none;
+}
+
+.page_game-pass--banner .footer a {
+  color: #6aec6a;
+  text-decoration: underline;
+}
+
+.page_game-pass--banner .footer a:hover {
+  color: #e9fde9;
+}
+
+.page_game-pass--banner .footer .store svg {
+  width: 10px;
+  height: 10px;
+
+  padding: 2px;
+  margin-right: 6px;
+  margin-left: 6px;
+
+  background-color: white;
+  border-radius: 4px;
+}
+
+.page_game-pass--banner .footer .store strong {
+  margin-right: 6px;
+}
+
+.page_game-pass--banner .footer .store:hover {
+  color: #e9fde9;
+  border: 1px solid #e9fde9;
+}
+
+.page_game-pass--banner .footer .region-change {
+  background-color: transparent;
+  border: none;
+
+  color: #e9fde9;
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+.page_game-pass--banner .footer .region-change:hover {
+  opacity: 0.5;
+}
+
+.page_game-pass--banner .footer .extension {
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+/* .page_game-pass--banner .footer .market {
+  margin-top: 2px;
+
+  color: #6aec6a;
+  font-size: 12px;
+} */
+
+.page_game-pass--banner .content {
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.playable-badges {
+  z-index: 1;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+}
+
+.playable-badges div {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.page_game-pass--badge {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+  padding: 8px 12px;
+  background: #052405;
+  border-radius: 20px;
+
+  font-size: 12px;
+}
+
+.page_game-pass--badge svg {
+  margin-right: 6px;
+}
+
+.page_game-pass--badge svg {
+  margin-right: 6px;
+}
+
+.page_game-pass--button {
+  background: linear-gradient(-45deg, #16ab16, #139113, #0c5a0c, #139113, #0c5a0c) !important;
+  background-size: 600% !important;
+  animation: animated-background 20s linear infinite !important;
+  color: #fff;
+}
+
+.device-icon {
+  fill: white;
+}
+
+.game-pass-logo {
+  position: relative;
+  height: 34px;
+}
+
+.ultimate {
+  position: absolute;
+  padding: 2px;
+
+  transform: translate(116px, 154%);
+  border: 1px solid white;
+
+  font-size: 6px;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.gp-game_area_purchase_game {
+  background: linear-gradient(to right, #052405, #020e02) !important;
+  border: 1px solid #139113;
+}
+
+@keyframes animated-background {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.updates {
+  padding: 8px;
+  background: linear-gradient(-45deg, #16ab16, #139113, #0c5a0c, #139113, #0c5a0c, #16ab16, #139113, #0c5a0c);
+  background-size: 600%;
+  animation: animated-background 20s linear infinite;
+
+  text-shadow: 0 1px 3px #0a510a;
+  text-align: center;
+  color: white;
+}
+
+.updates a,
+.updates a:hover {
+  color: #a0e840;
+  font-weight: 600;
+}
+
+.updated-at {
+  padding: 15px 25px;
+
+  backdrop-filter: blur(20px);
+  background: rgba(0, 0, 0, 0.5);
+
+  font-size: 12px;
+  color: #16ab16;
+}
+
+.gp-menu {
+  z-index: 999;
+  position: fixed;
+  display: none;
+
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  justify-content: center;
+  align-items: center;
+
+  backdrop-filter: blur(20px);
+
+  /* animation: animated-updateAt 0.15s ease-out forwards; */
+}
+
+.gp-menu.visible {
+  display: flex;
+}
+
+.gp-menu_box {
+  padding: 30px;
+
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(5, 36, 5, 0.5);
+  border: 1px solid #6aec6a;
+
+  background: linear-gradient(-45deg, #16ab16, #139113, #0c5a0c, #139113, #0c5a0c);
+  background-size: 600%;
+  animation: animated-background 20s linear infinite;
+}
+
+.gp-menu select {
+  padding: 10px;
+  border-radius: 3px;
+}
+
+@keyframes animated-updateAt {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

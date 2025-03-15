@@ -3,3 +3,9 @@
 *.tar
 *.tar.gz
 node_modules
+.env
+.env.local
+.env.json
+*manifest.json
+*.pem
+*.crx
