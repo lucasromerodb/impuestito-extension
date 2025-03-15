@@ -8,13 +8,6 @@
       "id": "{91a9979c-49cc-4748-96b0-54930ce3618c}"
     }
   },
-  "side_panel": {
-    "default_path": "config/sidepanel.html"
-  },
-  "action": {
-    "default_title": "Abrir panel de impuestito.org"
-  },
-
   "background": {
     "scripts": [
       "core/background.js"
@@ -22,13 +15,13 @@
   },
   "host_permissions": [
     "*://localhost:3000/*",
-    "https://*.up.railway.app/*"
+    "https://*.up.railway.app/*",
+    "https://*.impuestito.org/*"
   ],
   "permissions": [
     "storage",
     "alarms",
-    "webRequest",
-    "sidePanel"
+    "webRequest"
   ],
   "content_scripts": [
     {
@@ -96,7 +89,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": [ "" ],
+      "resources": [ "chrome.png" ],
       "matches": [ "https://*/*" ]
     }
   ],

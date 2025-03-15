@@ -22,7 +22,7 @@ async function getServerData() {
   const responseSync = await chrome.storage.sync.get(["userConfig","market"]);
   const responseLocal = await chrome.storage.local.get(["impuestito", "gamepass"]);
 
-  if (responseSync && responseLocal) {
+  if (responseSync.userConfig && responseLocal.impuestito && responseLocal.gamepass && responseSync.market) {
     // console.log('❇️ DATA from Storage', response);
 
     // TODO: refactor the server response

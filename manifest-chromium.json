@@ -84,7 +84,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": [ "" ],
+      "resources": [ "chrome.png" ],
       "matches": [ "https://*/*" ]
     }
   ],

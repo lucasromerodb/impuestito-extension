@@ -1,7 +1,15 @@
+const API_URL_REGEX = /^(?:\/)?(https?:\/\/[^\/]+)(?:\/)?$/;
+const IMPUESTITO_API_URL = chrome.runtime.getManifest().web_accessible_resources[0].resources[0].replace(API_URL_REGEX, '$1');
+const GAMEPASS_API_URL = chrome.runtime.getManifest().web_accessible_resources[0].resources[1].replace(API_URL_REGEX, '$1');
 
-chrome.sidePanel
-  .setPanelBehavior({ openPanelOnActionClick: true })
-  .catch((error) => console.error(error));
+console.log(IMPUESTITO_API_URL);
+console.log(GAMEPASS_API_URL);
+
+if (chrome.sidePanel) {
+  chrome.sidePanel
+    .setPanelBehavior({ openPanelOnActionClick: true })
+    .catch((error) => console.error(error));
+}
 
 // COUNTRY LOCALES: https://saimana.com/list-of-country-locale-code/
 // Xbox supported markets regions
@@ -98,7 +106,7 @@ const markets = [
 async function requestTaxes() {
   console.log("Requesting taxes...⏳");
   try {
-    const response = await fetch(`${chrome.runtime.getManifest().web_accessible_resources[0].resources[0]}/impuestito`, {});
+    const response = await fetch(`${IMPUESTITO_API_URL}/impuestito`, {});
     const data = await response.json();
     chrome.storage.local.set({ impuestito: data });
     console.log("Requesting taxes done ✅");
@@ -112,7 +120,7 @@ async function requestGamePass() {
   console.log("Requesting gamepass...⏳");
   try {
     // This Game Pass API is Open Source and you can host on your own! https://github.com/lucasromerodb/xbox-store-api
-    const response = await fetch(`${chrome.runtime.getManifest().web_accessible_resources[0].resources[1]}/api/gamepass/extension`, {});
+    const response = await fetch(`${GAMEPASS_API_URL}/api/gamepass/extension`, {});
     const data = await response.json();
     chrome.storage.local.set({ gamepass: data });
     console.log("Requesting gamepass done ✅");
