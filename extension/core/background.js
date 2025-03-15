@@ -2,9 +2,6 @@ const API_URL_REGEX = /^(?:\/)?(https?:\/\/[^\/]+)(?:\/)?$/;
 const IMPUESTITO_API_URL = chrome.runtime.getManifest().web_accessible_resources[0].resources[0].replace(API_URL_REGEX, '$1');
 const GAMEPASS_API_URL = chrome.runtime.getManifest().web_accessible_resources[0].resources[1].replace(API_URL_REGEX, '$1');
 
-console.log(IMPUESTITO_API_URL);
-console.log(GAMEPASS_API_URL);
-
 if (chrome.sidePanel) {
   chrome.sidePanel
     .setPanelBehavior({ openPanelOnActionClick: true })
