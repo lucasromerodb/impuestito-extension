@@ -7,7 +7,7 @@
     "default_path": "config/sidepanel.html"
   },
   "action": {
-    "default_title": "Click to open panel"
+    "default_title": "Abrir panel de impuestito.org"
   },
   "background": {
     "service_worker": "core/background.js",

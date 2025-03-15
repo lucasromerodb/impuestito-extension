@@ -6,10 +6,47 @@
     <title>Impuestito</title>
     <style>
         body {
-            width: 420px;
+            width: 100%;
+            height: 100%;
+
             margin: 0;
             padding: 0;
             font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        iframe {
+            position: absolute;
+            inset: 0;
+
+            padding: 0;
+            margin: 0;
+
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            /* background: var(--color-primary500); */
+            background-color: transparent;
+            border-radius: 60px;
+            border: 1px solid #bac4c8;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            /* background: var(--color-primary500); */
+            background-color: #bac4c8;
         }
     </style>
 </head>
@@ -17,8 +54,7 @@
     <iframe
         id="impuestitoFrame"
         src="https://impuestito.org/gaming"
-        style="width: 100vw; height: 100vh;"
-        title="Impuestito Panel">
+        title="Panel de impuestito.org">
     </iframe>
 </body>
 </html>

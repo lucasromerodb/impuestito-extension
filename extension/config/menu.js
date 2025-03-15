@@ -120,7 +120,6 @@ async function initMenu(text) {
       </div>
       <a target="_blank" href="https://amzn.to/3XzcKRO">Más accesorios gaming</a>
       <a target="_blank" href="https://amzn.to/4kttBzg">Amazon Prime Gaming</a>
-      <button onclick="openSidePanel()">Abrir panel</button>
     </div>
     `
 
@@ -195,21 +194,3 @@ function isFirefox() {
 
 // <a target="_blank" href="https://cafecito.app/impuestito">Hacer una donación</a>
 // <a target="_blank" href="https://impuestito.org/?utm_source=impuestito-extension&utm_medium=${window.location.hostname}">Ver más en el sitio web</a>
-
-
-function openSidePanel() {
-  console.log("OPEN SIDE PANEL")
-  // Check if browser supports side panel API
-  if (typeof chrome.sidePanel !== 'undefined') {
-    chrome.sidePanel.open({
-      windowId: chrome.windows.WINDOW_ID_CURRENT
-    }).catch(error => {
-      // Fallback to opening in new tab if side panel fails
-      window.open('https://impuestito.org/gaming', '_blank');
-      console.error('Error opening side panel:', error);
-    });
-  } else {
-    // Fallback for browsers without side panel support
-    window.open('https://impuestito.org/gaming', '_blank');
-  }
-}
