@@ -28,6 +28,7 @@ function GOGScrapper() {
     ".series__buy-all-price-base._price",
   ].join(", ");
 
+
   const elements = [...document.querySelectorAll(targets)]
     .filter((e) => !alreadyScanned(e))
     .map((e) => {

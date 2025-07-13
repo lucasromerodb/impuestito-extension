@@ -28,7 +28,7 @@ Impuestito es una extensión para tu navegador que te muestra el precio final de
 ## 🛍️ ¿En que tiendas funciona?
 
 - ✅ [GOG](https://www.gog.com/)
-- ✅ [Xbox (PC y Consola)](https://www.xbox.com/es-AR/games/browse)
+- ✅ [Microsoft Xbox (PC y Consola)](https://www.xbox.com/es-AR/games/browse)
 - ⏳ [Microsoft Store](https://www.microsoft.com/es-ar/store/deals/games/pc) (próximamente)
 - ✅ [PlayStation](https://store.playstation.com/es-ar/category/3f772501-f6f8-49b7-abac-874a88ca4897)
 - ✅ [Nintendo (AR)](https://www.nintendo.com/es-ar/)
@@ -48,6 +48,7 @@ Impuestito es una extensión para tu navegador que te muestra el precio final de
 
 - Google Chrome
 - Microsoft Edge
+- Firefox
 - OperaGX
 - Opera
 - Brave
@@ -67,11 +68,11 @@ Impuestito escanea el precio original de cada videojuego en más de 14 stores y 
 ### 🎯 Roadmap de funcionalidades
 
 - ✅ Compatible con más de 14 tiendas y portales
+- ✅ Integración de detección para saber si el juego está en Game Pass
+- ✅ Versión para Firefox
 - ⏳ Completar el soporte para tiendas que tienen soporte parcial
 - ⏳ Personalización de impuestos
-- ⏳ Integración de detección para saber si el juego está en Game Pass
 - ⏳ Comparador de juegos con otras tiendas
-- ⏳ Versión para Firefox
 - ⏳ Soporte para Amazon
 - ⏳ Soporte para Tiendamia
 - ⏳ Soporte para AliExpress
@@ -94,7 +95,7 @@ Hace tiempo existe 👑 [Steamcito](https://github.com/emilianog94/Steamcito-Pre
 
 > Nota: Impuestito se basa en la misma idea que Steamcito pero para otras tiendas.
 
-## Imagenes promocionales
+## Imagenes promocionales de impuestito
 
 ![Impuestito](/media/chrome-store-4.jpg "Impuestito Cover")
 ![Impuestito](/media/chrome-store-5.jpg "Impuestito Cover")
