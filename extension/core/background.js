@@ -2,9 +2,6 @@ const API_URL_REGEX = /^(?:\/)?(https?:\/\/[^\/]+)(?:\/)?$/;
 const IMPUESTITO_API_URL = chrome.runtime.getManifest().web_accessible_resources[0].resources[0].replace(API_URL_REGEX, '$1');
 const GAMEPASS_API_URL = chrome.runtime.getManifest().web_accessible_resources[0].resources[1].replace(API_URL_REGEX, '$1');
 
-console.log(IMPUESTITO_API_URL);
-console.log(GAMEPASS_API_URL);
-
 if (chrome.sidePanel) {
   chrome.sidePanel
     .setPanelBehavior({ openPanelOnActionClick: true })
@@ -103,16 +100,16 @@ const markets = [
   { name: "Vietnam", lang: "vi", region: "vn", tax: 1 },
 ];
 
-async function requestTaxes() {
-  console.log("Requesting taxes...⏳");
+async function requestImpuestito() {
+  console.log("Requesting impuestito...⏳");
   try {
     const response = await fetch(`${IMPUESTITO_API_URL}/impuestito`, {});
     const data = await response.json();
     chrome.storage.local.set({ impuestito: data });
-    console.log("Requesting taxes done ✅");
+    console.log("Requesting impuestito done ✅");
   } catch (error) {
     console.log("Error ❌");
-    console.error("Error fetching taxes:", error);
+    console.error("Error fetching impuestito:", error);
   }
 }
 
@@ -144,16 +141,16 @@ chrome.runtime.onInstalled.addListener(async () => {
   // create alarm after extension is installed / upgraded
   // https://levelup.gitconnected.com/how-to-use-background-script-to-fetch-data-in-chrome-extension-ef9d7f69625d
   // https://www.section.io/engineering-education/how-to-build-a-chrome-extension-using-javascript/
-  chrome.alarms.create("requestTaxes", { periodInMinutes: 4320 }); // Ej: minutes = hours * 60
-  chrome.alarms.create("requestGamePass", { periodInMinutes: 4320 }); // Ej: minutes = hours * 60
-  await requestTaxes();
+  chrome.alarms.create("requestImpuestito", { periodInMinutes: 1 });
+  chrome.alarms.create("requestGamePass", { periodInMinutes: 1 });
+  await requestImpuestito();
   await requestGamePass();
   await requestMarket();
 });
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
   console.log("⏰ Alarm:", alarm);
-  await requestTaxes();
+  await requestImpuestito();
   await requestGamePass();
   await requestMarket();
 });

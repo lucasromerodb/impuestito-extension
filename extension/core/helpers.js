@@ -22,8 +22,15 @@ async function getServerData() {
   const responseSync = await chrome.storage.sync.get(["userConfig","market"]);
   const responseLocal = await chrome.storage.local.get(["impuestito", "gamepass"]);
 
+  // console.log('RESPONSE STATUS', {
+  //   userConfig: responseSync.userConfig,
+  //   market: responseSync.market,
+  //   impuestito: responseLocal.impuestito,
+  //   gamepass: responseLocal.gamepass,
+  // })
+
   if (responseSync.userConfig && responseLocal.impuestito && responseLocal.gamepass && responseSync.market) {
-    // console.log('❇️ DATA from Storage', response);
+    // console.log('❇️ DATA retrieved successfully from Storage');
 
     // TODO: refactor the server response
     // NOTE: this is a temporary solution to normalize data from the server
@@ -36,9 +43,17 @@ async function getServerData() {
       userConfig: responseSync.userConfig,
     };
   } else {
-    console.warn('🐞 No data found in storage, trying again...');
-    getServerData();
-    return null;
+    // Prevent infinite recursion by limiting retry attempts
+    if (!getServerData.retryCount) getServerData.retryCount = 0;
+    if (getServerData.retryCount < 3) {
+      getServerData.retryCount++;
+      await new Promise(resolve => setTimeout(resolve, 500)); // Wait 500ms before retry
+      return await getServerData();
+    } else {
+      console.error('❌ Failed to retrieve data from storage after multiple attempts.');
+      getServerData.retryCount = 0; // Reset for future calls
+      return null;
+    }
   }
 }
 
@@ -90,7 +105,7 @@ const alreadyProcessed = (e) => e.className.includes("impuestito-done")
  * @returns {number}
  */
 function getNewPrice(originalPrice, currency = "ARS", data) {
-  if (!data.taxes.ganancias || !data.userConfig.selectedProvince) return;
+  if (!data.userConfig.selectedProvince) return;
 
   const exceptions = ["Free", "FREE", "Gratuito", "Gratis", "Gratis+", "No disponible", "Prueba del juego", "--", "", "NaN", "Incluido", "Anunciados", "Ver juego", "Coming Soon", "Available", "Under"];
   const priceTextNaN = exceptions.some((exception) => exception.toLowerCase() === originalPrice.toLowerCase());
@@ -163,6 +178,7 @@ async function scrapper({ priceElement, eventElement, currency, showEmoji, isDis
     isDiscount ? priceElement.classList.add("price-discount") : priceElement.classList.add("price-regular");
     const originalPrice = priceElement.textContent;
     // console.log("✨ scrapper: originalPrice", { originalPrice });
+    // console.log({originalPrice, currency, data});
     const newPrice = getNewPrice(originalPrice, currency, data);
     // console.log("✨ scrapper: newPrice", { newPrice });
     newPrice && replacePrice(priceElement, eventElement, originalPrice, newPrice, showEmoji);

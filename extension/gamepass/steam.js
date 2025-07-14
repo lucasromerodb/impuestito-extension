@@ -18,9 +18,9 @@ const devices = {
 };
 
 const headerText = {
-  available: "This game is available on Game Pass and playable on the following platforms",
-  leaving: "This game is leaving Game Pass soon. Give it a last try!",
-  coming: "This game is coming to Game Pass soon. Can't wait?",
+  available: "Este juego está disponible en Game Pass y es jugable en las siguientes plataformas",
+  leaving: "Este juego está saliendo de Game Pass pronto. ¡Dale una última oportunidad!",
+  coming: "Este juego está llegando a Game Pass pronto. ¿No podés esperar?",
 };
 
 const GamePassLogo =
@@ -96,7 +96,7 @@ async function drawPageUI(targetPosition, targetElement, config) {
       ? `<a href="https://www.xbox.com/${options.market.lang}-${options.market.region}/games/store/game/${game.id}" target="_blank" class="store">
           ${price.SalePrice ? "En oferta" : "Comprar"} a ${logos.impuestito.icon} <strong>${
           price.SalePrice ? price.SalePrice : price.MSRP
-        }</strong> en Microsoft Store — Precio final con impuestos incluidos</a>`
+        }</strong> en Microsoft Store — Precio final con impuestos</a>`
       : `<a href="https://www.xbox.com/${options.market.lang}-${options.market.region}/games/store/game/${game.id}" target="_blank" class="store">Comprar en Microsoft Store</a>`;
 
   const msStoreButtonContainerElement = document.querySelector(".gp-ms-store--button");
@@ -120,7 +120,7 @@ function clearTitle(title) {
 
 function targetElementValidator({ games, element, insertPosition, targetElement, type, options }) {
   if (!element.classList.contains("game-pass")) {
-    const gameTitle = type === "regular" ? element.querySelector("h1").innerText : element.innerText;
+    const gameTitle = type === "regular" ? element.querySelector("h2").innerText : element.innerText;
 
     // This is only for Argentina
     const hasSteamcito = document.querySelector(".menu-steamcito");
